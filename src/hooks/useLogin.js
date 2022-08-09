@@ -11,30 +11,31 @@ export const useLogin = () => {
 		setError(null);
 		// localhost is set as proxy in package.json
 		// const response = await fetch('http://localhost:4000/api/user/login')
-		// const response = await fetch(
-		// 	`${process.env.REACT_APP_BACKEND_URL}/api/user/login`,
-		// 	{
-		const response = await fetch('/api/user/login', {
-			method: 'POST',
-			// mode: 'no-cors',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			// headers: {
-			// 	'Content-Type': 'application/json',
-			// 	'Access-Control-Allow-Origin': '*',
-			// },
-			// headers: {
-			// 	'Content-Type': 'application/json',
-			// 	'Access-Control-Allow-Headers': 'Content-Type',
-			// 	'Access-Control-Allow-Origin': process.env.REACT_APP_BACKEND_URL,
-			// 	'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
-			// },
-			// headers: {
-			// 	'Content-Type': 'application/json',
-			// },
-			body: JSON.stringify({ email, password }),
-		});
+		const response = await fetch(
+			`${process.env.REACT_APP_BACKEND_URL}/api/user/login`,
+			{
+				// const response = await fetch('/api/user/login', {
+				method: 'POST',
+				// mode: 'no-cors',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				// headers: {
+				// 	'Content-Type': 'application/json',
+				// 	'Access-Control-Allow-Origin': '*',
+				// },
+				// headers: {
+				// 	'Content-Type': 'application/json',
+				// 	'Access-Control-Allow-Headers': 'Content-Type',
+				// 	'Access-Control-Allow-Origin': process.env.REACT_APP_BACKEND_URL,
+				// 	'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
+				// },
+				// headers: {
+				// 	'Content-Type': 'application/json',
+				// },
+				body: JSON.stringify({ email, password }),
+			}
+		);
 		// this will return the data as json or the error
 		const json = await response.json();
 

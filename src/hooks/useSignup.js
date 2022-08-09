@@ -12,16 +12,17 @@ export const useSignup = () => {
 		// localhost is set as proxy in package.json
 		// const response = await fetch('http://localhost:4000/api/user/signup')
 
-		// const response = await fetch(
-		// 	`${process.env.REACT_APP_BACKEND_URL}/api/user/login`,
-		// 	{
-		const response = await fetch('/api/user/signup', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ email, password }),
-		});
+		const response = await fetch(
+			`${process.env.REACT_APP_BACKEND_URL}/api/user/signup`,
+			{
+				// const response = await fetch('/api/user/signup', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ email, password }),
+			}
+		);
 		// this will return the data as json or the error
 		const json = await response.json();
 
