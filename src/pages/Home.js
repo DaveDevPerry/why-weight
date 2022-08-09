@@ -25,11 +25,15 @@ const Home = () => {
 
 	useEffect(() => {
 		const fetchWeights = async () => {
-			const response = await fetch('/api/weights', {
-				headers: {
-					Authorization: `Bearer ${user.token}`,
-				},
-			});
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/weights`,
+				{
+					// const response = await fetch('/api/weights', {
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
 			const json = await response.json();
 
 			if (response.ok) {
@@ -47,11 +51,15 @@ const Home = () => {
 	}, [dispatch, user]);
 	useEffect(() => {
 		const fetchTargets = async () => {
-			const response = await fetch('/api/targets', {
-				headers: {
-					Authorization: `Bearer ${user.token}`,
-				},
-			});
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/targets`,
+				{
+					// const response = await fetch('/api/targets', {
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
 			const json = await response.json();
 
 			if (response.ok) {
