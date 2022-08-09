@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+/* 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+} */
+/* 
+:root {
+  --primary: #1aac83;
+  --error: #e7195a;
+}
+body {
+  background: #f1f1f1;
+  margin: 0;
+  font-family: "Poppins";
+}
+header {
+  background: #fff;
+}
+header .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header a {
+  color: #333;
+  text-decoration: none;
+}
+.pages{
+  max-width: 1400px;
+  padding: 20px;
+  margin: 0 auto;
+}
+
+.home {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 20px;
+}
+
+.create{
+  color: #555;
+  background: #fff;
+  border-radius: 4px;
+  margin: 0 auto 10px auto;
+  padding: 20px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 0.5rem;
+}
+.create p.form-title{
+  padding: 0 20px;
+  border-bottom: 1px solid #555;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+  text-align: center;
+  margin-top: 10px;
+}
+.create h3{
+  text-align: center;
+  margin: 0;
+}
+.create .input-wrapper{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 10px;
+}
+.create .input-wrapper label{
+  font-size: 0.9em;
+  text-align: right;
+}
+.create .input-wrapper #input-number{
+  padding: 8px 10px;
+  margin: 0;
+  font-size: 18px;
+  color: #555;
+}
+
+.weight-details {
+  background: #fff;
+  border-radius: 4px;
+  margin: 5px auto;
+  padding: 10px 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  column-gap: 4rem;
+}
+.weight-details h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  color: var(--primary);
+}
+.weight-details p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #555;
+}
+.weight-details span {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+}
+.target-details {
+  background: #fff;
+  border-radius: 4px;
+  margin: 10px auto;
+  padding: 20px;
+  position: relative;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  column-gap: 4rem;
+}
+.target-details h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  color: var(--primary);
+}
+.target-details p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #555;
+}
+.target-details span {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: #f1f1f1;
+  padding: 6px;
+  border-radius: 50%;
+  color: #333;
+}
+.progress-widget{
+  background: #fff;
+  border-radius: 4px;
+  margin: 0 auto 10px auto;
+  padding: 10px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+ 
+  display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+}
+.progress-widget .progress-bar-container{
+  display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+  flex: 1;
+}
+.progress-widget .progress-bar-container p{
+  margin: 0;
+}
+.progress-widget .progress-bar-container progress[value] {
+  width: 100%;
+  appearance: none;
+}
+::-webkit-progress-bar {
+  height: 100%;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  border: 1px solid #333;
+  width: 100%;
+}
+ ::-webkit-progress-value {
+  height: 100%;
+  border-radius: 4px;
+  background-color: var(--primary);
+}
+.wrapper{
+  background: #fff;
+  border-radius: 4px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100px;
+}
+.wrapper p{
+  text-align: center;
+  margin: 0;
+}
+.wrapper p.figure{
+  margin: 0;
+  font-size: 0.9em;
+  color: #555;
+}
+.wrapper p.stat-name{
+  margin: 0;
+  font-size: 0.8em;
+  color: #555;
+  text-transform: uppercase;
+}
+p.weights-list{
+  padding: 0 20px;
+  border-bottom: 1px solid #555;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+}
+.countdown-widget{
+  background: #fff;
+  border-radius: 4px;
+  margin: 0 auto 10px auto;
+  padding: 10px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.countdown-widget p{
+  margin: 0;
+  color: #555;
+}
+label, input {
+  display: block;
+}
+input {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input:focus {
+  outline: none;
+  border: none;
+  border: 2px solid var(--primary);
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+form button {
+  background: var(--primary);
+  border: 0;
+  color: #fff;
+  padding: 10px;
+  font-family: "Poppins";
+  border-radius: 4px;
+  cursor: pointer;
+}
+div.error {
+  padding: 10px;
+  background: #ffefef;
+  border: 1px solid var(--error);
+  color: var(--error);
+  border-radius: 4px;
+  margin: 20px 0;
+}
+input.error {
+  border: 1px solid var(--error);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+nav a, nav button {
+  margin-left: 10px;
+}
+nav button {
+  background: #fff;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-family: "Poppins";
+  cursor: pointer;
+  font-size: 1em;
+}
+
+form.signup, form.login {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 4px;
+} */
