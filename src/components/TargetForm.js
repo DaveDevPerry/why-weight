@@ -23,14 +23,18 @@ const TargetForm = () => {
 		}
 		const target = { target_weight, deadline_date };
 
-		const response = await fetch('/api/targets', {
-			method: 'POST',
-			body: JSON.stringify(target),
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${user.token}`,
-			},
-		});
+		const response = await fetch(
+			`${process.env.REACT_APP_BACKEND_URL}/api/targets`,
+			{
+				// const response = await fetch('/api/targets', {
+				method: 'POST',
+				body: JSON.stringify(target),
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${user.token}`,
+				},
+			}
+		);
 		const json = await response.json();
 
 		if (!response.ok) {
@@ -44,7 +48,7 @@ const TargetForm = () => {
 			// setReps('');
 			setError(null);
 			setEmptyFields([]);
-			console.log('new target added', json);
+			// console.log('new target added', json);
 			dispatch({ type: 'CREATE_TARGET', payload: json });
 		}
 	};
