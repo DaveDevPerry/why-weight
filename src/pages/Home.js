@@ -97,7 +97,13 @@ const Home = () => {
 				targets.map((target) => (
 					<ProgressWidget key={target._id} target={target} weights={weights} />
 				))}
-			{targets && weights && <ProgressBarWidget percentage={percentage} />}
+			{targets && weights && (
+				<ProgressBarWidget
+					percentage={percentage}
+					targets={targets}
+					weights={weights}
+				/>
+			)}
 			{targets && weights && (
 				<ChartWidget targets={targets} weights={weights} />
 			)}

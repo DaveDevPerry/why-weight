@@ -3,7 +3,7 @@ import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 
-const Navbar = () => {
+const Navbar = ({ targets }) => {
 	const { logout } = useLogout();
 	const { user } = useAuthContext();
 
@@ -26,7 +26,7 @@ const Navbar = () => {
 					<ul className='user-details-list'>
 						<li>
 							<p>name:</p>
-							<span>hannah</span>
+							<span>temp name</span>
 						</li>
 						<li>
 							<p>D.O.B:</p>
@@ -36,6 +36,12 @@ const Navbar = () => {
 							<p>email:</p>
 							<span>{user.email}</span>
 						</li>
+						{targets.length === 1 && (
+							<li>
+								<p>target:</p>
+								<span>{targets[0].target_weight.toFixed(2)} Kgs</span>
+							</li>
+						)}
 					</ul>
 
 					<button onClick={handleClick}>Log out</button>

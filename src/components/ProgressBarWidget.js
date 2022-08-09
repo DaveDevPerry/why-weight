@@ -1,12 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ProgressBarWidget = ({ percentage }) => {
+const ProgressBarWidget = ({ percentage, targets, weights }) => {
+	const initialWeight = weights.sort((a, b) => {
+		return new Date(a.createdAt) - new Date(b.createdAt);
+	})[0].load;
+	const currentWeight = weights[weights.length - 1].load;
+	const targetWeight = targets[0].target_weight;
+
+	const weightFluctuation = (initialWeight - currentWeight).toFixed(2);
+
+	const progressPercentage = (
+		(weightFluctuation / (initialWeight - targetWeight)) *
+		100
+	).toFixed(2);
+
 	return (
 		<StyledProgressBarWidget className='progress-bar-container'>
-			<p>You have lost 20.30 Kgs</p>
-			<progress value={percentage} max='100' className='progress' />
-			<p>{percentage.toFixed(2)}% of goal reached</p>
+			{weightFluctuation < 0 && <p>You have gained {weightFluctuation} Kgs</p>}
+			{weightFluctuation > 0 && <p>You have lost {weightFluctuation} Kgs</p>}
+			<progress value={progressPercentage} max='100' className='progress' />
+			<p>{progressPercentage}% of goal reached</p>
 		</StyledProgressBarWidget>
 	);
 };

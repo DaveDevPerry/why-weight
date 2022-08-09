@@ -55,10 +55,14 @@ const TargetForm = () => {
 	// gffg
 	return (
 		<StyledForm className='create' onSubmit={handleSubmit}>
-			<h3>Set Targets</h3>
+			<h3>Set Your Targets</h3>
 
 			<div className='input-wrapper'>
-				<label>Weight (in kg):</label>
+				<label>
+					Desired weight
+					<br />
+					(in kg):
+				</label>
 				<input
 					type='number'
 					id='input-number'
@@ -67,6 +71,16 @@ const TargetForm = () => {
 					className={emptyFields.includes('target_weight') ? 'error' : ''}
 				/>
 			</div>
+			{/* <div className='input-wrapper'>
+				<label>Event:</label>
+				<input
+					type='date'
+					id='input-number'
+					onChange={(e) => setDeadline_date(e.target.value)}
+					value={deadline_date}
+					className={emptyFields.includes('deadline_date') ? 'error' : ''}
+				/>
+			</div> */}
 			<div className='input-wrapper'>
 				<label>Deadline:</label>
 				<input
