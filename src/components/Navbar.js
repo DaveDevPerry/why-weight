@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
+import { format } from 'date-fns';
 
 const Navbar = ({ targets }) => {
 	const { logout } = useLogout();
@@ -24,23 +25,39 @@ const Navbar = ({ targets }) => {
 			{user && (
 				<div>
 					<ul className='user-details-list'>
-						<li>
+						{/* <li>
 							<p>name:</p>
 							<span>temp name</span>
 						</li>
 						<li>
 							<p>D.O.B:</p>
 							<span>12/02/1978</span>
-						</li>
+						</li> */}
 						<li>
 							<p>email:</p>
 							<span>{user.email}</span>
 						</li>
+						<li>
+							<p>&nbsp;</p>
+							<span>&nbsp;</span>
+						</li>
 						{targets.length === 1 && (
-							<li>
-								<p>target:</p>
-								<span>{targets[0].target_weight.toFixed(2)} Kgs</span>
-							</li>
+							<>
+								<li>
+									<p>target:</p>
+									<span>{targets[0].target_weight.toFixed(2)} Kgs</span>
+								</li>
+								<li>
+									<p>date:</p>
+									<span>
+										{format(new Date(targets[0].deadline_date), 'dd/MM/yyyy')}
+									</span>
+								</li>
+								<li>
+									<p>event:</p>
+									<span>{targets[0].deadline_reason}</span>
+								</li>
+							</>
 						)}
 					</ul>
 

@@ -13,6 +13,7 @@ import { motion } from 'framer-motion';
 // import CountdownWidget from '../components/CountdownWidget';
 // import ProgressWidget from '../components/ProgressWidget';
 import WeightsList from '../components/WeightsList';
+import WeightsProgressWidget from '../components/WeightsProgressWidget';
 
 const Weights = () => {
 	// const [workouts, setWorkouts] = useState(null);
@@ -76,6 +77,7 @@ const Weights = () => {
 			exit={{ x: window.innerWidth }}
 		>
 			{/* <WeightForm /> */}
+			<WeightsProgressWidget weights={weights} />
 
 			<WeightsList weights={weights} />
 		</StyledWeights>

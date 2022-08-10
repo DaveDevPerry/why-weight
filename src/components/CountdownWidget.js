@@ -9,7 +9,8 @@ import { differenceInDays } from 'date-fns';
 const CountdownWidget = ({ target }) => {
 	return (
 		<StyledCountdownWidget className='countdown-widget'>
-			<p>Nicola & Dave's Wedding</p>
+			{!target.deadline_reason && <p>No target reason</p>}
+			{target.deadline_reason && <p>{target.deadline_reason}</p>}
 			<p>
 				<strong>{format(new Date(target.deadline_date), 'dd/MM/yyyy')}</strong>
 			</p>

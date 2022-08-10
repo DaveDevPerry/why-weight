@@ -16,12 +16,20 @@ const ProgressBarWidget = ({ percentage, targets, weights }) => {
 	).toFixed(2);
 
 	return (
-		<StyledProgressBarWidget className='progress-bar-container'>
-			{weightFluctuation < 0 && <p>You have gained {weightFluctuation} Kgs</p>}
-			{weightFluctuation > 0 && <p>You have lost {weightFluctuation} Kgs</p>}
-			<progress value={progressPercentage} max='100' className='progress' />
-			<p>{progressPercentage}% of goal reached</p>
-		</StyledProgressBarWidget>
+		<>
+			{targets && weights && (
+				<StyledProgressBarWidget className='progress-bar-container'>
+					{weightFluctuation < 0 && (
+						<p>You have gained {weightFluctuation} Kgs</p>
+					)}
+					{weightFluctuation > 0 && (
+						<p>You have lost {weightFluctuation} Kgs</p>
+					)}
+					<progress value={progressPercentage} max='100' className='progress' />
+					<p>{progressPercentage}% of goal reached</p>
+				</StyledProgressBarWidget>
+			)}
+		</>
 	);
 };
 const StyledProgressBarWidget = styled.div`

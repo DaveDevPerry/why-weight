@@ -16,7 +16,7 @@ const Header = () => {
 		<StyledHeader>
 			<div className='container'>
 				<Link to='/'>
-					<h1>Wedding Weight</h1>
+					<h1>Why Weight?</h1>
 				</Link>
 				{/* <nav>
 					{user && (

@@ -1,19 +1,21 @@
 import { useState } from 'react';
-import { useTargetsContext } from '../hooks/useTargetsContext';
+// import { useUsersContext } from '../hooks/useUserContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 
-const TargetForm = () => {
-	const { dispatch } = useTargetsContext();
+const UserForm = () => {
+	// const { dispatch } = useUsersContext();
 	const { user } = useAuthContext();
 
 	// const [newWeight, setNewWeight] = useState('');
-	const [target_weight, setTarget_weight] = useState('');
-	const [deadline_date, setDeadline_date] = useState('');
-	const [deadline_reason, setDeadline_reason] = useState('');
+	const [name, setName] = useState('');
+	const [d_o_b, setD_o_b] = useState('');
+	// const [name, setName] = useState('');
 	// const [reps, setReps] = useState('');
 	const [error, setError] = useState(null);
 	const [emptyFields, setEmptyFields] = useState([]);
+
+	console.log(user, 'user in user form');
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -22,14 +24,14 @@ const TargetForm = () => {
 			setError('You must be logged in');
 			return;
 		}
-		const target = { target_weight, deadline_date, deadline_reason };
+		const newUserFields = { name, d_o_b };
 
 		const response = await fetch(
-			`${process.env.REACT_APP_BACKEND_URL}/api/targets`,
+			`${process.env.REACT_APP_BACKEND_URL}/api/users`,
 			{
 				// const response = await fetch('/api/targets', {
-				method: 'POST',
-				body: JSON.stringify(target),
+				method: 'PATCH',
+				body: JSON.stringify(newUserFields),
 				headers: {
 					'Content-Type': 'application/json',
 					Authorization: `Bearer ${user.token}`,
@@ -44,22 +46,22 @@ const TargetForm = () => {
 		}
 		if (response.ok) {
 			// setNewWeight('');
-			setTarget_weight('');
-			setDeadline_date('');
-			setDeadline_reason('');
+			setName('');
+			setD_o_b('');
+			// setName('');
 			// setReps('');
 			setError(null);
 			setEmptyFields([]);
-			// console.log('new target added', json);
-			dispatch({ type: 'CREATE_TARGET', payload: json });
+			console.log('new target added', json);
+			// dispatch({ type: 'UPDATE_USER', payload: json });
 		}
 	};
 
 	return (
 		<StyledForm className='create' onSubmit={handleSubmit}>
-			<h3>Set Your Targets</h3>
+			<h3>Update User</h3>
 
-			<div className='input-wrapper'>
+			{/* <div className='input-wrapper'>
 				<label>
 					Desired weight
 					<br />
@@ -68,32 +70,32 @@ const TargetForm = () => {
 				<input
 					type='number'
 					id='input-number'
-					onChange={(e) => setTarget_weight(e.target.value)}
-					value={target_weight}
-					className={emptyFields.includes('target_weight') ? 'error' : ''}
+					onChange={(e) => setName(e.target.value)}
+					value={name}
+					className={emptyFields.includes('name') ? 'error' : ''}
 				/>
-			</div>
+			</div> */}
 			<div className='input-wrapper'>
-				<label>Reason / Event:</label>
+				<label>Name:</label>
 				<input
 					type='text'
-					id='input-number'
-					onChange={(e) => setDeadline_reason(e.target.value)}
-					value={deadline_reason}
-					className={emptyFields.includes('deadline_reason') ? 'error' : ''}
+					// id='input-number'
+					onChange={(e) => setName(e.target.value)}
+					value={name}
+					className={emptyFields.includes('name') ? 'error' : ''}
 				/>
 			</div>
 			<div className='input-wrapper'>
-				<label>Deadline:</label>
+				<label>D.O.B:</label>
 				<input
 					type='date'
 					id='input-number'
-					onChange={(e) => setDeadline_date(e.target.value)}
-					value={deadline_date}
-					className={emptyFields.includes('deadline_date') ? 'error' : ''}
+					onChange={(e) => setD_o_b(e.target.value)}
+					value={d_o_b}
+					className={emptyFields.includes('d_o_b') ? 'error' : ''}
 				/>
 			</div>
-			<button>Add Target</button>
+			<button>Update User</button>
 			{error && <div className='error'>{error}</div>}
 		</StyledForm>
 	);
@@ -141,4 +143,4 @@ const StyledForm = styled.form`
 	}
 `;
 
-export default TargetForm;
+export default UserForm;

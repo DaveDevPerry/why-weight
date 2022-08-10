@@ -9,6 +9,7 @@ import TargetForm from '../components/TargetForm';
 import { CgCloseR } from 'react-icons/cg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+// import UserForm from '../components/UserForm';
 
 const Settings = ({ themeToggler, theme }) => {
 	const { targets, dispatch } = useTargetsContext();
@@ -45,6 +46,7 @@ const Settings = ({ themeToggler, theme }) => {
 	const handleClose = () => {
 		navigate('/home');
 	};
+	console.log(targets, 'targets');
 	return (
 		<StyledSettings
 			className='settings-page'
@@ -59,9 +61,9 @@ const Settings = ({ themeToggler, theme }) => {
 
 			<Toggle toggleTheme={themeToggler} theme={theme} />
 			<Navbar targets={targets} />
-
-			<TargetForm />
+			{!targets && <TargetForm />}
 			{/* {targets && targets.length === 0 && <TargetForm />} */}
+			{/* <UserForm /> */}
 		</StyledSettings>
 	);
 };

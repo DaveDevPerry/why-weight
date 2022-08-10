@@ -8,13 +8,15 @@ import { motion } from 'framer-motion';
 
 // components
 // import WeightDetails from '../components/WeightDetails';
-// import WeightForm from '../components/WeightForm';
+import WeightForm from '../components/WeightForm';
 // import TargetForm from '../components/TargetForm';
 // import TargetDetails from '../components/TargetDetails';
 import CountdownWidget from '../components/CountdownWidget';
 import ProgressWidget from '../components/ProgressWidget';
 import ChartWidget from '../components/ChartWidget';
 import ProgressBarWidget from '../components/ProgressBarWidget';
+import TargetForm from '../components/TargetForm';
+// import TargetForm from '../components/TargetForm';
 // import WeightsList from '../components/WeightsList';
 
 const Home = () => {
@@ -87,7 +89,57 @@ const Home = () => {
 		>
 			{/* <WeightForm /> */}
 			{/* <TargetForm /> */}
-			{targets &&
+
+			{targets && targets.length === 0 && (
+				<>
+					<br />
+					<p className='instruction-title'>
+						1. Set your initial weight loss target
+					</p>
+					<TargetForm />
+				</>
+			)}
+
+			{weights && weights.length === 0 && (
+				<>
+					<br />
+					<p className='instruction-title'>
+						2. Enter your current weight in kilograms
+					</p>
+					<WeightForm />
+				</>
+			)}
+
+			{targets && targets.length === 1 && weights && weights.length >= 1 && (
+				<>
+					{targets &&
+						targets.map((target) => (
+							<CountdownWidget key={target._id} target={target} />
+						))}
+
+					{targets &&
+						weights &&
+						targets.map((target) => (
+							<ProgressWidget
+								key={target._id}
+								target={target}
+								weights={weights}
+							/>
+						))}
+					{targets && weights && (
+						<ProgressBarWidget
+							percentage={percentage}
+							targets={targets}
+							weights={weights}
+						/>
+					)}
+					{targets && weights && (
+						<ChartWidget targets={targets} weights={weights} />
+					)}
+				</>
+			)}
+
+			{/* {targets &&
 				targets.map((target) => (
 					<CountdownWidget key={target._id} target={target} />
 				))}
@@ -106,55 +158,18 @@ const Home = () => {
 			)}
 			{targets && weights && (
 				<ChartWidget targets={targets} weights={weights} />
-			)}
-			{/* <div className='weights'> */}
-			{/* {targets &&
-				weights &&
-				targets.map((target) => (
-					<ProgressWidget key={target._id} target={target} weights={weights} />
-				))} */}
-
-			{/* <WeightsList weights={weights} /> */}
-			{/* <div className='weight-list-container'>
-				<p className='weights-list'>Recorded weigh-ins</p>
-				{weights &&
-					weights.map((weight) => (
-						<WeightDetails key={weight._id} weight={weight} />
-					))}
-			</div> */}
-
-			{/* </div> */}
-			{/* <div> */}
-			{/* {targets &&
-					targets.map((target) => (
-						<CountdownWidget key={target._id} target={target} />
-					))} */}
-			{/* <WeightForm /> */}
-			{/* <TargetForm /> */}
-			{/* </div> */}
+			)} */}
 		</StyledHome>
 	);
 };
 const StyledHome = styled(motion.div)`
-	/* display: grid;
-	grid-template-columns: 3fr 1fr;
-	gap: 20px; */
-	/* border: 3px solid green; */
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
-	/* z-index: -2; */
-	/* .weight-list-container {
-		display: flex;
-		flex-direction: column;
-		row-gap: 0.3rem;
-		p.weights-list {
-			padding: 0 1rem;
-			border-bottom: 1px solid ${({ theme }) => theme.txtGrey};
-			margin-bottom: 0.5rem;
-			font-size: 0.9em;
-		}
-	} */
+	.instruction-title {
+		color: ${({ theme }) => theme.secondaryColor};
+		font-weight: bold;
+	}
 `;
 
 export default Home;
