@@ -19,7 +19,9 @@ const Loader = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
+			<h1>Why Wait?</h1>
 			<IoScale className='nav-icon' />
+			<p>© daveperry.tech 2022</p>
 			{/* <div className='scale-wrapper'>
 				<div className='base'>
 					<div className='screen'>
@@ -45,10 +47,18 @@ const StyledLoader = styled(motion.section)`
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	row-gap: 1rem;
 	z-index: 500;
-
+	h1 {
+		font-size: 2rem;
+		color: ${({ theme }) => theme.bgGrey};
+	}
 	.nav-icon {
 		font-size: 10rem;
+		color: ${({ theme }) => theme.bgGrey};
+	}
+	p {
+		font-size: 1.4rem;
 		color: ${({ theme }) => theme.bgGrey};
 	}
 

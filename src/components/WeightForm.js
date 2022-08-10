@@ -1,12 +1,16 @@
 import { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 import { useWeightsContext } from '../hooks/useWeightsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
+import { CgCloseR } from 'react-icons/cg';
 // import { motion } from 'framer-motion';
 
 const WeightForm = ({ isFormActive, setIsFormActive }) => {
 	const { dispatch } = useWeightsContext();
 	const { user } = useAuthContext();
+
+	// const navigate = useNavigate();
 
 	// const [newWeight, setNewWeight] = useState('');
 	const [load, setLoad] = useState('');
@@ -52,6 +56,10 @@ const WeightForm = ({ isFormActive, setIsFormActive }) => {
 		}
 		setIsFormActive(!isFormActive);
 	};
+	const handleClose = () => {
+		// navigate('/home');
+		setIsFormActive(!isFormActive);
+	};
 
 	return (
 		<StyledForm
@@ -60,7 +68,10 @@ const WeightForm = ({ isFormActive, setIsFormActive }) => {
 			// initial={{ height: 0 }}
 			// 			animate={{ height: '80%' }}
 		>
-			<h3>Add current Weight</h3>
+			<h3>
+				Add current Weight
+				<CgCloseR className='close-icon' onClick={handleClose} />
+			</h3>
 
 			<div className='input-wrapper'>
 				<label>Weight (in kg):</label>
@@ -101,6 +112,16 @@ const StyledForm = styled.form`
 	h3 {
 		text-align: center;
 		margin: 0;
+		position: relative;
+		color: ${({ theme }) => theme.txtDarkGrey};
+		.close-icon {
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			font-size: 2rem;
+			color: ${({ theme }) => theme.txtDarkGrey};
+		}
 	}
 	.input-wrapper {
 		display: flex;

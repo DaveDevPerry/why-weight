@@ -16,6 +16,8 @@ import ProgressWidget from '../components/ProgressWidget';
 import ChartWidget from '../components/ChartWidget';
 import ProgressBarWidget from '../components/ProgressBarWidget';
 import TargetForm from '../components/TargetForm';
+import ShareWidget from '../components/ShareWidget';
+// import TargetCountdownWidget from '../components/TargetCountdownWidget';
 // import TargetForm from '../components/TargetForm';
 // import WeightsList from '../components/WeightsList';
 
@@ -116,6 +118,14 @@ const Home = () => {
 						targets.map((target) => (
 							<CountdownWidget key={target._id} target={target} />
 						))}
+					{/* {targets &&
+						targets.map((target) => (
+							<TargetCountdownWidget
+								key={target._id}
+								target={target}
+								isNextDayCountdownActive={true}
+							/>
+						))} */}
 
 					{targets &&
 						weights &&
@@ -126,6 +136,9 @@ const Home = () => {
 								weights={weights}
 							/>
 						))}
+					{targets && weights && (
+						<ShareWidget targets={targets} weights={weights} />
+					)}
 					{targets && weights && (
 						<ProgressBarWidget
 							percentage={percentage}

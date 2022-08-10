@@ -71,6 +71,7 @@ const TargetForm = () => {
 					onChange={(e) => setTarget_weight(e.target.value)}
 					value={target_weight}
 					className={emptyFields.includes('target_weight') ? 'error' : ''}
+					autoFocus
 				/>
 			</div>
 			<div className='input-wrapper'>

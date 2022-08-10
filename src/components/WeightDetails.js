@@ -72,7 +72,7 @@ const WeightDetails = ({ weight, difference }) => {
 
 			{/* <h4>{format(new Date(weight.createdAt), 'dd/MM/yyyy')}</h4> */}
 			{/* <h4>{weight.load}</h4> */}
-			<div>
+			<div className='weight-figures'>
 				<p>
 					<strong>{weight.load.toFixed(2)} Kgs</strong>
 				</p>
@@ -97,7 +97,7 @@ const StyledWeightDetails = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0.5rem 0; */
-	padding: 1rem;
+	padding: 0.5rem 1rem;
 	position: relative;
 	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05);
 	display: flex;
@@ -109,7 +109,7 @@ const StyledWeightDetails = styled.div`
 	}
 	p {
 		margin: 0;
-		font-size: 0.9em;
+		font-size: 0.8em;
 		color: ${({ theme }) => theme.txtGrey};
 	}
 	span {
@@ -157,6 +157,9 @@ const StyledWeightDetails = styled.div`
 				color: ${({ theme }) => theme.txtGrey};
 				text-transform: uppercase;
 			} */
+	}
+	.weight-figures {
+		width: 7rem;
 	}
 `;
 

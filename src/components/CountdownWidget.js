@@ -25,7 +25,7 @@ const StyledCountdownWidget = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0 auto 10px auto; */
-	padding: 1rem 2rem;
+	padding: 1rem;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 	display: flex;
 	flex-direction: column;

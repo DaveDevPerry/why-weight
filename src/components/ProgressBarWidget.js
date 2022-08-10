@@ -48,6 +48,7 @@ const StyledProgressBarWidget = styled.div`
 	p {
 		margin: 0;
 		color: ${({ theme }) => theme.txtGrey};
+		font-size: 1.4rem;
 	}
 	progress[value] {
 		width: 100%;

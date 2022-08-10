@@ -14,6 +14,8 @@ import { motion } from 'framer-motion';
 // import ProgressWidget from '../components/ProgressWidget';
 import WeightsList from '../components/WeightsList';
 import WeightsProgressWidget from '../components/WeightsProgressWidget';
+import WeightUnitsWidget from '../components/WeightUnitsWidget';
+// import WeightConvertor from '../components/WeightConvertor';
 
 const Weights = () => {
 	// const [workouts, setWorkouts] = useState(null);
@@ -77,6 +79,8 @@ const Weights = () => {
 			exit={{ x: window.innerWidth }}
 		>
 			{/* <WeightForm /> */}
+			<WeightUnitsWidget weights={weights} />
+			{/* <WeightConvertor /> */}
 			<WeightsProgressWidget weights={weights} />
 
 			<WeightsList weights={weights} />
@@ -87,9 +91,11 @@ const StyledWeights = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
+	/* justify-content: flex-start; */
 	/* overflow-y: auto; */
 	/* overflow-y: hidden; */
 	/* flex: 1; */
+	/* overflow-y: auto; */
 	/* border: 2px solid red; */
 `;
 

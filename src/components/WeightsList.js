@@ -47,6 +47,7 @@ const WeightsList = ({ weights }) => {
 	);
 };
 const StyledWeightsList = styled.div`
+	/* overflow-y: auto; */
 	flex: 1;
 	p.weights-list-header {
 		padding: 0 1rem;
@@ -60,8 +61,9 @@ const StyledWeightsList = styled.div`
 		flex-direction: column;
 		flex: 1;
 		row-gap: 0.3rem;
-		/* overflow-y: scroll; */
-		overflow-y: hidden;
+		/* overflow-y: auto; */
+		/* overflow-y: hidden; */
+		overflow-y: scroll;
 	}
 `;
 
