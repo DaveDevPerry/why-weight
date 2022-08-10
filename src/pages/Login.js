@@ -30,6 +30,7 @@ const Login = () => {
 						type='email'
 						onChange={(e) => setEmail(e.target.value)}
 						value={email}
+						autoComplete='current-email'
 					/>
 				</div>
 				<div>
@@ -38,6 +39,7 @@ const Login = () => {
 						type='password'
 						onChange={(e) => setPassword(e.target.value)}
 						value={password}
+						autoComplete='current-password'
 					/>
 				</div>
 				<button disabled={isLoading}>Log in</button>
