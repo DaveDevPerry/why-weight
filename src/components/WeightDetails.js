@@ -1,5 +1,5 @@
-import { useWeightsContext } from '../hooks/useWeightsContext';
-import { useAuthContext } from '../hooks/useAuthContext';
+// import { useWeightsContext } from '../hooks/useWeightsContext';
+// import { useAuthContext } from '../hooks/useAuthContext';
 
 import styled from 'styled-components';
 import { ImArrowUp, ImArrowDown } from 'react-icons/im';
@@ -9,27 +9,27 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { format } from 'date-fns';
 
 const WeightDetails = ({ weight, difference }) => {
-	const { dispatch } = useWeightsContext();
-	const { user } = useAuthContext();
+	// const { dispatch } = useWeightsContext();
+	// const { user } = useAuthContext();
 
-	const handleClick = async () => {
-		if (!user) {
-			// setError('You must be logged in');
-			return;
-		}
+	// const handleClick = async () => {
+	// 	if (!user) {
+	// 		// setError('You must be logged in');
+	// 		return;
+	// 	}
 
-		const response = await fetch('/api/weights/' + weight._id, {
-			method: 'DELETE',
-			headers: {
-				Authorization: `Bearer ${user.token}`,
-			},
-		});
-		const json = await response.json();
+	// 	const response = await fetch('/api/weights/' + weight._id, {
+	// 		method: 'DELETE',
+	// 		headers: {
+	// 			Authorization: `Bearer ${user.token}`,
+	// 		},
+	// 	});
+	// 	const json = await response.json();
 
-		if (response.ok) {
-			dispatch({ type: 'DELETE_WEIGHT', payload: json });
-		}
-	};
+	// 	if (response.ok) {
+	// 		dispatch({ type: 'DELETE_WEIGHT', payload: json });
+	// 	}
+	// };
 
 	return (
 		<StyledWeightDetails className='weight-details'>
@@ -87,9 +87,9 @@ const WeightDetails = ({ weight, difference }) => {
 			{/* <p>
 				{formatDistanceToNow(new Date(weight.createdAt), { addSuffix: true })}
 			</p> */}
-			<span className='material-symbols-outlined' onClick={handleClick}>
+			{/* <span className='material-symbols-outlined' onClick={handleClick}>
 				delete
-			</span>
+			</span> */}
 		</StyledWeightDetails>
 	);
 };
