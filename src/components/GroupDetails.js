@@ -2,13 +2,13 @@
 // import { useAuthContext } from '../hooks/useAuthContext';
 
 import styled from 'styled-components';
-import { ImArrowUp, ImArrowDown } from 'react-icons/im';
+// import { ImArrowUp, ImArrowDown } from 'react-icons/im';
 
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { format } from 'date-fns';
 
-const WeightDetails = ({ weight, difference }) => {
+const GroupDetails = ({ group }) => {
 	// const { dispatch } = useWeightsContext();
 	// const { user } = useAuthContext();
 
@@ -32,25 +32,16 @@ const WeightDetails = ({ weight, difference }) => {
 	// };
 
 	return (
-		<StyledWeightDetails className='weight-details'>
+		<StyledGroupDetails className='weight-details'>
 			<div className='full'>
 				<p>
-					<strong>{format(new Date(weight.createdAt), 'dd/MM/yyyy')}</strong>
+					<strong>{format(new Date(group.createdAt), 'dd/MM/yyyy')}</strong>
 				</p>
 				<p>
-					{formatDistanceToNow(new Date(weight.createdAt), { addSuffix: true })}
+					{formatDistanceToNow(new Date(group.createdAt), { addSuffix: true })}
 				</p>
 			</div>
-			{difference && (
-				<div className='wrapper-icon'>
-					<div>
-						<p className='figure'>{difference}</p>
-						<p className='figure'>{(difference * 2.20462).toFixed(2)}</p>
-					</div>
-					{difference > 0 && <ImArrowUp className='arrow-icon red' />}
-					{difference < 0 && <ImArrowDown className='arrow-icon green' />}
-				</div>
-			)}
+
 			{/* <div className='wrapper-icon'>
 				<div>
 					<p className='figure'>{difference}</p>
@@ -70,15 +61,11 @@ const WeightDetails = ({ weight, difference }) => {
 				</p>
 			</div> */}
 
-			{/* <h4>{format(new Date(weight.createdAt), 'dd/MM/yyyy')}</h4> */}
-			{/* <h4>{weight.load}</h4> */}
-			<div className='weight-figures'>
-				<p>
-					<strong>{weight.load.toFixed(2)} Kgs</strong>
-				</p>
-				<p>
-					<strong>{(weight.load * 2.20462).toFixed(2)} Lbs</strong>
-				</p>
+			{/* <h4>{format(new Date(group.createdAt), 'dd/MM/yyyy')}</h4> */}
+			{/* <h4>{group.load}</h4> */}
+			<div className='group-figures'>
+				<p className='figure'>{group.title}</p>
+				<p className='figure'>{group.pin}</p>
 			</div>
 			{/* <p>
 				<strong>Reps: </strong>
@@ -90,10 +77,10 @@ const WeightDetails = ({ weight, difference }) => {
 			{/* <span className='material-symbols-outlined' onClick={handleClick}>
 				delete
 			</span> */}
-		</StyledWeightDetails>
+		</StyledGroupDetails>
 	);
 };
-const StyledWeightDetails = styled.div`
+const StyledGroupDetails = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0.5rem 0; */
@@ -163,4 +150,4 @@ const StyledWeightDetails = styled.div`
 	}
 `;
 
-export default WeightDetails;
+export default GroupDetails;

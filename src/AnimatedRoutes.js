@@ -7,6 +7,7 @@ import Signup from './pages/Signup';
 import Weights from './pages/Weights';
 import Settings from './pages/Settings';
 import Loader from './pages/Loader';
+import Groups from './pages/Groups';
 
 const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 	return (
@@ -25,6 +26,10 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 					<Route
 						path='/weights'
 						element={user ? <Weights /> : <Navigate to='/login' />}
+					/>
+					<Route
+						path='/groups'
+						element={user ? <Groups /> : <Navigate to='/login' />}
 					/>
 					<Route
 						path='/settings'
