@@ -28,8 +28,11 @@ const ParticipantsList = ({ group }) => {
 		<StyledParticipantsList className='participant-list-container'>
 			<p className='participants-list-header'>Group Participants</p>
 			<div className='participants-list'>
-				<ParticipantCard participant={'hannah'} />
-				<ParticipantCard participant={'carol'} />
+				{group &&
+					group.participants.map((participant, index) => (
+						<ParticipantCard key={index} participant={participant} />
+					))}
+				{/* <ParticipantCard participant={'carol'} /> */}
 			</div>
 			{/* <div className='participants-list'>
 				{group.participants &&

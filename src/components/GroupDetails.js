@@ -40,11 +40,14 @@ const GroupDetails = ({ group }) => {
 					<strong>{group.title}</strong>
 				</p>
 				<p>{group.chairperson_user_id}</p>
-				<Link to={`/groups/${group._id}`}>Read more</Link>
+				<Link to={`/groups/${group._id}`} params={{ slug: group._id }}>
+					Read more
+				</Link>
+				{/* <Link to={`/groups/${group._id}`}>Read more</Link> */}
 			</div>
 			<div className='group-participants'>
 				<FaUsers className='participants-icon' />
-				<p className='figure'>5</p>
+				<p className='figure'>{group && group.participants.length}</p>
 				{/* <p className='figure'>{group.participants.length}</p> */}
 			</div>
 			{/* <div className='full'>

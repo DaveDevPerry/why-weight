@@ -74,6 +74,7 @@ const Groups = ({ setCurrentFormOpen, currentFormOpen, handleFormChoice }) => {
 	// }, [targetDispatch, user]);
 
 	// const [currentFormOpen, setCurrentFormOpen] = useState('');
+	console.log(groups, 'groups');
 
 	return (
 		<StyledGroups

@@ -1,7 +1,9 @@
 // import { useparticipantsContext } from '../hooks/useparticipantsContext';
 // import { useAuthContext } from '../hooks/useAuthContext';
 
+// import { useEffect } from 'react';
 import styled from 'styled-components';
+// import { useAuthContext } from '../hooks/useAuthContext';
 // import { ImArrowUp, ImArrowDown } from 'react-icons/im';
 
 // date fns
@@ -11,6 +13,34 @@ import styled from 'styled-components';
 const ParticipantCard = ({ participant }) => {
 	// const { dispatch } = useparticipantsContext();
 	// const { user } = useAuthContext();
+
+	// const { user } = useAuthContext();
+
+	// useEffect(() => {
+	// 	const fetchUsers = async () => {
+	// 		const response = await fetch(
+	// 			`${process.env.REACT_APP_BACKEND_URL}/api/user`,
+	// 			{
+	// 				headers: {
+	// 					Authorization: `Bearer ${user.token}`,
+	// 				},
+	// 			}
+	// 		);
+	// 		const json = await response.json();
+
+	// 		if (response.ok) {
+	// 			// setWorkouts(json);
+	// 			dispatch({
+	// 				type: 'SET_USERS',
+	// 				payload: json,
+	// 			});
+	// 		}
+	// 	};
+	// 	// if we have a value for the user then fetch the workouts
+	// 	if (user) {
+	// 		fetchUsers();
+	// 	}
+	// }, [dispatch, user]);
 
 	// const handleClick = async () => {
 	// 	if (!user) {

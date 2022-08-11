@@ -10,17 +10,20 @@ import InviteWidget from '../components/InviteWidget';
 import ParticipantsList from '../components/ParticipantsList';
 import GroupHeader from '../components/GroupHeader';
 
-const GroupsFullDetails = ({ slug }) => {
+const GroupsFullDetails = ({ tempGroupID }) => {
+	// const GroupsFullDetails = ({ slug, tempGroupID }) => {
 	const { group, dispatch } = useGroupsContext();
 	const { user } = useAuthContext();
 
 	// const tempGroupID = '62f455dbc21970642118caf3';
 
+	// const slug = group._id;
+
 	useEffect(() => {
 		const fetchGroup = async () => {
 			const response = await fetch(
-				`${process.env.REACT_APP_BACKEND_URL}/api/groups/${slug}`,
-				// `${process.env.REACT_APP_BACKEND_URL}/api/groups/${tempGroupID}`,
+				// `${process.env.REACT_APP_BACKEND_URL}/api/groups/${slug}`,
+				`${process.env.REACT_APP_BACKEND_URL}/api/groups/${tempGroupID}`,
 				{
 					headers: {
 						Authorization: `Bearer ${user.token}`,
@@ -48,7 +51,7 @@ const GroupsFullDetails = ({ slug }) => {
 		if (user) {
 			fetchGroup();
 		}
-	}, [dispatch, slug, user]);
+	}, [dispatch, user]);
 	// useEffect(() => {
 	// 	const fetchTargets = async () => {
 	// 		const response = await fetch('/api/targets', {
@@ -71,6 +74,7 @@ const GroupsFullDetails = ({ slug }) => {
 	// 		fetchTargets();
 	// 	}
 	// }, [targetDispatch, user]);
+	console.log(group, 'group slug');
 
 	return (
 		<StyledGroupsFullDetails

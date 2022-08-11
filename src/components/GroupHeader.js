@@ -3,6 +3,7 @@ import styled from 'styled-components';
 // import { groupsReducer } from '../context/GroupContext';
 
 const GroupHeader = ({ group }) => {
+	console.log(group, 'group');
 	return (
 		<StyledGroupHeader>
 			<ul className='group-header-list'>
@@ -29,6 +30,10 @@ const GroupHeader = ({ group }) => {
 				<li>
 					<p>event:</p>
 					<span>wedding</span>
+				</li>
+				<li>
+					<p>users:</p>
+					<span>{group && group.participants.length}</span>
 				</li>
 			</ul>
 		</StyledGroupHeader>

@@ -10,10 +10,11 @@ import Loader from './pages/Loader';
 import Groups from './pages/Groups';
 import GroupsFullDetails from './pages/[slug]';
 import { useState } from 'react';
+// import { groupsReducer } from './context/GroupContext';
 // import GroupsFullDetails from './pages/groups/[slug]';
 
 const AnimatedRoutes = ({ user, themeToggler, theme }) => {
-	const tempGroupID = '62f455dbc21970642118caf3';
+	const tempGroupID = '62f5817cdb2d716e19dfaba7';
 	const [currentFormOpen, setCurrentFormOpen] = useState('');
 
 	const handleFormChoice = (str) => {
@@ -50,11 +51,15 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 							)
 						}
 					/>
-					{/* <Route
+					<Route
 						path='/groups/:id'
 						element={<GroupsFullDetails tempGroupID={tempGroupID} />}
+					/>
+					{/* <Route
+						path='/groups/:id'
+						element={user ? <GroupsFullDetails /> : <Navigate to='/login' />}
 					/> */}
-					<Route
+					{/* <Route
 						path='/groups/:id'
 						element={
 							user ? (
@@ -63,7 +68,7 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 								<Navigate to='/login' />
 							)
 						}
-					/>
+					/> */}
 					<Route
 						path='/settings'
 						element={
