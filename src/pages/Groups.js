@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+// import { useEffect, useState } from 'react';
 // import { useWeightsContext } from '../hooks/useWeightsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 
@@ -14,9 +15,10 @@ import { useGroupsContext } from '../hooks/useGroupsContext';
 import GroupForm from '../components/GroupForm';
 // import GroupDetails from '../components/GroupDetails';
 import GroupsList from '../components/GroupsList';
+import GroupFormChoiceLinks from '../components/GroupFormChoiceLinks';
 // import WeightConvertor from '../components/WeightConvertor';
 
-const Groups = () => {
+const Groups = ({ setCurrentFormOpen, currentFormOpen, handleFormChoice }) => {
 	// const [workouts, setWorkouts] = useState(null);
 	// const { weights, dispatch } = useWeightsContext();
 	const { groups, dispatch } = useGroupsContext();
@@ -71,6 +73,8 @@ const Groups = () => {
 	// 	}
 	// }, [targetDispatch, user]);
 
+	// const [currentFormOpen, setCurrentFormOpen] = useState('');
+
 	return (
 		<StyledGroups
 			className='groups-page'
@@ -78,7 +82,12 @@ const Groups = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<GroupForm />
+			<GroupFormChoiceLinks
+				setCurrentFormOpen={setCurrentFormOpen}
+				handleFormChoice={handleFormChoice}
+			/>
+			{currentFormOpen === 'create' && <GroupForm />}
+			{currentFormOpen === 'join' && <p>join form</p>}
 			{/* {groups && <p>{groups[0].title}</p>} */}
 			{/* <WeightForm /> */}
 			{/* <WeightUnitsWidget weights={weights} /> */}

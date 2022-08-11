@@ -6,6 +6,9 @@ import { motion } from 'framer-motion';
 
 // components
 import { useGroupsContext } from '../hooks/useGroupsContext';
+import InviteWidget from '../components/InviteWidget';
+import ParticipantsList from '../components/ParticipantsList';
+import GroupHeader from '../components/GroupHeader';
 
 const GroupsFullDetails = ({ slug }) => {
 	const { group, dispatch } = useGroupsContext();
@@ -40,12 +43,12 @@ const GroupsFullDetails = ({ slug }) => {
 		};
 		// if we have a value for the user then fetch the workouts
 		// if (user) {
-		fetchGroup();
+		// fetchGroup();
 		// }
-		// if (user) {
-		// 	fetchGroup();
-		// }
-	}, [dispatch, slug]);
+		if (user) {
+			fetchGroup();
+		}
+	}, [dispatch, slug, user]);
 	// useEffect(() => {
 	// 	const fetchTargets = async () => {
 	// 		const response = await fetch('/api/targets', {
@@ -76,8 +79,9 @@ const GroupsFullDetails = ({ slug }) => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			group full details
-			{group && group.title}
+			{group && <GroupHeader group={group} />}
+			{group && <ParticipantsList group={group} />}
+			{group && <InviteWidget group={group} />}
 			{/* {groups && groups.map((group) => <p key={group._id}>{group.title}</p>)} */}
 			{/* <GroupForm /> */}
 			{/* {groups && <p>{groups[0].title}</p>} */}

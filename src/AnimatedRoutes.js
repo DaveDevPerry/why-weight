@@ -9,10 +9,16 @@ import Settings from './pages/Settings';
 import Loader from './pages/Loader';
 import Groups from './pages/Groups';
 import GroupsFullDetails from './pages/[slug]';
+import { useState } from 'react';
 // import GroupsFullDetails from './pages/groups/[slug]';
 
 const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 	const tempGroupID = '62f455dbc21970642118caf3';
+	const [currentFormOpen, setCurrentFormOpen] = useState('');
+
+	const handleFormChoice = (str) => {
+		setCurrentFormOpen(str);
+	};
 	return (
 		<>
 			<AnimatePresence exitBeforeEnter>
@@ -32,7 +38,17 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 					/>
 					<Route
 						path='/groups'
-						element={user ? <Groups /> : <Navigate to='/login' />}
+						element={
+							user ? (
+								<Groups
+									setCurrentFormOpen={setCurrentFormOpen}
+									currentFormOpen={currentFormOpen}
+									handleFormChoice={handleFormChoice}
+								/>
+							) : (
+								<Navigate to='/login' />
+							)
+						}
 					/>
 					{/* <Route
 						path='/groups/:id'
