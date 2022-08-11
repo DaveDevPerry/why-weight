@@ -88,7 +88,7 @@ const StyledNavbar = styled.nav`
 		flex-direction: column;
 		align-items: flex-start;
 		justify-content: flex-start;
-		row-gap: 1rem;
+		row-gap: 3rem;
 		.user-details-list {
 			list-style: none;
 			li {

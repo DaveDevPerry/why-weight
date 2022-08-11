@@ -64,6 +64,10 @@ const Settings = ({ themeToggler, theme }) => {
 			{!targets && <TargetForm />}
 			{/* {targets && targets.length === 0 && <TargetForm />} */}
 			{/* <UserForm /> */}
+
+			<a href='https://www.daveperry.tech' className='developer-link'>
+				developed by © daveperry.tech 2022
+			</a>
 		</StyledSettings>
 	);
 };
@@ -88,6 +92,13 @@ const StyledSettings = styled(motion.div)`
 			font-size: 2rem;
 			color: ${({ theme }) => theme.txtDarkGrey};
 		}
+	}
+	a.developer-link {
+		text-decoration: none;
+		align-self: center;
+		margin-top: 6rem;
+		font-size: 1.2rem;
+		color: ${({ theme }) => theme.txtDarkGrey};
 	}
 `;
 
