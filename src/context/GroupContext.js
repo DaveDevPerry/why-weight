@@ -8,6 +8,14 @@ export const groupsReducer = (state, action) => {
 			return {
 				groups: action.payload,
 			};
+		case 'SET_GROUP':
+			return {
+				group: action.payload,
+			};
+		// case 'SET_GROUP':
+		// 	return {
+		// 		group: state.groups.filter((group) => group._id === action.payload._id),
+		// 	};
 		case 'CREATE_GROUP':
 			return {
 				// ...state.workouts is previous state, action.payload is new workout to add
@@ -27,6 +35,7 @@ export const groupsReducer = (state, action) => {
 export const GroupsContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(groupsReducer, {
 		groups: null,
+		group: null,
 	});
 
 	return (

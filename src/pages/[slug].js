@@ -1,32 +1,23 @@
 import { useEffect } from 'react';
-// import { useWeightsContext } from '../hooks/useWeightsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 // components
-
-// import WeightsList from '../components/WeightsList';
-// import WeightsProgressWidget from '../components/WeightsProgressWidget';
-// import WeightUnitsWidget from '../components/WeightUnitsWidget';
 import { useGroupsContext } from '../hooks/useGroupsContext';
-import GroupForm from '../components/GroupForm';
-// import GroupDetails from '../components/GroupDetails';
-import GroupsList from '../components/GroupsList';
-// import WeightConvertor from '../components/WeightConvertor';
 
-const Groups = () => {
-	// const [workouts, setWorkouts] = useState(null);
-	// const { weights, dispatch } = useWeightsContext();
-	const { groups, dispatch } = useGroupsContext();
-	// const { targets, dispatch: targetDispatch } = useTargetsContext();
+const GroupsFullDetails = ({ slug }) => {
+	const { group, dispatch } = useGroupsContext();
 	const { user } = useAuthContext();
 
+	// const tempGroupID = '62f455dbc21970642118caf3';
+
 	useEffect(() => {
-		const fetchGroups = async () => {
+		const fetchGroup = async () => {
 			const response = await fetch(
-				`${process.env.REACT_APP_BACKEND_URL}/api/groups`,
+				`${process.env.REACT_APP_BACKEND_URL}/api/groups/${slug}`,
+				// `${process.env.REACT_APP_BACKEND_URL}/api/groups/${tempGroupID}`,
 				{
 					headers: {
 						Authorization: `Bearer ${user.token}`,
@@ -38,16 +29,23 @@ const Groups = () => {
 			if (response.ok) {
 				// setWorkouts(json);
 				dispatch({
-					type: 'SET_GROUPS',
+					type: 'SET_GROUP',
 					payload: json,
 				});
+				// dispatch({
+				// 	type: 'SET_GROUPS',
+				// 	payload: json,
+				// });
 			}
 		};
 		// if we have a value for the user then fetch the workouts
-		if (user) {
-			fetchGroups();
-		}
-	}, [dispatch, user]);
+		// if (user) {
+		fetchGroup();
+		// }
+		// if (user) {
+		// 	fetchGroup();
+		// }
+	}, [dispatch, slug]);
 	// useEffect(() => {
 	// 	const fetchTargets = async () => {
 	// 		const response = await fetch('/api/targets', {
@@ -72,13 +70,16 @@ const Groups = () => {
 	// }, [targetDispatch, user]);
 
 	return (
-		<StyledGroups
+		<StyledGroupsFullDetails
 			className='groups-page'
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<GroupForm />
+			group full details
+			{group && group.title}
+			{/* {groups && groups.map((group) => <p key={group._id}>{group.title}</p>)} */}
+			{/* <GroupForm /> */}
 			{/* {groups && <p>{groups[0].title}</p>} */}
 			{/* <WeightForm /> */}
 			{/* <WeightUnitsWidget weights={weights} /> */}
@@ -88,12 +89,12 @@ const Groups = () => {
 				groups.map((group) => {
 					return <GroupDetails key={group._id} group={group} />;
 				})} */}
-			<GroupsList groups={groups} />
+			{/* <GroupsList groups={groups} /> */}
 			{/* <WeightsList weights={weights} /> */}
-		</StyledGroups>
+		</StyledGroupsFullDetails>
 	);
 };
-const StyledGroups = styled(motion.div)`
+const StyledGroupsFullDetails = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
@@ -105,4 +106,4 @@ const StyledGroups = styled(motion.div)`
 	/* border: 2px solid red; */
 `;
 
-export default Groups;
+export default GroupsFullDetails;

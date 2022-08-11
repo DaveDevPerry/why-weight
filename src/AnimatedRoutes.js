@@ -8,8 +8,11 @@ import Weights from './pages/Weights';
 import Settings from './pages/Settings';
 import Loader from './pages/Loader';
 import Groups from './pages/Groups';
+import GroupsFullDetails from './pages/[slug]';
+// import GroupsFullDetails from './pages/groups/[slug]';
 
 const AnimatedRoutes = ({ user, themeToggler, theme }) => {
+	const tempGroupID = '62f455dbc21970642118caf3';
 	return (
 		<>
 			<AnimatePresence exitBeforeEnter>
@@ -30,6 +33,20 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 					<Route
 						path='/groups'
 						element={user ? <Groups /> : <Navigate to='/login' />}
+					/>
+					{/* <Route
+						path='/groups/:id'
+						element={<GroupsFullDetails tempGroupID={tempGroupID} />}
+					/> */}
+					<Route
+						path='/groups/:id'
+						element={
+							user ? (
+								<GroupsFullDetails slug={tempGroupID} />
+							) : (
+								<Navigate to='/login' />
+							)
+						}
 					/>
 					<Route
 						path='/settings'

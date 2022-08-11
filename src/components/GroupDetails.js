@@ -3,10 +3,12 @@
 
 import styled from 'styled-components';
 // import { ImArrowUp, ImArrowDown } from 'react-icons/im';
+import { FaUsers } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 // date fns
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import { format } from 'date-fns';
+// import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+// import { format } from 'date-fns';
 
 const GroupDetails = ({ group }) => {
 	// const { dispatch } = useWeightsContext();
@@ -32,8 +34,20 @@ const GroupDetails = ({ group }) => {
 	// };
 
 	return (
-		<StyledGroupDetails className='weight-details'>
+		<StyledGroupDetails className='group-details'>
 			<div className='full'>
+				<p>
+					<strong>{group.title}</strong>
+				</p>
+				<p>{group.chairperson_user_id}</p>
+				<Link to={`/groups/${group._id}`}>Read more</Link>
+			</div>
+			<div className='group-participants'>
+				<FaUsers className='participants-icon' />
+				<p className='figure'>5</p>
+				{/* <p className='figure'>{group.participants.length}</p> */}
+			</div>
+			{/* <div className='full'>
 				<p>
 					<strong>{format(new Date(group.createdAt), 'dd/MM/yyyy')}</strong>
 				</p>
@@ -41,32 +55,10 @@ const GroupDetails = ({ group }) => {
 					{formatDistanceToNow(new Date(group.createdAt), { addSuffix: true })}
 				</p>
 			</div>
-
-			{/* <div className='wrapper-icon'>
-				<div>
-					<p className='figure'>{difference}</p>
-					<p className='figure'>{(difference * 2.20462).toFixed(2)}</p>
-				</div>
-				{difference > 0 && <ImArrowUp className='arrow-icon red' />}
-				{difference < 0 && <ImArrowDown className='arrow-icon green' />}
-			</div> */}
-			{/* <div className='wrapper-icon'>
-				<p className='figure'>
-					{difference}
-				</p>
-				{difference > 0 && <ImArrowUp className='arrow-icon red' />}
-				{difference < 0 && <ImArrowDown className='arrow-icon green' />}
-				<p className='figure'>
-					{(difference * 2.20462).toFixed(2)}
-				</p>
-			</div> */}
-
-			{/* <h4>{format(new Date(group.createdAt), 'dd/MM/yyyy')}</h4> */}
-			{/* <h4>{group.load}</h4> */}
 			<div className='group-figures'>
 				<p className='figure'>{group.title}</p>
 				<p className='figure'>{group.pin}</p>
-			</div>
+			</div> */}
 			{/* <p>
 				<strong>Reps: </strong>
 				{workout.reps}
@@ -98,6 +90,7 @@ const StyledGroupDetails = styled.div`
 		margin: 0;
 		font-size: 0.8em;
 		color: ${({ theme }) => theme.txtGrey};
+		text-transform: capitalize;
 	}
 	span {
 		display: none;
@@ -138,6 +131,7 @@ const StyledGroupDetails = styled.div`
 		.arrow-icon.red {
 			color: ${({ theme }) => theme.error};
 		}
+
 		/* p.stat-name {
 				margin: 0;
 				font-size: 0.8em;
@@ -145,7 +139,21 @@ const StyledGroupDetails = styled.div`
 				text-transform: uppercase;
 			} */
 	}
-	.weight-figures {
+	.group-participants {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		column-gap: 0.5rem;
+		.participants-icon {
+			color: ${({ theme }) => theme.secondaryColor};
+			font-size: 2.2rem;
+		}
+		.figure {
+			color: ${({ theme }) => theme.txtDarkGrey};
+			font-size: 1.8rem;
+		}
+	}
+	.group-figures {
 		width: 8rem;
 	}
 `;

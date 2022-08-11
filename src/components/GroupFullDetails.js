@@ -11,9 +11,9 @@ import { motion } from 'framer-motion';
 // import WeightsProgressWidget from '../components/WeightsProgressWidget';
 // import WeightUnitsWidget from '../components/WeightUnitsWidget';
 import { useGroupsContext } from '../hooks/useGroupsContext';
-import GroupForm from '../components/GroupForm';
+// import GroupForm from '../components/GroupForm';
 // import GroupDetails from '../components/GroupDetails';
-import GroupsList from '../components/GroupsList';
+// import GroupsList from '../components/GroupsList';
 // import WeightConvertor from '../components/WeightConvertor';
 
 const Groups = () => {
@@ -72,13 +72,14 @@ const Groups = () => {
 	// }, [targetDispatch, user]);
 
 	return (
-		<StyledGroups
+		<StyledGroupFullDetails
 			className='groups-page'
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<GroupForm />
+			group full details
+			{/* <GroupForm /> */}
 			{/* {groups && <p>{groups[0].title}</p>} */}
 			{/* <WeightForm /> */}
 			{/* <WeightUnitsWidget weights={weights} /> */}
@@ -88,12 +89,12 @@ const Groups = () => {
 				groups.map((group) => {
 					return <GroupDetails key={group._id} group={group} />;
 				})} */}
-			<GroupsList groups={groups} />
+			{/* <GroupsList groups={groups} /> */}
 			{/* <WeightsList weights={weights} /> */}
-		</StyledGroups>
+		</StyledGroupFullDetails>
 	);
 };
-const StyledGroups = styled(motion.div)`
+const StyledGroupFullDetails = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
@@ -106,3 +107,28 @@ const StyledGroups = styled(motion.div)`
 `;
 
 export default Groups;
+
+// import React from 'react';
+// import { useParams } from 'react-router-dom';
+// import useFetch from '../hooks/useFetch';
+// export default function GroupFullDetails() {
+// 	const { id } = useParams();
+// 	const { loading, error, data } = useFetch(
+// 		'http://localhost:1337/reviews/' + id
+// 	);
+
+// 	console.log(data);
+
+// 	if (loading) return <p>Loading...</p>;
+// 	if (error) return <p>Error...</p>;
+// 	return (
+// 		<div className='review-card'>
+// 			<div className='rating'>{data.rating}</div>
+// 			<h2>{data.title}</h2>
+
+// 			<small>console list</small>
+
+// 			<p>{data.body}</p>
+// 		</div>
+// 	);
+// }
