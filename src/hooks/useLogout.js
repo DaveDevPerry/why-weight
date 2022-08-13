@@ -11,7 +11,7 @@ export const useLogout = () => {
 
 	const logout = () => {
 		// remove user from storage
-		localStorage.removeItem('user');
+		localStorage.removeItem('user-why-weight');
 
 		// dispatch a logout action - no payload needed
 		dispatch({ type: 'LOGOUT' });

@@ -32,7 +32,7 @@ export const useSignup = () => {
 		}
 		if (response.ok) {
 			// save the user to local storage
-			localStorage.setItem('user', JSON.stringify(json));
+			localStorage.setItem('user-why-wait', JSON.stringify(json));
 			// update auth context with email
 			dispatch({ type: 'LOGIN', payload: json });
 			// update loading state to false as finished
