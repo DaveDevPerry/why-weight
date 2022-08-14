@@ -1,21 +1,28 @@
 import { useState } from 'react';
-// import { useUsersContext } from '../hooks/useUserContext';
+import { useUsersContext } from '../hooks/useUserContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
 const UserForm = () => {
-	// const { dispatch } = useUsersContext();
+	const { dispatch } = useUsersContext();
+	// const { active_user, dispatch } = useUsersContext();
 	const { user } = useAuthContext();
 
 	// const [newWeight, setNewWeight] = useState('');
-	const [name, setName] = useState('');
-	const [d_o_b, setD_o_b] = useState('');
-	// const [name, setName] = useState('');
+	const [first_name, setFirst_name] = useState('');
+	const [last_name, setLast_name] = useState('');
+	// const [name, setFirst_name] = useState('');
 	// const [reps, setReps] = useState('');
 	const [error, setError] = useState(null);
 	const [emptyFields, setEmptyFields] = useState([]);
 
-	console.log(user, 'user in user form');
+	console.log(user, 'user in user form 1');
+
+	useEffect(() => {
+		// search users
+		// console.log(active_user, 'active user form');
+	}, []);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -24,12 +31,15 @@ const UserForm = () => {
 			setError('You must be logged in');
 			return;
 		}
-		const newUserFields = { name, d_o_b };
+		const newUserFields = { first_name, last_name };
+		console.log(newUserFields, 'new user fields');
+		const userId = user.userId;
 
 		const response = await fetch(
-			`${process.env.REACT_APP_BACKEND_URL}/api/users`,
+			`${process.env.REACT_APP_BACKEND_URL}/api/user/${userId}`,
+			// `${process.env.REACT_APP_BACKEND_URL}/api/user/62f2f3463d7a73511caca8c4`,
+			// `${process.env.REACT_APP_BACKEND_URL}/api/users`,
 			{
-				// const response = await fetch('/api/targets', {
 				method: 'PATCH',
 				body: JSON.stringify(newUserFields),
 				headers: {
@@ -45,17 +55,16 @@ const UserForm = () => {
 			setEmptyFields(json.emptyFields);
 		}
 		if (response.ok) {
-			// setNewWeight('');
-			setName('');
-			setD_o_b('');
-			// setName('');
-			// setReps('');
+			setFirst_name('');
+			setLast_name('');
 			setError(null);
 			setEmptyFields([]);
-			console.log('new target added', json);
-			// dispatch({ type: 'UPDATE_USER', payload: json });
+			console.log('new user added', json);
+			dispatch({ type: 'UPDATE_USER', payload: json });
 		}
 	};
+	console.log(user, 'user in user form');
+	// console.log(req.body,)
 
 	return (
 		<StyledForm className='create' onSubmit={handleSubmit}>
@@ -70,29 +79,29 @@ const UserForm = () => {
 				<input
 					type='number'
 					id='input-number'
-					onChange={(e) => setName(e.target.value)}
+					onChange={(e) => setFirst_name(e.target.value)}
 					value={name}
 					className={emptyFields.includes('name') ? 'error' : ''}
 				/>
 			</div> */}
 			<div className='input-wrapper'>
-				<label>Name:</label>
+				<label>first name:</label>
 				<input
 					type='text'
 					// id='input-number'
-					onChange={(e) => setName(e.target.value)}
-					value={name}
-					className={emptyFields.includes('name') ? 'error' : ''}
+					onChange={(e) => setFirst_name(e.target.value)}
+					value={first_name}
+					className={emptyFields.includes('first_name') ? 'error' : ''}
 				/>
 			</div>
 			<div className='input-wrapper'>
-				<label>D.O.B:</label>
+				<label>last name:</label>
 				<input
-					type='date'
+					type='text'
 					id='input-number'
-					onChange={(e) => setD_o_b(e.target.value)}
-					value={d_o_b}
-					className={emptyFields.includes('d_o_b') ? 'error' : ''}
+					onChange={(e) => setLast_name(e.target.value)}
+					value={last_name}
+					className={emptyFields.includes('last_name') ? 'error' : ''}
 				/>
 			</div>
 			<button>Update User</button>

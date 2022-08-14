@@ -29,7 +29,7 @@ const ParticipantsList = ({ group }) => {
 			<p className='participants-list-header'>Group Participants</p>
 			<div className='participants-list'>
 				{group &&
-					group.participants.map((participant, index) => (
+					group.all_participants.map((participant, index) => (
 						<ParticipantCard key={index} participant={participant} />
 					))}
 				{/* <ParticipantCard participant={'carol'} /> */}

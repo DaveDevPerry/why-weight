@@ -17,7 +17,7 @@ const ProgressBarWidget = ({ percentage, targets, weights }) => {
 
 	return (
 		<>
-			{targets && weights && (
+			{targets && weights && progressPercentage && progressPercentage > 0 && (
 				<StyledProgressBarWidget className='progress-bar-container'>
 					{weightFluctuation < 0 && (
 						<p>You have gained {weightFluctuation} Kgs</p>

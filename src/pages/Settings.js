@@ -9,6 +9,7 @@ import TargetForm from '../components/TargetForm';
 import { CgCloseR } from 'react-icons/cg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import UserForm from '../components/UserForm';
 // import UserForm from '../components/UserForm';
 
 const Settings = ({ themeToggler, theme }) => {
@@ -43,6 +44,32 @@ const Settings = ({ themeToggler, theme }) => {
 		}
 	}, [dispatch, user]);
 
+	// useEffect(() => {
+	// 	const fetchUser = async () => {
+	// 		const response = await fetch(
+	// 			`${process.env.REACT_APP_BACKEND_URL}/api/targets`,
+	// 			{
+	// 				headers: {
+	// 					Authorization: `Bearer ${user.token}`,
+	// 				},
+	// 			}
+	// 		);
+	// 		const json = await response.json();
+
+	// 		if (response.ok) {
+	// 			// setWorkouts(json);
+	// 			dispatch({
+	// 				type: 'SET_TARGETS',
+	// 				payload: json,
+	// 			});
+	// 		}
+	// 	};
+	// 	// if we have a value for the user then fetch the workouts
+	// 	if (user) {
+	// 		fetchUser();
+	// 	}
+	// }, [dispatch, user]);
+
 	const handleClose = () => {
 		navigate('/home');
 	};
@@ -62,6 +89,7 @@ const Settings = ({ themeToggler, theme }) => {
 			<Toggle toggleTheme={themeToggler} theme={theme} />
 			<Navbar targets={targets} />
 			{!targets && <TargetForm />}
+			{!user.first_name && <UserForm />}
 			{/* {targets && targets.length === 0 && <TargetForm />} */}
 			{/* <UserForm /> */}
 
@@ -74,12 +102,15 @@ const Settings = ({ themeToggler, theme }) => {
 const StyledSettings = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
+	justify-content: space-between;
 	row-gap: 1rem;
 	padding: 2rem;
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 	transition: all 200ms linear;
+	flex: 1;
+	height: --webkit-fill-available;
 	h3 {
 		text-align: center;
 		position: relative;
@@ -99,6 +130,9 @@ const StyledSettings = styled(motion.div)`
 		margin-top: 6rem;
 		font-size: 1.2rem;
 		color: ${({ theme }) => theme.txtDarkGrey};
+		/* flex: 1; */
+		justify-self: flex-end;
+		/* height: 100%; */
 	}
 `;
 

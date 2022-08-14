@@ -65,7 +65,7 @@ const ParticipantCard = ({ participant }) => {
 		<StyledParticipantCard className='participant-details'>
 			<div className='full'>
 				<p>
-					<strong>{participant}</strong>
+					<strong>{participant.first_name}</strong>
 				</p>
 				{/* <p>
 					{formatDistanceToNow(new Date(participant.createdAt), {

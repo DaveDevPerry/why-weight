@@ -17,6 +17,7 @@ import ChartWidget from '../components/ChartWidget';
 import ProgressBarWidget from '../components/ProgressBarWidget';
 import TargetForm from '../components/TargetForm';
 import ShareWidget from '../components/ShareWidget';
+import WeightGoalsWidget from '../components/WeightGoalsWidget';
 // import TargetCountdownWidget from '../components/TargetCountdownWidget';
 // import TargetForm from '../components/TargetForm';
 // import WeightsList from '../components/WeightsList';
@@ -130,13 +131,23 @@ const Home = () => {
 					{targets &&
 						weights &&
 						targets.map((target) => (
+							<WeightGoalsWidget
+								key={target._id}
+								target={target}
+								weights={weights}
+							/>
+						))}
+					{targets &&
+						weights &&
+						weights.length > 1 &&
+						targets.map((target) => (
 							<ProgressWidget
 								key={target._id}
 								target={target}
 								weights={weights}
 							/>
 						))}
-					{targets && weights && (
+					{targets && weights && weights.length > 1 && (
 						<ShareWidget targets={targets} weights={weights} />
 					)}
 					{targets && weights && (
@@ -146,7 +157,7 @@ const Home = () => {
 							weights={weights}
 						/>
 					)}
-					{targets && weights && (
+					{targets && weights && weights.length > 1 && (
 						<ChartWidget targets={targets} weights={weights} />
 					)}
 				</>

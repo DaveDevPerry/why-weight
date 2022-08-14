@@ -11,6 +11,7 @@ const Navbar = ({ targets }) => {
 	const handleClick = () => {
 		logout();
 	};
+	console.log(user._id, ' user id in nav');
 	return (
 		<StyledNavbar>
 			{/* <div className='container'> */}
@@ -25,13 +26,25 @@ const Navbar = ({ targets }) => {
 			{user && (
 				<div>
 					<ul className='user-details-list'>
+						{user.first_name && (
+							<li>
+								<p>first:</p>
+								<span>{user.first_name}</span>
+							</li>
+						)}
+						{user.last_name && (
+							<li>
+								<p>last:</p>
+								<span>{user.last_name}</span>
+							</li>
+						)}
 						{/* <li>
-							<p>name:</p>
-							<span>temp name</span>
+							<p>first:</p>
+							<span>{user.first_name}</span>
 						</li>
 						<li>
-							<p>D.O.B:</p>
-							<span>12/02/1978</span>
+							<p>last:</p>
+							<span>{user.last_name}</span>
 						</li> */}
 						<li>
 							<p>email:</p>
@@ -83,6 +96,7 @@ const StyledNavbar = styled.nav`
 	/* margin: 0 auto; */
 	/* padding: 0.5rem 1rem; */
 	color: ${({ theme }) => theme.txtGrey};
+	flex: 1;
 	div {
 		display: flex;
 		flex-direction: column;

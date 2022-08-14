@@ -9,11 +9,16 @@ import { useGroupsContext } from '../hooks/useGroupsContext';
 import InviteWidget from '../components/InviteWidget';
 import ParticipantsList from '../components/ParticipantsList';
 import GroupHeader from '../components/GroupHeader';
+import { useParams } from 'react-router-dom';
 
 const GroupsFullDetails = ({ tempGroupID }) => {
 	// const GroupsFullDetails = ({ slug, tempGroupID }) => {
 	const { group, dispatch } = useGroupsContext();
 	const { user } = useAuthContext();
+
+	const { id } = useParams();
+	console.log(id, 'id');
+	// console.log(idString, 'idstring');
 
 	// const tempGroupID = '62f455dbc21970642118caf3';
 
@@ -23,7 +28,8 @@ const GroupsFullDetails = ({ tempGroupID }) => {
 		const fetchGroup = async () => {
 			const response = await fetch(
 				// `${process.env.REACT_APP_BACKEND_URL}/api/groups/${slug}`,
-				`${process.env.REACT_APP_BACKEND_URL}/api/groups/${tempGroupID}`,
+				`${process.env.REACT_APP_BACKEND_URL}/api/groups/${id}`,
+				// `${process.env.REACT_APP_BACKEND_URL}/api/groups/${tempGroupID}`,
 				{
 					headers: {
 						Authorization: `Bearer ${user.token}`,

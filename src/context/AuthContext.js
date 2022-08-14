@@ -20,7 +20,7 @@ export const AuthContextProvider = ({ children }) => {
 
 	useEffect(() => {
 		// check is user in ls
-		const user = JSON.parse(localStorage.getItem('user-why-wait'));
+		const user = JSON.parse(localStorage.getItem('user-why-weight'));
 
 		if (user) {
 			dispatch({ type: 'LOGIN', payload: user });
