@@ -1,15 +1,40 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 const GroupFormChoiceLinks = ({ setCurrentFormOpen, handleFormChoice }) => {
 	return (
 		<StyledGroupFormChoiceLinks>
-			<button
+			<NavLink
+				to='/groups/new'
+				className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+			>
+				<button
+				// onClick={(e) => {
+				// 	handleFormChoice('create');
+				// }}
+				>
+					CREATE
+				</button>
+			</NavLink>
+			<NavLink
+				to='/groups/join'
+				className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+			>
+				<button
+				// onClick={(e) => {
+				// 	handleFormChoice('join');
+				// }}
+				>
+					JOIN
+				</button>
+			</NavLink>
+			{/* <button
 				onClick={(e) => {
-					handleFormChoice('create');
+					handleFormChoice('join');
 				}}
 			>
-				CREATE
+				JOIN
 			</button>
 			<button
 				onClick={(e) => {
@@ -17,7 +42,7 @@ const GroupFormChoiceLinks = ({ setCurrentFormOpen, handleFormChoice }) => {
 				}}
 			>
 				JOIN
-			</button>
+			</button> */}
 
 			{/* <button onClick={setCurrentFormOpen('join')}>JOIN</button> */}
 			{/* <button onClick={setCurrentFormOpen('create')}>CREATE</button>

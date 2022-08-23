@@ -12,10 +12,11 @@ import { motion } from 'framer-motion';
 // import WeightsProgressWidget from '../components/WeightsProgressWidget';
 // import WeightUnitsWidget from '../components/WeightUnitsWidget';
 import { useGroupsContext } from '../hooks/useGroupsContext';
-import GroupForm from '../components/GroupForm';
+// import GroupForm from '../components/GroupForm';
 // import GroupDetails from '../components/GroupDetails';
 import GroupsList from '../components/GroupsList';
 import GroupFormChoiceLinks from '../components/GroupFormChoiceLinks';
+import { log } from '../helper';
 // import WeightConvertor from '../components/WeightConvertor';
 
 const Groups = ({ setCurrentFormOpen, currentFormOpen, handleFormChoice }) => {
@@ -74,7 +75,7 @@ const Groups = ({ setCurrentFormOpen, currentFormOpen, handleFormChoice }) => {
 	// }, [targetDispatch, user]);
 
 	// const [currentFormOpen, setCurrentFormOpen] = useState('');
-	console.log(groups, 'groups');
+	log(groups, 'groups');
 
 	return (
 		<StyledGroups
@@ -87,8 +88,8 @@ const Groups = ({ setCurrentFormOpen, currentFormOpen, handleFormChoice }) => {
 				setCurrentFormOpen={setCurrentFormOpen}
 				handleFormChoice={handleFormChoice}
 			/>
-			{currentFormOpen === 'create' && <GroupForm />}
-			{currentFormOpen === 'join' && <p>join form</p>}
+			{/* {currentFormOpen === 'create' && <GroupForm />}
+			{currentFormOpen === 'join' && <p>join form</p>} */}
 			{/* {groups && <p>{groups[0].title}</p>} */}
 			{/* <WeightForm /> */}
 			{/* <WeightUnitsWidget weights={weights} /> */}

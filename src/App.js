@@ -12,6 +12,7 @@ import { lightTheme, darkTheme } from './components/Themes';
 import AnimatedRoutes from './AnimatedRoutes';
 import Footer from './components/Footer';
 import Header from './components/Header';
+import { StateContext } from './lib/context';
 // import Home from './pages/Home';
 // import Login from './pages/Login';
 // import Signup from './pages/Signup';
@@ -26,17 +27,18 @@ function App() {
 	return (
 		<ThemeProvider theme={themeMode}>
 			<GlobalStyles />
-			<div className='App'>
-				<BrowserRouter>
-					<Header />
-					{/* <Navbar themeToggler={themeToggler} /> */}
-					<div className='pages'>
-						<AnimatedRoutes
-							user={user}
-							themeToggler={themeToggler}
-							theme={theme}
-						/>
-						{/* <Routes>
+			<StateContext>
+				<div className='App'>
+					<BrowserRouter>
+						<Header />
+						{/* <Navbar themeToggler={themeToggler} /> */}
+						<div className='pages'>
+							<AnimatedRoutes
+								user={user}
+								themeToggler={themeToggler}
+								theme={theme}
+							/>
+							{/* <Routes>
 						<Route
 							path='/'
 							element={user ? <Home /> : <Navigate to='/login' />}
@@ -50,10 +52,11 @@ function App() {
 							element={!user ? <Signup /> : <Navigate to='/' />}
 						/>
 					</Routes> */}
-					</div>
-					<Footer />
-				</BrowserRouter>
-			</div>
+						</div>
+						<Footer />
+					</BrowserRouter>
+				</div>
+			</StateContext>
 		</ThemeProvider>
 	);
 }

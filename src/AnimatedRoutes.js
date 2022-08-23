@@ -10,6 +10,8 @@ import Loader from './pages/Loader';
 import Groups from './pages/Groups';
 import GroupsFullDetails from './pages/[slug]';
 import { useState } from 'react';
+import CreateGroup from './pages/CreateGroup';
+import Group from './pages/Group';
 // import { groupsReducer } from './context/GroupContext';
 // import GroupsFullDetails from './pages/groups/[slug]';
 
@@ -45,6 +47,34 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 									setCurrentFormOpen={setCurrentFormOpen}
 									currentFormOpen={currentFormOpen}
 									handleFormChoice={handleFormChoice}
+								/>
+							) : (
+								<Navigate to='/login' />
+							)
+						}
+					/>
+					<Route
+						path='/groups/new'
+						element={
+							user ? (
+								<CreateGroup
+									// setCurrentFormOpen={setCurrentFormOpen}
+									// currentFormOpen={currentFormOpen}
+									handleFormChoice={handleFormChoice}
+								/>
+							) : (
+								<Navigate to='/login' />
+							)
+						}
+					/>
+					<Route
+						path='/group'
+						element={
+							user ? (
+								<Group
+								// setCurrentFormOpen={setCurrentFormOpen}
+								// currentFormOpen={currentFormOpen}
+								// handleFormChoice={handleFormChoice}
 								/>
 							) : (
 								<Navigate to='/login' />

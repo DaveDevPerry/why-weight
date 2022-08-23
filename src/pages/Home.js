@@ -17,7 +17,9 @@ import ChartWidget from '../components/ChartWidget';
 import ProgressBarWidget from '../components/ProgressBarWidget';
 import TargetForm from '../components/TargetForm';
 import ShareWidget from '../components/ShareWidget';
-import WeightGoalsWidget from '../components/WeightGoalsWidget';
+import { useGroupsContext } from '../hooks/useGroupsContext';
+import { log } from '../helper';
+// import WeightGoalsWidget from '../components/WeightGoalsWidget';
 // import TargetCountdownWidget from '../components/TargetCountdownWidget';
 // import TargetForm from '../components/TargetForm';
 // import WeightsList from '../components/WeightsList';
@@ -26,6 +28,7 @@ const Home = () => {
 	// const [workouts, setWorkouts] = useState(null);
 	const { weights, dispatch } = useWeightsContext();
 	const { targets, dispatch: targetDispatch } = useTargetsContext();
+	const { dispatch: groupDispatch } = useGroupsContext();
 	const { user } = useAuthContext();
 
 	useEffect(() => {
@@ -81,6 +84,53 @@ const Home = () => {
 		}
 	}, [targetDispatch, user]);
 
+	useEffect(() => {
+		const fetchGroups = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/groups`,
+				{
+					// const response = await fetch('/api/targets', {
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+			log(json, 'json');
+			log(user, 'user fetch groups home');
+			// get chairperson groups
+			// const clonedForChair = [...json];
+			// const chairGroups = clonedForChair.filter((group) => {
+			// 	return group.chairperson_user_id === user.userId;
+			// });
+			// log(chairGroups, 'chair groups');
+			// // get user participating in group
+			// const clonedForParticipating = [...json];
+			// const participantGroups = clonedForParticipating.filter((group) => {
+			// 	log(group.participants, ' participants in each group');
+			// 	return group.participants.includes(user.userId);
+			// });
+			// log(participantGroups, 'participating in groups');
+			// // get user participating in group
+			// const clonedForParticipating = [...json];
+			// const participantGroups = clonedForParticipating.filter((group) => {
+			// 	return group.participants.includes(user.userId);
+			// });
+			// log(participantGroups, 'participating in groups');
+			if (response.ok) {
+				// setWorkouts(json);
+				groupDispatch({
+					type: 'SET_GROUPS',
+					payload: json,
+				});
+			}
+		};
+		// if we have a value for the user then fetch the workouts
+		if (user) {
+			fetchGroups();
+		}
+	}, [groupDispatch, user]);
+
 	const percentage = 20.345;
 
 	return (
@@ -128,7 +178,7 @@ const Home = () => {
 							/>
 						))} */}
 
-					{targets &&
+					{/* {targets &&
 						weights &&
 						targets.map((target) => (
 							<WeightGoalsWidget
@@ -136,7 +186,7 @@ const Home = () => {
 								target={target}
 								weights={weights}
 							/>
-						))}
+						))} */}
 					{targets &&
 						weights &&
 						weights.length > 1 &&

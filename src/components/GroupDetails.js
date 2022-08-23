@@ -4,13 +4,19 @@
 import styled from 'styled-components';
 // import { ImArrowUp, ImArrowDown } from 'react-icons/im';
 import { FaUsers } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+// import { Link, useNavigate } from 'react-router-dom';
+import { log } from '../helper';
+import { useStateContext } from '../lib/context';
 
 // date fns
 // import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 // import { format } from 'date-fns';
 
 const GroupDetails = ({ group }) => {
+	const { setGroupToView } = useStateContext();
+
+	const navigate = useNavigate();
 	// const { dispatch } = useWeightsContext();
 	// const { user } = useAuthContext();
 
@@ -34,16 +40,28 @@ const GroupDetails = ({ group }) => {
 	// };
 
 	return (
-		<StyledGroupDetails className='group-details'>
+		<StyledGroupDetails
+			className='group-details'
+			onClick={(e) => {
+				e.preventDefault();
+				log(group.title, 'group on click');
+				setGroupToView(group.title);
+				navigate('/group');
+			}}
+		>
 			<div className='full'>
 				<p>
 					<strong>{group.title}</strong>
 				</p>
 				<p>{group.chairperson_user_id}</p>
-				<Link to={`/groups/${group._id}`} params={{ slug: group._id }}>
+				{/* <Link to={`/groups/${group._id}`} params={{ slug: group._id }}>
 					Read more
-				</Link>
+				</Link> */}
 				{/* <Link to={`/groups/${group._id}`}>Read more</Link> */}
+				{group &&
+					group.all_participants.map((item, index) => (
+						<p key={index}>{item.first_name}</p>
+					))}
 			</div>
 			<div className='group-participants'>
 				<FaUsers className='participants-icon' />
