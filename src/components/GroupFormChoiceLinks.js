@@ -6,6 +6,18 @@ const GroupFormChoiceLinks = ({ setCurrentFormOpen, handleFormChoice }) => {
 	return (
 		<StyledGroupFormChoiceLinks>
 			<NavLink
+				to='/groups/signup'
+				className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+			>
+				<button
+				// onClick={(e) => {
+				// 	handleFormChoice('create');
+				// }}
+				>
+					CREATE GROUP
+				</button>
+			</NavLink>
+			{/* <NavLink
 				to='/groups/new'
 				className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 			>
@@ -16,8 +28,20 @@ const GroupFormChoiceLinks = ({ setCurrentFormOpen, handleFormChoice }) => {
 				>
 					CREATE
 				</button>
-			</NavLink>
+			</NavLink> */}
 			<NavLink
+				to='/groups/login'
+				className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+			>
+				<button
+				// onClick={(e) => {
+				// 	handleFormChoice('join');
+				// }}
+				>
+					JOIN A GROUP
+				</button>
+			</NavLink>
+			{/* <NavLink
 				to='/groups/join'
 				className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 			>
@@ -28,7 +52,7 @@ const GroupFormChoiceLinks = ({ setCurrentFormOpen, handleFormChoice }) => {
 				>
 					JOIN
 				</button>
-			</NavLink>
+			</NavLink> */}
 			{/* <button
 				onClick={(e) => {
 					handleFormChoice('join');
