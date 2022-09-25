@@ -12,6 +12,8 @@ import GroupsFullDetails from './pages/[slug]';
 import { useState } from 'react';
 import CreateGroup from './pages/CreateGroup';
 import Group from './pages/Group';
+import JoinGroup from './pages/JoinGroup';
+import SignupGroup from './pages/SignupGroup';
 // import { groupsReducer } from './context/GroupContext';
 // import GroupsFullDetails from './pages/groups/[slug]';
 
@@ -58,6 +60,20 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 						element={
 							user ? (
 								<CreateGroup
+									// setCurrentFormOpen={setCurrentFormOpen}
+									// currentFormOpen={currentFormOpen}
+									handleFormChoice={handleFormChoice}
+								/>
+							) : (
+								<Navigate to='/login' />
+							)
+						}
+					/>
+					<Route
+						path='/groups/join'
+						element={
+							user ? (
+								<JoinGroup
 									// setCurrentFormOpen={setCurrentFormOpen}
 									// currentFormOpen={currentFormOpen}
 									handleFormChoice={handleFormChoice}
@@ -126,6 +142,20 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 					<Route
 						path='/signup'
 						element={!user ? <Signup /> : <Navigate to='/' />}
+					/>
+					{/* <Route
+						path='/groups/login'
+						element={!user ? <Login /> : <Navigate to='/' />}
+					/> */}
+					{/* <Route
+						path='/groups/signup'
+						// element={<SignupGroup />}
+						element={!user ? <SignupGroup /> : <Navigate to='/' />}
+					/> */}
+					<Route
+						path='/groups/signup'
+						element={<SignupGroup />}
+						// element={!user ? <SignupGroup /> : <Navigate to='/' />}
 					/>
 				</Routes>
 			</AnimatePresence>

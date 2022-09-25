@@ -38,6 +38,9 @@ const Groups = ({ setCurrentFormOpen, currentFormOpen, handleFormChoice }) => {
 			);
 			const json = await response.json();
 
+			log(json, 'json fetch groups');
+			log(user.userId, 'user id');
+
 			if (response.ok) {
 				// setWorkouts(json);
 				dispatch({

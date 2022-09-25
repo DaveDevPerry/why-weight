@@ -4,13 +4,13 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import { log } from '../helper';
 
-const GroupForm = () => {
-	const { dispatch } = useGroupsContext();
+const GroupJoinForm = () => {
+	const { groups, dispatch } = useGroupsContext();
 	const { user } = useAuthContext();
 
 	// const [newWeight, setNewWeight] = useState('');
-	const [title, setTitle] = useState('');
-	const [pin, setPin] = useState('');
+	const [joinTitle, setJoinTitle] = useState('');
+	const [joinPin, setJoinPin] = useState('');
 	// const [deadline_reason, setDeadline_reason] = useState('');
 
 	// const [reps, setReps] = useState('');
@@ -24,13 +24,34 @@ const GroupForm = () => {
 			setError('You must be logged in');
 			return;
 		}
-		const group = { title, pin };
+		const group = { joinTitle, joinPin };
+		log(group, 'group in join after submit');
+
+		const clonedGroups = [...groups];
+		const groupValid = clonedGroups.filter((obj) => {
+			return obj.title === joinTitle && obj.pin === joinPin;
+		});
+
+		log(groupValid, 'group valid');
+		log(groupValid[0]._id, 'group valid id');
+
+		log(user, 'user valid');
+		// };
+		// search for group in db with matching name and pin and return
 
 		const response = await fetch(
-			`${process.env.REACT_APP_BACKEND_URL}/api/groups`,
+			`${process.env.REACT_APP_BACKEND_URL}/api/groups/${groupValid[0]._id}`,
+			// {
+			// 	method: 'GET',
+			// 	headers: {
+			// 		'Content-Type': 'application/json',
+			// 		Authorization: `Bearer ${user.token}`,
+			// 	},
+			// }
 			{
-				// const response = await fetch('/api/groups', {
-				method: 'POST',
+				method: 'PATCH',
+				// body: user.userId,
+				// body: all_participants.push(user.userId),
 				body: JSON.stringify(group),
 				headers: {
 					'Content-Type': 'application/json',
@@ -40,7 +61,7 @@ const GroupForm = () => {
 		);
 		const json = await response.json();
 
-		log(json, 'json');
+		log(json, 'json join form');
 
 		if (!response.ok) {
 			setError(json.error);
@@ -48,14 +69,16 @@ const GroupForm = () => {
 		}
 		if (response.ok) {
 			// setNewWeight('');
-			setTitle('');
-			setPin('');
+			setJoinTitle('');
+			setJoinPin('');
 			// setDeadline_reason('');
 			// setReps('');
 			setError(null);
 			setEmptyFields([]);
+
+			log(json, 'json join form ok');
 			// console.log('new target added', json);
-			dispatch({ type: 'CREATE_GROUP', payload: json });
+			dispatch({ type: 'UPDATE_GROUP', payload: json });
 		}
 	};
 
@@ -67,7 +90,7 @@ const GroupForm = () => {
 	return (
 		<StyledForm className='create' onSubmit={handleSubmit}>
 			<h3>
-				Create A Group
+				Join A Group
 				{/* <CgCloseR className='close-icon' onClick={handleClose} /> */}
 			</h3>
 
@@ -76,8 +99,8 @@ const GroupForm = () => {
 				<input
 					type='text'
 					id='input-number'
-					onChange={(e) => setTitle(e.target.value)}
-					value={title}
+					onChange={(e) => setJoinTitle(e.target.value)}
+					value={joinTitle}
 					// className={emptyFields.includes('title') ? 'error' : ''}
 					autoFocus
 				/>
@@ -97,12 +120,12 @@ const GroupForm = () => {
 				<input
 					type='text'
 					id='input-number'
-					onChange={(e) => setPin(e.target.value)}
-					value={pin}
+					onChange={(e) => setJoinPin(e.target.value)}
+					value={joinPin}
 					// className={emptyFields.includes('pin') ? 'error' : ''}
 				/>
 			</div>
-			<button>CREATE GROUP</button>
+			<button>JOIN GROUP</button>
 			{error && <div className='error'>{error}</div>}
 		</StyledForm>
 	);
@@ -150,4 +173,4 @@ const StyledForm = styled.form`
 	}
 `;
 
-export default GroupForm;
+export default GroupJoinForm;

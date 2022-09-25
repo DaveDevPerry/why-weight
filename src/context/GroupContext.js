@@ -1,9 +1,14 @@
 import { createContext, useReducer } from 'react';
+import { log } from '../helper';
 
 export const GroupsContext = createContext();
 
 export const groupsReducer = (state, action) => {
 	switch (action.type) {
+		case 'LOGIN':
+			return { group: action.payload };
+		case 'LOGOUT':
+			return { group: null };
 		case 'SET_GROUPS':
 			return {
 				groups: action.payload,
@@ -26,6 +31,12 @@ export const groupsReducer = (state, action) => {
 				groups: state.groups.filter(
 					(group) => group._id !== action.payload._id
 				),
+			};
+		case 'UPDATE_GROUP':
+			const clonedJson = action.payload;
+			log(clonedJson, 'cloned json in group context');
+			return {
+				// groups: state.users.filter((user) => user._id === action.payload._id),
 			};
 		default:
 			return state;
