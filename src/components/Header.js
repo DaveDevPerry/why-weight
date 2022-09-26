@@ -5,6 +5,7 @@ import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { RiGroup2Fill } from 'react-icons/ri';
+// import { BsPlusCircleFill } from 'react-icons/bs';
 
 const Header = () => {
 	// const { logout } = useLogout();
@@ -39,6 +40,7 @@ const Header = () => {
 				>
 					<RiGroup2Fill className='settings-icon' />
 				</NavLink>
+				{/* <BsPlusCircleFill className='add-icon' onClick={handleClick} /> */}
 				<NavLink
 					to='/settings'
 					className={({ isActive }) => (isActive ? 'active' : 'inactive')}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { log } from '../helper';
 // import { useAuthContext } from './useAuthContext';
 import { useGroupsContext } from './useGroupsContext';
 
@@ -8,7 +9,7 @@ export const useLoginGroup = () => {
 	// const { dispatch } = useAuthContext();
 	const { dispatch } = useGroupsContext();
 
-	const login = async (title, pin) => {
+	const login = async (title, pin, userID) => {
 		setIsLoading(true);
 		setError(null);
 		// localhost is set as proxy in package.json
@@ -35,11 +36,13 @@ export const useLoginGroup = () => {
 				// headers: {
 				// 	'Content-Type': 'application/json',
 				// },
-				body: JSON.stringify({ title, pin }),
+				body: JSON.stringify({ title, pin, userID }),
 			}
 		);
 		// this will return the data as json or the error
 		const json = await response.json();
+
+		log(json, ' json use login group');
 
 		if (!response.ok) {
 			setIsLoading(false);

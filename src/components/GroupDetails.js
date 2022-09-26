@@ -49,25 +49,46 @@ const GroupDetails = ({ group }) => {
 				navigate('/group');
 			}}
 		>
-			<div className='full'>
+			<div className='full-header'>
+				<h3>{group.title}</h3>
 				<p>
-					<strong>{group.title}</strong>
+					chairperson: {group && group.chairperson_user_id.first_name}{' '}
+					{group && group.chairperson_user_id.last_name}{' '}
 				</p>
-				<p>{group && group.chairperson_user_id}</p>
-				{/* <Link to={`/groups/${group._id}`} params={{ slug: group._id }}>
+				{/* <div className='group-participants'>
+					<FaUsers className='participants-icon' />
+					<p className='figure'>{group && group.all_participants.length}</p>
+				</div> */}
+			</div>
+
+			{/* <div className='full'>
+				<p>
+					chairperson: {group && group.chairperson_user_id.first_name}{' '}
+					{group && group.chairperson_user_id.last_name}{' '}
+				</p>
+			</div> */}
+			<div className='full'>
+				<div className='group-participants'>
+					<FaUsers className='participants-icon' />
+					<p className='figure'>{group && group.all_participants.length}</p>
+				</div>
+			</div>
+			{/* <Link to={`/groups/${group._id}`} params={{ slug: group._id }}>
 					Read more
 				</Link> */}
-				{/* <Link to={`/groups/${group._id}`}>Read more</Link> */}
+			{/* <Link to={`/groups/${group._id}`}>Read more</Link> */}
+			<div className='full-list'>
 				{group &&
 					group.all_participants.map((item, index) => (
-						<p key={index}>{item.first_name}</p>
+						<p key={index}>
+							{item.first_name} {item.last_name}
+						</p>
 					))}
 			</div>
-			<div className='group-participants'>
+			{/* <div className='group-participants'>
 				<FaUsers className='participants-icon' />
 				<p className='figure'>{group && group.all_participants.length}</p>
-				{/* <p className='figure'>{group.participants.length}</p> */}
-			</div>
+			</div> */}
 			{/* <div className='full'>
 				<p>
 					<strong>{format(new Date(group.createdAt), 'dd/MM/yyyy')}</strong>
@@ -101,11 +122,52 @@ const StyledGroupDetails = styled.div`
 	position: relative;
 	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05);
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	column-gap: 1rem;
-	.full {
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-direction: column;
+	row-gap: 1rem;
+	.full-header {
+		display: flex;
+		/* justify-content: space-between; */
+		align-items: flex-start;
+		flex-direction: column;
+		/* column-gap: 1rem; */
 		flex: 1;
+		h3 {
+			color: ${({ theme }) => theme.secondaryColor};
+			font-size: 2rem;
+		}
+		p {
+			margin: 0;
+			font-size: 1.6rem;
+			color: ${({ theme }) => theme.txtGrey};
+			text-transform: capitalize;
+		}
+	}
+	.full {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-direction: row;
+		column-gap: 1rem;
+		flex: 1;
+		.group-participants {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			column-gap: 0.5rem;
+			.participants-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 2rem;
+			}
+			.figure {
+				color: ${({ theme }) => theme.txtDarkGrey};
+				font-size: 1.8rem;
+			}
+		}
+		.group-figures {
+			width: 8rem;
+		}
 	}
 	p {
 		margin: 0;
@@ -159,23 +221,6 @@ const StyledGroupDetails = styled.div`
 				color: ${({ theme }) => theme.txtGrey};
 				text-transform: uppercase;
 			} */
-	}
-	.group-participants {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		column-gap: 0.5rem;
-		.participants-icon {
-			color: ${({ theme }) => theme.secondaryColor};
-			font-size: 2.2rem;
-		}
-		.figure {
-			color: ${({ theme }) => theme.txtDarkGrey};
-			font-size: 1.8rem;
-		}
-	}
-	.group-figures {
-		width: 8rem;
 	}
 `;
 

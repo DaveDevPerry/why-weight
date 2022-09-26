@@ -2,12 +2,13 @@ import React from 'react';
 // import { useState } from 'react';
 // import { useEffect } from 'react';
 import styled from 'styled-components';
+import { log } from '../helper';
 import GroupDetails from './GroupDetails';
 
 const GroupsList = ({ groups }) => {
+	log(groups, 'groups groups list');
 	return (
 		<StyledGroupsList className='groups-list-container'>
-			{/* <p className='weights-list-header'>Recorded weigh-ins</p> */}
 			<div className='groups-list'>
 				{groups &&
 					groups.map((group) => {

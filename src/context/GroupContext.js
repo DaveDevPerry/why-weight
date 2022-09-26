@@ -6,16 +6,21 @@ export const GroupsContext = createContext();
 export const groupsReducer = (state, action) => {
 	switch (action.type) {
 		case 'LOGIN':
+			log(action.payload, 'group login payload');
 			return { group: action.payload };
 		case 'LOGOUT':
 			return { group: null };
 		case 'SET_GROUPS':
+			log(action.payload, 'group set groups payload');
 			return {
+				...state,
 				groups: action.payload,
 			};
 		case 'SET_GROUP':
+			log(action.payload, 'group set group payload');
 			return {
-				group: action.payload,
+				...state,
+				group: action.payload[0],
 			};
 		// case 'SET_GROUP':
 		// 	return {

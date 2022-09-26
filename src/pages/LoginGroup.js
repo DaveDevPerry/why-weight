@@ -3,16 +3,21 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useLoginGroup } from '../hooks/useLoginGroup';
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { log } from '../helper';
 
 const LoginGroup = () => {
 	const [title, setTitle] = useState('');
 	const [pin, setPin] = useState('');
 	const { login, error, isLoading } = useLoginGroup();
+	const { user } = useAuthContext();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		const userID = user.userId;
+		log(userID, 'userID loginGroup');
 
-		await login(title, pin);
+		await login(title, pin, userID);
 	};
 
 	return (

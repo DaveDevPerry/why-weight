@@ -9,11 +9,12 @@ import { FaUsers } from 'react-icons/fa';
 import { log } from '../helper';
 import { useGroupsContext } from '../hooks/useGroupsContext';
 
-const Group = ({ band, id }) => {
+const Group = () => {
 	const { user } = useAuthContext();
-	const { dispatch } = useGroupsContext();
-	const { groupToView, setGroupDetailsData, groupDetailsData } =
-		useStateContext();
+	const { group, dispatch } = useGroupsContext();
+	const { groupToView } = useStateContext();
+	// const { groupToView, setGroupDetailsData, groupDetailsData } =
+	// 	useStateContext();
 
 	useEffect(() => {
 		log(groupToView, ' group in group');
@@ -29,23 +30,15 @@ const Group = ({ band, id }) => {
 			);
 			const json = await response.json();
 
-			// const groupData = json.filter((obj) => obj.title === groupToView);
 			const groupData = json.filter((obj) => obj.title === groupToView);
-			// .sort((a, b) => {
-			// 	return new Date(b.gig_date) - new Date(a.gig_date);
-			// });
-
-			// const sortedByDate = groupData.sort((a, b) => {
-			// 	return new Date(b.gig_date) - new Date(a.gig_date);
-			// });
 
 			if (response.ok) {
-				setGroupDetailsData(groupData);
-				log(groupData, 'group data - Group');
-				// dispatch({
-				// 	type: 'SET_BAND_GIGS',
-				// 	payload: groupData,
-				// });
+				// setGroupDetailsData(groupData[0]);
+				// log(groupData, 'group data - Group');
+				dispatch({
+					type: 'SET_GROUP',
+					payload: groupData,
+				});
 				// log(groupData, 'res ok band data');
 				// log(sortedByDate, 'res ok sorted band data');
 			}
@@ -55,10 +48,10 @@ const Group = ({ band, id }) => {
 		}
 	}, [groupToView, dispatch, user]);
 
-	log(groupDetailsData, 'group details data - Group');
+	// log(groupDetailsData, 'group details data - Group');
 
 	return (
-		<StyledBand
+		<StyledGroup
 			className='band-page'
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
@@ -69,12 +62,17 @@ const Group = ({ band, id }) => {
 			{/* <p>band page</p> */}
 			<div className='band-gigs-list-header'>
 				<p>
+					<span>{group && group.title}</span>
+				</p>
+				{/* <p><span>{groupDetailsData.title}</span></p> */}
+				{/* <p>
 					All Participants in
 					<span> {groupToView}</span>
-				</p>
+				</p> */}
 				<div>
 					<FaUsers className='nav-icon' />x
-					{/* {groupDetailsData && groupDetailsData.length} */}
+					{group && group.all_participants.length}
+					{/* {groupDetailsData && groupDetailsData.all_participants.length} */}
 				</div>
 			</div>
 			{/* <div> */}
@@ -90,10 +88,10 @@ const Group = ({ band, id }) => {
 						);
 					})}
 			</div> */}
-		</StyledBand>
+		</StyledGroup>
 	);
 };
-const StyledBand = styled(motion.div)`
+const StyledGroup = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;

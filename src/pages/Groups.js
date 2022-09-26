@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 // import { useEffect, useState } from 'react';
 // import { useWeightsContext } from '../hooks/useWeightsContext';
-import { useAuthContext } from '../hooks/useAuthContext';
+// import { useAuthContext } from '../hooks/useAuthContext';
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
@@ -22,62 +22,40 @@ import { log } from '../helper';
 const Groups = ({ setCurrentFormOpen, currentFormOpen, handleFormChoice }) => {
 	// const [workouts, setWorkouts] = useState(null);
 	// const { weights, dispatch } = useWeightsContext();
-	const { groups, dispatch } = useGroupsContext();
+	const { groups } = useGroupsContext();
+	// const { groups, dispatch } = useGroupsContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
-	const { user } = useAuthContext();
+	// const { user } = useAuthContext();
 
-	useEffect(() => {
-		const fetchGroups = async () => {
-			const response = await fetch(
-				`${process.env.REACT_APP_BACKEND_URL}/api/groups`,
-				{
-					headers: {
-						Authorization: `Bearer ${user.token}`,
-					},
-				}
-			);
-			const json = await response.json();
-
-			log(json, 'json fetch groups');
-			log(user.userId, 'user id');
-
-			if (response.ok) {
-				// setWorkouts(json);
-				dispatch({
-					type: 'SET_GROUPS',
-					payload: json,
-				});
-			}
-		};
-		// if we have a value for the user then fetch the workouts
-		if (user) {
-			fetchGroups();
-		}
-	}, [dispatch, user]);
 	// useEffect(() => {
-	// 	const fetchTargets = async () => {
-	// 		const response = await fetch('/api/targets', {
-	// 			headers: {
-	// 				Authorization: `Bearer ${user.token}`,
-	// 			},
-	// 		});
+	// 	const fetchGroups = async () => {
+	// 		const response = await fetch(
+	// 			`${process.env.REACT_APP_BACKEND_URL}/api/groups`,
+	// 			{
+	// 				headers: {
+	// 					Authorization: `Bearer ${user.token}`,
+	// 				},
+	// 			}
+	// 		);
 	// 		const json = await response.json();
+
+	// 		log(json, 'json fetch groups');
+	// 		log(user.userId, 'user id');
 
 	// 		if (response.ok) {
 	// 			// setWorkouts(json);
-	// 			targetDispatch({
-	// 				type: 'SET_TARGETS',
+	// 			dispatch({
+	// 				type: 'SET_GROUPS',
 	// 				payload: json,
 	// 			});
 	// 		}
 	// 	};
 	// 	// if we have a value for the user then fetch the workouts
 	// 	if (user) {
-	// 		fetchTargets();
+	// 		fetchGroups();
 	// 	}
-	// }, [targetDispatch, user]);
+	// }, [dispatch, user]);
 
-	// const [currentFormOpen, setCurrentFormOpen] = useState('');
 	log(groups, 'groups');
 
 	return (
@@ -102,7 +80,7 @@ const Groups = ({ setCurrentFormOpen, currentFormOpen, handleFormChoice }) => {
 				groups.map((group) => {
 					return <GroupDetails key={group._id} group={group} />;
 				})} */}
-			<GroupsList groups={groups} />
+			<GroupsList groups={groups && groups} />
 			{/* <WeightsList weights={weights} /> */}
 		</StyledGroups>
 	);
