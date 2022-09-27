@@ -4,6 +4,7 @@ import { useWeightsContext } from '../hooks/useWeightsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import { CgCloseR } from 'react-icons/cg';
+import toast from 'react-hot-toast';
 // import { motion } from 'framer-motion';
 
 const WeightForm = ({ isFormActive, setIsFormActive }) => {
@@ -55,10 +56,23 @@ const WeightForm = ({ isFormActive, setIsFormActive }) => {
 			dispatch({ type: 'CREATE_WEIGHT', payload: json });
 		}
 		setIsFormActive(!isFormActive);
+		// notify(JSON.stringify(weight));
+		notify(weight.load);
 	};
 	const handleClose = () => {
 		// navigate('/home');
 		setIsFormActive(!isFormActive);
+	};
+
+	// create a toast
+	const notify = (weight) => {
+		toast.success(`current weight of ${weight} kgs has been added.`, {
+			// toast.success(`${headline_band} gig successfully added.`, {
+			duration: 3000,
+			style: {
+				border: '2px solid #1da000',
+			},
+		});
 	};
 
 	return (

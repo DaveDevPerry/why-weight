@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 
 import AppDetails from '../components/AppDetails';
 
+import toast from 'react-hot-toast';
+
 const Login = ({ theme }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -15,6 +17,19 @@ const Login = ({ theme }) => {
 		e.preventDefault();
 
 		await login(email, password);
+
+		notify(email);
+	};
+
+	// create a toast
+	const notify = () => {
+		toast.success(`logged in as ${email}.`, {
+			// toast.success(`${headline_band} gig successfully added.`, {
+			duration: 3000,
+			style: {
+				border: '2px solid #1da000',
+			},
+		});
 	};
 
 	return (

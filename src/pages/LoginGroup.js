@@ -1,16 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useLoginGroup } from '../hooks/useLoginGroup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { log } from '../helper';
+import toast from 'react-hot-toast';
+import { useStateContext } from '../lib/context';
 
 const LoginGroup = () => {
+	// const navigate = useNavigate();
+
 	const [title, setTitle] = useState('');
 	const [pin, setPin] = useState('');
 	const { login, error, isLoading } = useLoginGroup();
 	const { user } = useAuthContext();
+
+	const { dataLoaded } = useStateContext();
+	// const { isFormActive, setIsFormActive } = useStateContext();
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+	}, [navigate, dataLoaded]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -18,6 +32,23 @@ const LoginGroup = () => {
 		log(userID, 'userID loginGroup');
 
 		await login(title, pin, userID);
+
+		notify(title);
+
+		setTimeout(() => {
+			navigate('/');
+		}, 3000);
+	};
+
+	// create a toast
+	const notify = (title) => {
+		toast.success(`you have successfully joined ${title}.`, {
+			// toast.success(`${headline_band} gig successfully added.`, {
+			duration: 3000,
+			style: {
+				border: '2px solid #1da000',
+			},
+		});
 	};
 
 	return (

@@ -2,8 +2,9 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useSignup } from '../hooks/useSignup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AppDetails from '../components/AppDetails';
+import toast from 'react-hot-toast';
 
 const Signup = ({ theme }) => {
 	const [email, setEmail] = useState('');
@@ -11,11 +12,29 @@ const Signup = ({ theme }) => {
 	const [first_name, setFirst_name] = useState('');
 	const [last_name, setLast_name] = useState('');
 	const { signup, isLoading, error } = useSignup();
+	let navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		await signup(email, password, first_name, last_name);
+
+		notify();
+
+		setTimeout(() => {
+			navigate('/');
+		}, 3000);
+	};
+
+	// create a toast
+	const notify = () => {
+		toast.success(`you have successfully signed up.`, {
+			// toast.success(`${headline_band} gig successfully added.`, {
+			duration: 3000,
+			style: {
+				border: '2px solid #1da000',
+			},
+		});
 	};
 
 	return (

@@ -4,6 +4,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import { format } from 'date-fns';
 import { log } from '../helper';
+import toast from 'react-hot-toast';
 
 const Navbar = ({ targets }) => {
 	const { logout } = useLogout();
@@ -11,8 +12,20 @@ const Navbar = ({ targets }) => {
 
 	const handleClick = () => {
 		logout();
+		notify();
 	};
 	log(user._id, ' user id in nav');
+
+	// create a toast
+	const notify = () => {
+		toast.success(`you are now logged out.`, {
+			// toast.success(`${headline_band} gig successfully added.`, {
+			duration: 3000,
+			style: {
+				border: '2px solid #1da000',
+			},
+		});
+	};
 	return (
 		<StyledNavbar>
 			{/* <div className='container'> */}

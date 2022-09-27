@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 // import { useSignup } from '../hooks/useSignup';
@@ -8,14 +8,25 @@ import { log } from '../helper';
 // import { Link } from 'react-router-dom';
 // import { useGroupsContext } from '../hooks/useGroupsContext';
 import { Link, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useStateContext } from '../lib/context';
 // import { useStateContext } from '../lib/context';
 
 const SignupGroup = () => {
-	const navigate = useNavigate();
 	const [title, setTitle] = useState('');
 	const [pin, setPin] = useState('');
 	const { signup, isLoading, error } = useSignupGroup();
 	const { user } = useAuthContext();
+
+	const { dataLoaded } = useStateContext();
+	// const { isFormActive, setIsFormActive } = useStateContext();
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+	}, [navigate, dataLoaded]);
 	// const { dispatch } = useGroupsContext();
 	// const { setGroupToView } = useStateContext();
 
@@ -28,6 +39,8 @@ const SignupGroup = () => {
 		await signup(title, pin, userID);
 
 		log('after creating a group');
+
+		notify(title);
 
 		// setGroupToView(title);
 		// navigate('/group');
@@ -65,6 +78,17 @@ const SignupGroup = () => {
 			navigate('/');
 		}, 3000);
 		// }
+	};
+
+	// create a toast
+	const notify = (title) => {
+		toast.success(`${title} group has been successfully created.`, {
+			// toast.success(`${headline_band} gig successfully added.`, {
+			duration: 3000,
+			style: {
+				border: '2px solid #1da000',
+			},
+		});
 	};
 
 	return (
