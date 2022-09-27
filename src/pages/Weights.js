@@ -17,6 +17,7 @@ import WeightsProgressWidget from '../components/WeightsProgressWidget';
 import WeightUnitsWidget from '../components/WeightUnitsWidget';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
+import NoUserWeightsWidget from '../components/NoUserWeightsWidget';
 // import WeightConvertor from '../components/WeightConvertor';
 
 const Weights = () => {
@@ -91,11 +92,26 @@ const Weights = () => {
 			exit={{ x: window.innerWidth }}
 		>
 			{/* <WeightForm /> */}
-			<WeightUnitsWidget weights={weights} />
 			{/* <WeightConvertor /> */}
+			{/* <WeightUnitsWidget weights={weights} />
 			<WeightsProgressWidget weights={weights} />
 
-			<WeightsList weights={weights} />
+			<WeightsList weights={weights} /> */}
+
+			{weights && weights.length > 0 ? (
+				<>
+					<WeightUnitsWidget weights={weights} />
+					{/* <WeightConvertor /> */}
+					<WeightsProgressWidget weights={weights} />
+
+					<WeightsList weights={weights} />
+				</>
+			) : (
+				<NoUserWeightsWidget
+				// setCurrentFormOpen={setCurrentFormOpen}
+				// handleFormChoice={handleFormChoice}
+				/>
+			)}
 		</StyledWeights>
 	);
 };

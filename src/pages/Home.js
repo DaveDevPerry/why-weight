@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 
 // components
 // import WeightDetails from '../components/WeightDetails';
-import WeightForm from '../components/WeightForm';
+// import WeightForm from '../components/WeightForm';
 // import TargetForm from '../components/TargetForm';
 // import TargetDetails from '../components/TargetDetails';
 import CountdownWidget from '../components/CountdownWidget';
@@ -21,6 +21,7 @@ import ShareWidget from '../components/ShareWidget';
 // import { log } from '../helper';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../lib/context';
+import WeightFormInitial from '../components/WeightFormInitial';
 // import WeightGoalsWidget from '../components/WeightGoalsWidget';
 // import TargetCountdownWidget from '../components/TargetCountdownWidget';
 // import TargetForm from '../components/TargetForm';
@@ -133,17 +134,30 @@ const Home = () => {
 			{/* <WeightForm /> */}
 			{/* <TargetForm /> */}
 
+			{weights && weights.length === 0 && (
+				<>
+					<br />
+					<p className='instruction-title'>
+						1. Enter your current weight in kilograms
+					</p>
+					<WeightFormInitial
+						isFormActive={isFormActive}
+						setIsFormActive={setIsFormActive}
+					/>
+				</>
+			)}
+
 			{targets && targets.length === 0 && (
 				<>
 					<br />
 					<p className='instruction-title'>
-						1. Set your initial weight loss target
+						2. Set your initial weight loss target
 					</p>
 					<TargetForm />
 				</>
 			)}
 
-			{weights && weights.length === 0 && (
+			{/* {weights && weights.length === 0 && (
 				<>
 					<br />
 					<p className='instruction-title'>
@@ -154,7 +168,7 @@ const Home = () => {
 						setIsFormActive={setIsFormActive}
 					/>
 				</>
-			)}
+			)} */}
 
 			{targets && targets.length === 1 && weights && weights.length >= 1 && (
 				<>
