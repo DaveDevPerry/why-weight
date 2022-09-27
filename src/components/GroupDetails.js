@@ -55,10 +55,6 @@ const GroupDetails = ({ group }) => {
 					chairperson: {group && group.chairperson_user_id.first_name}{' '}
 					{group && group.chairperson_user_id.last_name}{' '}
 				</p>
-				{/* <div className='group-participants'>
-					<FaUsers className='participants-icon' />
-					<p className='figure'>{group && group.all_participants.length}</p>
-				</div> */}
 			</div>
 
 			{/* <div className='full'>
@@ -128,10 +124,9 @@ const StyledGroupDetails = styled.div`
 	row-gap: 1rem;
 	.full-header {
 		display: flex;
-		/* justify-content: space-between; */
+
 		align-items: flex-start;
 		flex-direction: column;
-		/* column-gap: 1rem; */
 		flex: 1;
 		h3 {
 			color: ${({ theme }) => theme.secondaryColor};

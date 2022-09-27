@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import styled from 'styled-components';
+import { log } from '../helper';
 import WeightDetails from './WeightDetails';
 
 const WeightsList = ({ weights }) => {
@@ -10,7 +11,7 @@ const WeightsList = ({ weights }) => {
 	useEffect(() => {
 		const clonedWeights = [...weights];
 		// clonedWeights.reverse();
-		// console.log(clonedWeights, 'cloned reversed');
+		// log(clonedWeights, 'cloned reversed');
 		const weightDiffs = [];
 
 		for (let i = 0; i < clonedWeights.length - 1; i++) {
@@ -20,8 +21,8 @@ const WeightsList = ({ weights }) => {
 			// weightDiffs.unshift(diff.toFixed(2));
 		}
 		setTestWeights(weightDiffs);
-		console.log(clonedWeights, 'cloned');
-		console.log(weightDiffs, 'weight diffs');
+		log(clonedWeights, 'cloned');
+		log(weightDiffs, 'weight diffs');
 	}, [weights]);
 	return (
 		<StyledWeightsList className='weight-list-container'>

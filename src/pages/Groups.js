@@ -17,6 +17,7 @@ import { useGroupsContext } from '../hooks/useGroupsContext';
 import GroupsList from '../components/GroupsList';
 import GroupFormChoiceLinks from '../components/GroupFormChoiceLinks';
 import { log } from '../helper';
+import NoUserGroupsWidget from '../components/NoUserGroupsWidget';
 // import WeightConvertor from '../components/WeightConvertor';
 
 const Groups = ({ setCurrentFormOpen, currentFormOpen, handleFormChoice }) => {
@@ -65,10 +66,10 @@ const Groups = ({ setCurrentFormOpen, currentFormOpen, handleFormChoice }) => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<GroupFormChoiceLinks
+			{/* <GroupFormChoiceLinks
 				setCurrentFormOpen={setCurrentFormOpen}
 				handleFormChoice={handleFormChoice}
-			/>
+			/> */}
 			{/* {currentFormOpen === 'create' && <GroupForm />}
 			{currentFormOpen === 'join' && <p>join form</p>} */}
 			{/* {groups && <p>{groups[0].title}</p>} */}
@@ -80,7 +81,21 @@ const Groups = ({ setCurrentFormOpen, currentFormOpen, handleFormChoice }) => {
 				groups.map((group) => {
 					return <GroupDetails key={group._id} group={group} />;
 				})} */}
-			<GroupsList groups={groups && groups} />
+
+			{groups && groups.length > 0 ? (
+				<>
+					<GroupFormChoiceLinks
+						setCurrentFormOpen={setCurrentFormOpen}
+						handleFormChoice={handleFormChoice}
+					/>
+					<GroupsList groups={groups && groups} />
+				</>
+			) : (
+				<NoUserGroupsWidget
+					setCurrentFormOpen={setCurrentFormOpen}
+					handleFormChoice={handleFormChoice}
+				/>
+			)}
 			{/* <WeightsList weights={weights} /> */}
 		</StyledGroups>
 	);

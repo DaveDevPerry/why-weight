@@ -5,9 +5,11 @@ import { useStateContext } from '../lib/context';
 // import { useGigsContext } from '../hooks/useGigsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 // import BandGigsList from '../components/BandGigsList';
-import { FaUsers } from 'react-icons/fa';
+// import { FaUsers } from 'react-icons/fa';
 import { log } from '../helper';
 import { useGroupsContext } from '../hooks/useGroupsContext';
+import InviteWidget from '../components/InviteWidget';
+import GroupParticipantsList from '../components/GroupParticipantsList';
 
 const Group = () => {
 	const { user } = useAuthContext();
@@ -60,21 +62,37 @@ const Group = () => {
 			{/* <div>Band {band._id}</div>
 			<div>Band {band.name}</div> */}
 			{/* <p>band page</p> */}
-			<div className='band-gigs-list-header'>
+			<div className='full-header'>
+				<h3>{group && group.title}</h3>
 				<p>
-					<span>{group && group.title}</span>
+					chairperson: {group && group.chairperson_user_id.first_name}{' '}
+					{group && group.chairperson_user_id.last_name}{' '}
 				</p>
-				{/* <p><span>{groupDetailsData.title}</span></p> */}
-				{/* <p>
-					All Participants in
-					<span> {groupToView}</span>
-				</p> */}
+			</div>
+
+			{/* <div className='group-participants-list-header'>
+				<p>
+					All Participants
+				</p>
 				<div>
 					<FaUsers className='nav-icon' />x
 					{group && group.all_participants.length}
-					{/* {groupDetailsData && groupDetailsData.all_participants.length} */}
 				</div>
 			</div>
+			<ul className='group-participants-list'>
+				{group &&
+					group.all_participants.map((participant) => (
+						<li key={participant._id}>
+							<p>
+								{participant.first_name} {participant.last_name}
+							</p>
+						</li>
+					))}
+			</ul> */}
+			<GroupParticipantsList group={group && group} />
+
+			<InviteWidget group={group} />
+			{/* </div> */}
 			{/* <div> */}
 			{/* {groupDetailsData && <BandGigsList gigs={groupDetailsData} />} */}
 			{/* </div> */}
@@ -97,7 +115,7 @@ const StyledGroup = styled(motion.div)`
 	row-gap: 1rem;
 	flex: 1;
 	max-width: 42rem;
-	padding: 0 1rem;
+	/* padding: 0 1rem; */
 	overflow: hidden;
 	overflow-y: auto;
 	transition: all 200ms linear;
@@ -123,7 +141,28 @@ const StyledGroup = styled(motion.div)`
 	::-webkit-scrollbar-corner {
 		background: rgb(75, 74, 74);
 	}
-	.band-gigs-list-header {
+	.full-header {
+		background: ${({ theme }) => theme.white};
+		border-radius: 4px;
+		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+		display: flex;
+
+		align-items: center;
+		flex-direction: column;
+		flex: 1;
+		padding: 1rem;
+		h3 {
+			color: ${({ theme }) => theme.secondaryColor};
+			font-size: 2rem;
+		}
+		p {
+			margin: 0;
+			font-size: 1.6rem;
+			color: ${({ theme }) => theme.txtGrey};
+			text-transform: capitalize;
+		}
+	}
+	/* .band-gigs-list-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -144,6 +183,12 @@ const StyledGroup = styled(motion.div)`
 			color: ${({ theme }) => theme.txtGrey};
 		}
 	}
+	ul.group-participants-list {
+		list-style-type: disc;
+		li {
+			display: inline-block;
+		}
+	} */
 `;
 
 export default Group;

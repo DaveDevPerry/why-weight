@@ -1,15 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { BsFillShareFill, BsWhatsapp } from 'react-icons/bs';
+import { log } from '../helper';
 
-const InviteWidget = () => {
+const InviteWidget = ({ group }) => {
 	const shareMobile = () => {
-		const groupName = 'test group name';
-		const groupPin = 'testgrouppin';
+		const groupName = group.title;
+		const groupPin = group.pinString;
+		// const groupName = 'test group name';
+		// const groupPin = 'testgrouppin';
 
-		window.open(
+		log(
 			`whatsapp://send?text=I have set up a group on Why Wait?  Would you like to join? Here are the group details.  GROUP NAME:${groupName}, PIN:${groupPin}. Sign up here - https://why-weight.vercel.app/signup`
 		);
+
+		// window.open(
+		// 	`whatsapp://send?text=I have set up a group on Why Wait?  Would you like to join? Here are the group details.  GROUP NAME:${groupName}, PIN:${groupPin}. Sign up here - https://why-weight.vercel.app/signup`
+		// );
 	};
 	return (
 		<StyledInviteWidget>
@@ -22,7 +29,10 @@ const InviteWidget = () => {
 				}}
 			>
 				<BsFillShareFill size='20px' className='share-icon' />
-				invite people to join
+				<div className='btn-share-content'>
+					<p>invite people to join</p>
+					<h3>{group && group.title}</h3>
+				</div>
 				<BsWhatsapp size='25px' className='share-icon' />
 			</button>
 			{/* </div> */}
@@ -33,22 +43,10 @@ const StyledInviteWidget = styled.div`
 	color: ${({ theme }) => theme.txtGrey};
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
-	/* margin: 0 auto 10px auto; */
-	/* padding: 1rem 2rem; */
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 	display: flex;
 	flex-direction: row;
-	/* justify-content: center; */
 	align-items: center;
-	/* row-gap: 1rem; */
-	/* .share-wrapper-whatsapp {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: space-around;
-		row-gap: 2rem;
-
-		flex: 1; */
 	.share-btn-whatsapp {
 		display: flex;
 		flex-direction: row;
@@ -69,6 +67,8 @@ const StyledInviteWidget = styled.div`
 		font-style: italic;
 		.share-icon {
 			color: ${({ theme }) => theme.primaryColor};
+		}
+		.btn-share-content {
 		}
 	}
 	/* } */

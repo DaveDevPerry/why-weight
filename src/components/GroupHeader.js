@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { log } from '../helper';
 // import { groupsReducer } from '../context/GroupContext';
 
 const GroupHeader = ({ group }) => {
-	console.log(group, 'group');
+	log(group, 'group');
 	return (
 		<StyledGroupHeader>
 			<ul className='group-header-list'>

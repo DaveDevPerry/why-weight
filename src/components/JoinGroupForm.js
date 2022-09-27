@@ -51,7 +51,7 @@
 // 			// setReps('');
 // 			setError(null);
 // 			setEmptyFields([]);
-// 			// console.log('new target added', json);
+// 			// log('new target added', json);
 // 			dispatch({ type: 'CREATE_GROUP', payload: json });
 // 		}
 // 	};

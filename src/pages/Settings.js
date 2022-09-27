@@ -10,6 +10,7 @@ import { CgCloseR } from 'react-icons/cg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import UserForm from '../components/UserForm';
+import { log } from '../helper';
 // import UserForm from '../components/UserForm';
 
 const Settings = ({ themeToggler, theme }) => {
@@ -73,7 +74,7 @@ const Settings = ({ themeToggler, theme }) => {
 	const handleClose = () => {
 		navigate('/home');
 	};
-	console.log(targets, 'targets');
+	log(targets, 'targets');
 	return (
 		<StyledSettings
 			className='settings-page'

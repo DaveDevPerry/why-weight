@@ -11,7 +11,7 @@ const ParticipantsList = ({ group }) => {
 	// useEffect(() => {
 	// 	const clonedWeights = [...weights];
 	// 	// clonedWeights.reverse();
-	// 	// console.log(clonedWeights, 'cloned reversed');
+	// 	// log(clonedWeights, 'cloned reversed');
 	// 	const weightDiffs = [];
 
 	// 	for (let i = 0; i < clonedWeights.length - 1; i++) {
@@ -21,8 +21,8 @@ const ParticipantsList = ({ group }) => {
 	// 		// weightDiffs.unshift(diff.toFixed(2));
 	// 	}
 	// 	setTestWeights(weightDiffs);
-	// 	console.log(clonedWeights, 'cloned');
-	// 	console.log(weightDiffs, 'weight diffs');
+	// 	log(clonedWeights, 'cloned');
+	// 	log(weightDiffs, 'weight diffs');
 	// }, [weights]);
 	return (
 		<StyledParticipantsList className='participant-list-container'>

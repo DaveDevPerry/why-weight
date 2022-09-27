@@ -3,6 +3,7 @@ import { useUsersContext } from '../hooks/useUserContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import { useEffect } from 'react';
+import { log } from '../helper';
 
 const UserForm = () => {
 	const { dispatch } = useUsersContext();
@@ -17,11 +18,11 @@ const UserForm = () => {
 	const [error, setError] = useState(null);
 	const [emptyFields, setEmptyFields] = useState([]);
 
-	console.log(user, 'user in user form 1');
+	log(user, 'user in user form 1');
 
 	useEffect(() => {
 		// search users
-		// console.log(active_user, 'active user form');
+		// log(active_user, 'active user form');
 	}, []);
 
 	const handleSubmit = async (e) => {
@@ -32,7 +33,7 @@ const UserForm = () => {
 			return;
 		}
 		const newUserFields = { first_name, last_name };
-		console.log(newUserFields, 'new user fields');
+		log(newUserFields, 'new user fields');
 		const userId = user.userId;
 
 		const response = await fetch(
@@ -59,12 +60,12 @@ const UserForm = () => {
 			setLast_name('');
 			setError(null);
 			setEmptyFields([]);
-			console.log('new user added', json);
+			log('new user added', json);
 			dispatch({ type: 'UPDATE_USER', payload: json });
 		}
 	};
-	console.log(user, 'user in user form');
-	// console.log(req.body,)
+	log(user, 'user in user form');
+	// log(req.body,)
 
 	return (
 		<StyledForm className='create' onSubmit={handleSubmit}>

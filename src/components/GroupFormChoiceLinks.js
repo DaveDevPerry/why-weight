@@ -86,19 +86,23 @@ const StyledGroupFormChoiceLinks = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	column-gap: 1rem;
-	button {
-		/* align-self: flex-end; */
-		background: ${({ theme }) => theme.white};
-		color: ${({ theme }) => theme.secondaryColor};
-		border: none;
-		/* color: ${({ theme }) => theme.primaryColor};
-			border: 2px solid ${({ theme }) => theme.primaryColor}; */
-		padding: 0.3rem 0.6rem;
-		border-radius: 0.4rem;
-		font-family: 'Poppins';
-		cursor: pointer;
-		font-size: 1em;
+	a {
 		flex: 1;
+		button {
+			/* align-self: flex-end; */
+			background: ${({ theme }) => theme.white};
+			color: ${({ theme }) => theme.secondaryColor};
+			border: none;
+			/* color: ${({ theme }) => theme.primaryColor};
+			border: 2px solid ${({ theme }) => theme.primaryColor}; */
+			padding: 0.3rem 0.6rem;
+			border-radius: 0.4rem;
+			font-family: 'Poppins';
+			cursor: pointer;
+			font-size: 1em;
+			width: 100%;
+			/* flex: 1; */
+		}
 	}
 `;
 

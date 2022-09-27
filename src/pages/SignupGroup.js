@@ -6,12 +6,18 @@ import { useSignupGroup } from '../hooks/useSignupGroup';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { log } from '../helper';
 // import { Link } from 'react-router-dom';
+// import { useGroupsContext } from '../hooks/useGroupsContext';
+import { Link, useNavigate } from 'react-router-dom';
+// import { useStateContext } from '../lib/context';
 
 const SignupGroup = () => {
+	const navigate = useNavigate();
 	const [title, setTitle] = useState('');
 	const [pin, setPin] = useState('');
 	const { signup, isLoading, error } = useSignupGroup();
 	const { user } = useAuthContext();
+	// const { dispatch } = useGroupsContext();
+	// const { setGroupToView } = useStateContext();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -20,6 +26,45 @@ const SignupGroup = () => {
 		// const userID = user._id;
 
 		await signup(title, pin, userID);
+
+		log('after creating a group');
+
+		// setGroupToView(title);
+		// navigate('/group');
+
+		// navigate('')
+		// const fetchGroup = async () => {
+		// 	const response = await fetch(
+		// 		`${process.env.REACT_APP_BACKEND_URL}/api/groups`,
+		// 		{
+		// 			headers: {
+		// 				Authorization: `Bearer ${user.token}`,
+		// 			},
+		// 		}
+		// 	);
+		// 	const json = await response.json();
+
+		// 	log(json, 'json fetch group');
+
+		// 	const groupData = json.filter((obj) => obj.title === title);
+
+		// 	if (response.ok) {
+		// 		// setGroupDetailsData(groupData[0]);
+		// 		// log(groupData, 'group data - Group');
+		// 		dispatch({
+		// 			type: 'SET_GROUP',
+		// 			payload: groupData,
+		// 		});
+		// 		// log(groupData, 'res ok band data');
+		// 		// log(sortedByDate, 'res ok sorted band data');
+		// 	}
+		// };
+		// if (user) {
+		// 	fetchGroup();
+		setTimeout(() => {
+			navigate('/');
+		}, 3000);
+		// }
 	};
 
 	return (
@@ -30,31 +75,33 @@ const SignupGroup = () => {
 			exit={{ x: window.innerWidth }}
 		>
 			<form onSubmit={handleSubmit} className='signup'>
-				<h3>Sign up</h3>
+				<h3>Create a group</h3>
 				<div>
-					<label>title:</label>
+					<label>group name:</label>
 					<input
 						type='text'
 						onChange={(e) => setTitle(e.target.value)}
 						value={title}
+						autoComplete='off'
 					/>
 				</div>
 				<div>
-					<label>pin:</label>
+					<label>group pin:</label>
 					<input
 						type='password'
 						onChange={(e) => setPin(e.target.value)}
 						value={pin}
+						autoComplete='off'
 					/>
 				</div>
 
-				<button disabled={isLoading}>Sign up</button>
+				<button disabled={isLoading}>create group</button>
 				{error && <div className='error'>{error}</div>}
 			</form>
 
-			{/* <p>
-				Got an account? Log in<Link to='/login'> here</Link>
-			</p> */}
+			<p>
+				been invited to join a group? Join<Link to='/groups/login'> here</Link>
+			</p>
 		</StyledSignupGroup>
 	);
 };

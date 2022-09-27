@@ -7,10 +7,10 @@ const WeightConvertor = () => {
 	// const [convertFrom, setConvertFrom] = useState('')
 
 	const handleWeight = (e) => {
-		console.log(e.target.value);
+		log(e.target.value);
 	};
 	const weightConversionUnitHandler = (e) => {
-		console.log(e.target.textContent);
+		log(e.target.textContent);
 		// setTodoStatus(e.target.value);
 		// setStatus(e.target.value);
 	};

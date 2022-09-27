@@ -15,7 +15,8 @@ const GroupForm = () => {
 
 	// const [reps, setReps] = useState('');
 	const [error, setError] = useState(null);
-	const [emptyFields, setEmptyFields] = useState([]);
+	// const [setEmptyFields] = useState([]);
+	// const [emptyFields, setEmptyFields] = useState([]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -44,7 +45,7 @@ const GroupForm = () => {
 
 		if (!response.ok) {
 			setError(json.error);
-			setEmptyFields(json.emptyFields);
+			// setEmptyFields(json.emptyFields);
 		}
 		if (response.ok) {
 			// setNewWeight('');
@@ -53,8 +54,8 @@ const GroupForm = () => {
 			// setDeadline_reason('');
 			// setReps('');
 			setError(null);
-			setEmptyFields([]);
-			// console.log('new target added', json);
+			// setEmptyFields([]);
+			// log('new target added', json);
 			dispatch({ type: 'CREATE_GROUP', payload: json });
 		}
 	};

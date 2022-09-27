@@ -10,7 +10,7 @@ const TargetCountdownWidget = ({ isNextDayCountdownActive, target }) => {
 	const [timerSeconds, setTimerSeconds] = useState();
 
 	useEffect(() => {
-		console.log('start timer');
+		log('start timer');
 		let nextMidnight = new Date(target.deadline_date);
 		// let nextMidnight = new Date();
 		nextMidnight.setHours(24, 0, 0, 0);
@@ -20,7 +20,7 @@ const TargetCountdownWidget = ({ isNextDayCountdownActive, target }) => {
 		// const countDownDate = new Date('05 Apr, 2022').getTime();
 		// const date = new Date();
 		// const countDownDate = date.setDate(date.getDate() + 1);
-		console.log(countDownDate);
+		log(countDownDate);
 
 		let interval = setInterval(() => {
 			const now = new Date().getTime();

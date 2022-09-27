@@ -51,7 +51,7 @@ const WeightForm = ({ isFormActive, setIsFormActive }) => {
 			// setReps('');
 			setError(null);
 			setEmptyFields([]);
-			// console.log('new weight added', json);
+			// log('new weight added', json);
 			dispatch({ type: 'CREATE_WEIGHT', payload: json });
 		}
 		setIsFormActive(!isFormActive);

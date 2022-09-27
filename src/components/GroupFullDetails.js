@@ -117,7 +117,7 @@ export default Groups;
 // 		'http://localhost:1337/reviews/' + id
 // 	);
 
-// 	console.log(data);
+// 	log(data);
 
 // 	if (loading) return <p>Loading...</p>;
 // 	if (error) return <p>Error...</p>;

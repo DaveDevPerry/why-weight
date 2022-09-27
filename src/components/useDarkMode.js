@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { log } from '../helper';
 // import { useNavigate } from 'react-router-dom';
 
 export const useDarkMode = () => {
@@ -13,7 +14,7 @@ export const useDarkMode = () => {
 
 	const themeToggler = () => {
 		theme === 'light' ? setMode('dark') : setMode('light');
-		console.log('here');
+		log('here');
 		// navigate('/');
 	};
 

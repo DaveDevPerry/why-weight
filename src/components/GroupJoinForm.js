@@ -15,7 +15,7 @@ const GroupJoinForm = () => {
 
 	// const [reps, setReps] = useState('');
 	const [error, setError] = useState(null);
-	const [emptyFields, setEmptyFields] = useState([]);
+	// const [emptyFields, setEmptyFields] = useState([]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -65,7 +65,7 @@ const GroupJoinForm = () => {
 
 		if (!response.ok) {
 			setError(json.error);
-			setEmptyFields(json.emptyFields);
+			// setEmptyFields(json.emptyFields);
 		}
 		if (response.ok) {
 			// setNewWeight('');
@@ -74,10 +74,10 @@ const GroupJoinForm = () => {
 			// setDeadline_reason('');
 			// setReps('');
 			setError(null);
-			setEmptyFields([]);
+			// setEmptyFields([]);
 
 			log(json, 'json join form ok');
-			// console.log('new target added', json);
+			// log('new target added', json);
 			dispatch({ type: 'UPDATE_GROUP', payload: json });
 		}
 	};

@@ -3,6 +3,7 @@ import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import { format } from 'date-fns';
+import { log } from '../helper';
 
 const Navbar = ({ targets }) => {
 	const { logout } = useLogout();
@@ -11,7 +12,7 @@ const Navbar = ({ targets }) => {
 	const handleClick = () => {
 		logout();
 	};
-	console.log(user._id, ' user id in nav');
+	log(user._id, ' user id in nav');
 	return (
 		<StyledNavbar>
 			{/* <div className='container'> */}
