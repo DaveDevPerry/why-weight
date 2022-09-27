@@ -18,12 +18,25 @@ import GroupsList from '../components/GroupsList';
 import GroupFormChoiceLinks from '../components/GroupFormChoiceLinks';
 import { log } from '../helper';
 import NoUserGroupsWidget from '../components/NoUserGroupsWidget';
+import { useStateContext } from '../lib/context';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 // import WeightConvertor from '../components/WeightConvertor';
 
 const Groups = ({ setCurrentFormOpen, currentFormOpen, handleFormChoice }) => {
 	// const [workouts, setWorkouts] = useState(null);
 	// const { weights, dispatch } = useWeightsContext();
 	const { groups } = useGroupsContext();
+
+	const { dataLoaded } = useStateContext();
+	// const { isFormActive, setIsFormActive } = useStateContext();
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+	}, [navigate, dataLoaded]);
 	// const { groups, dispatch } = useGroupsContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
 	// const { user } = useAuthContext();

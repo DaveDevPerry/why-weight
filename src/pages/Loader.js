@@ -3,15 +3,116 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { IoScale } from 'react-icons/io5';
+import { useWeightsContext } from '../hooks/useWeightsContext';
+import { useTargetsContext } from '../hooks/useTargetsContext';
+import { useGroupsContext } from '../hooks/useGroupsContext';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { log } from '../helper';
+import { useStateContext } from '../lib/context';
 // import { motion } from 'framer-motion';
 
 const Loader = () => {
 	const navigate = useNavigate();
+
+	const { dispatch } = useWeightsContext();
+	const { dispatch: targetDispatch } = useTargetsContext();
+	// const { weights, dispatch } = useWeightsContext();
+	// const { targets, dispatch: targetDispatch } = useTargetsContext();
+	const { dispatch: groupDispatch } = useGroupsContext();
+	const { user } = useAuthContext();
+	const { setDataLoaded, setDisplayLoader } = useStateContext();
+
 	useEffect(() => {
+		const fetchWeights = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/weights`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+			if (response.ok) {
+				dispatch({
+					type: 'SET_WEIGHTS',
+					payload: json,
+				});
+			}
+		};
+		// if we have a value for the user then fetch the workouts
+		if (user) {
+			fetchWeights();
+		}
 		setTimeout(() => {
-			navigate('/home');
-		}, 2000);
-	});
+			setDataLoaded(true);
+			// setFadeOutLoader(true);
+			setDisplayLoader(false);
+			// navigate('/home');
+
+			setTimeout(() => {
+				navigate('/home');
+			}, 2000);
+		}, 3000);
+	}, [dispatch, user]);
+
+	useEffect(() => {
+		const fetchTargets = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/targets`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+			if (response.ok) {
+				targetDispatch({
+					type: 'SET_TARGETS',
+					payload: json,
+				});
+			}
+		};
+		// if we have a value for the user then fetch the workouts
+		if (user) {
+			fetchTargets();
+		}
+	}, [targetDispatch, user]);
+
+	useEffect(() => {
+		const fetchGroups = async () => {
+			const response = await fetch(
+				`${process.env.REACT_APP_BACKEND_URL}/api/groups`,
+				{
+					headers: {
+						Authorization: `Bearer ${user.token}`,
+					},
+				}
+			);
+			const json = await response.json();
+			log(json, 'json');
+			log(user, 'user fetch groups home');
+			if (response.ok) {
+				// setWorkouts(json);
+				groupDispatch({
+					type: 'SET_GROUPS',
+					payload: json,
+				});
+			}
+		};
+		// if we have a value for the user then fetch the workouts
+		if (user) {
+			fetchGroups();
+		}
+	}, [groupDispatch, user]);
+
+	// const percentage = 20.345;
+	// useEffect(() => {
+	// 	setTimeout(() => {
+	// 		navigate('/home');
+	// 	}, 2000);
+	// });
 	return (
 		<StyledLoader
 			className='site-loader'

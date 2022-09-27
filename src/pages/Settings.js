@@ -11,13 +11,21 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import UserForm from '../components/UserForm';
 import { log } from '../helper';
+import { useStateContext } from '../lib/context';
 // import UserForm from '../components/UserForm';
 
 const Settings = ({ themeToggler, theme }) => {
 	const { targets, dispatch } = useTargetsContext();
 	const { user } = useAuthContext();
+	const { dataLoaded } = useStateContext();
+	// const { isFormActive, setIsFormActive } = useStateContext();
 
-	const navigate = useNavigate();
+	let navigate = useNavigate();
+	useEffect(() => {
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+	}, [navigate, dataLoaded]);
 
 	useEffect(() => {
 		const fetchTargets = async () => {

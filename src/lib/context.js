@@ -9,6 +9,9 @@ export const StateContext = ({ children }) => {
 	// const [totalGigsPerCity, setTotalGigsPerCity] = useState(null);
 
 	const [dataLoaded, setDataLoaded] = useState(false);
+	const [displayLoader, setDisplayLoader] = useState(true);
+
+	const [isFormActive, setIsFormActive] = useState(false);
 
 	const [groupToView, setGroupToView] = useState(null);
 	const [groupDetailsData, setGroupDetailsData] = useState(null);
@@ -19,22 +22,16 @@ export const StateContext = ({ children }) => {
 	return (
 		<AppContext.Provider
 			value={{
-				// setTotalGigsPerBand,
-				// totalGigsPerBand,
-
-				// totalGigsPerCity,
-				// setTotalGigsPerCity,
 				dataLoaded,
 				setDataLoaded,
+				displayLoader,
+				setDisplayLoader,
+				isFormActive,
+				setIsFormActive,
 				setGroupToView,
 				groupToView,
 				setGroupDetailsData,
 				groupDetailsData,
-
-				// cityToView,
-				// setCityToView,
-				// cityDetailsData,
-				// setCityDetailsData,
 			}}
 		>
 			{children}

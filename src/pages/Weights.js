@@ -15,6 +15,8 @@ import { motion } from 'framer-motion';
 import WeightsList from '../components/WeightsList';
 import WeightsProgressWidget from '../components/WeightsProgressWidget';
 import WeightUnitsWidget from '../components/WeightUnitsWidget';
+import { useStateContext } from '../lib/context';
+import { useNavigate } from 'react-router-dom';
 // import WeightConvertor from '../components/WeightConvertor';
 
 const Weights = () => {
@@ -22,6 +24,16 @@ const Weights = () => {
 	const { weights, dispatch } = useWeightsContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
 	const { user } = useAuthContext();
+
+	const { dataLoaded } = useStateContext();
+	// const { isFormActive, setIsFormActive } = useStateContext();
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+	}, [navigate, dataLoaded]);
 
 	useEffect(() => {
 		const fetchWeights = async () => {

@@ -10,11 +10,22 @@ import { log } from '../helper';
 import { useGroupsContext } from '../hooks/useGroupsContext';
 import InviteWidget from '../components/InviteWidget';
 import GroupParticipantsList from '../components/GroupParticipantsList';
+import { useNavigate } from 'react-router-dom';
 
 const Group = () => {
 	const { user } = useAuthContext();
 	const { group, dispatch } = useGroupsContext();
 	const { groupToView } = useStateContext();
+
+	const { dataLoaded } = useStateContext();
+	// const { isFormActive, setIsFormActive } = useStateContext();
+
+	let navigate = useNavigate();
+	useEffect(() => {
+		if (dataLoaded === false) {
+			navigate('/');
+		}
+	}, [navigate, dataLoaded]);
 	// const { groupToView, setGroupDetailsData, groupDetailsData } =
 	// 	useStateContext();
 
@@ -39,7 +50,7 @@ const Group = () => {
 				// log(groupData, 'group data - Group');
 				dispatch({
 					type: 'SET_GROUP',
-					payload: groupData,
+					payload: groupData[0],
 				});
 				// log(groupData, 'res ok band data');
 				// log(sortedByDate, 'res ok sorted band data');

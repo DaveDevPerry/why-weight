@@ -3,16 +3,19 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useSignup } from '../hooks/useSignup';
 import { Link } from 'react-router-dom';
+import AppDetails from '../components/AppDetails';
 
-const Signup = () => {
+const Signup = ({ theme }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [first_name, setFirst_name] = useState('');
+	const [last_name, setLast_name] = useState('');
 	const { signup, isLoading, error } = useSignup();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		await signup(email, password);
+		await signup(email, password, first_name, last_name);
 	};
 
 	return (
@@ -40,6 +43,22 @@ const Signup = () => {
 						value={password}
 					/>
 				</div>
+				<div>
+					<label>First Name:</label>
+					<input
+						type='text'
+						onChange={(e) => setFirst_name(e.target.value)}
+						value={first_name}
+					/>
+				</div>
+				<div>
+					<label>Last Name:</label>
+					<input
+						type='text'
+						onChange={(e) => setLast_name(e.target.value)}
+						value={last_name}
+					/>
+				</div>
 
 				<button disabled={isLoading}>Sign up</button>
 				{error && <div className='error'>{error}</div>}
@@ -48,6 +67,8 @@ const Signup = () => {
 			<p>
 				Got an account? Log in<Link to='/login'> here</Link>
 			</p>
+
+			<AppDetails theme={theme} />
 		</StyledSignup>
 	);
 };

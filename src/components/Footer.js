@@ -3,14 +3,15 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import { BsPlusCircleFill } from 'react-icons/bs';
 import WeightForm from './WeightForm';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { HiPresentationChartLine } from 'react-icons/hi';
 import { IoScale } from 'react-icons/io5';
+import { useStateContext } from '../lib/context';
 
 const Footer = () => {
 	const { user } = useAuthContext();
-	const [isFormActive, setIsFormActive] = useState(false);
+	const { isFormActive, setIsFormActive } = useStateContext();
 
 	const handleClick = () => {
 		setIsFormActive(!isFormActive);

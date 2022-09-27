@@ -20,7 +20,7 @@ export const groupsReducer = (state, action) => {
 			log(action.payload, 'group set group payload');
 			return {
 				...state,
-				group: action.payload[0],
+				group: action.payload,
 			};
 		// case 'SET_GROUP':
 		// 	return {

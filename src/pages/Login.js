@@ -4,7 +4,9 @@ import { motion } from 'framer-motion';
 import { useLogin } from '../hooks/useLogin';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+import AppDetails from '../components/AppDetails';
+
+const Login = ({ theme }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const { login, error, isLoading } = useLogin();
@@ -49,6 +51,8 @@ const Login = () => {
 			<p>
 				Need an account? Sign up<Link to='/signup'> here</Link>
 			</p>
+
+			<AppDetails theme={theme} />
 		</StyledLogin>
 	);
 };

@@ -6,7 +6,7 @@ export const useSignup = () => {
 	const [isLoading, setIsLoading] = useState(null);
 	const { dispatch } = useAuthContext();
 
-	const signup = async (email, password) => {
+	const signup = async (email, password, first_name, last_name) => {
 		setIsLoading(true);
 		setError(null);
 		// localhost is set as proxy in package.json
@@ -20,7 +20,7 @@ export const useSignup = () => {
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({ email, password }),
+				body: JSON.stringify({ email, password, first_name, last_name }),
 			}
 		);
 		// this will return the data as json or the error
