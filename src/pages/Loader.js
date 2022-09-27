@@ -107,6 +107,8 @@ const Loader = () => {
 		}
 	}, [groupDispatch, user]);
 
+	// ADD PARTICIPANTS
+
 	// const percentage = 20.345;
 	// useEffect(() => {
 	// 	setTimeout(() => {
