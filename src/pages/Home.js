@@ -23,6 +23,14 @@ import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../lib/context';
 import WeightFormInitial from '../components/WeightFormInitial';
 import WeightGoalsWidget from '../components/WeightGoalsWidget';
+import NextWeighInReminderWidget from '../components/NextWeightInReminderWidget';
+import { log } from '../helper';
+import {
+	differenceInCalendarDays,
+	isMonday,
+	isSunday,
+	nextMonday,
+} from 'date-fns';
 // import TargetCountdownWidget from '../components/TargetCountdownWidget';
 // import TargetForm from '../components/TargetForm';
 // import WeightsList from '../components/WeightsList';
@@ -32,15 +40,88 @@ const Home = () => {
 	const { targets } = useTargetsContext();
 	// const { dispatch: groupDispatch } = useGroupsContext();
 	// const { user } = useAuthContext();
-	const { dataLoaded, isFormActive, setIsFormActive } = useStateContext();
-	// const { isFormActive, setIsFormActive } = useStateContext();
+	// const { dataLoaded, isFormActive, setIsFormActive } = useStateContext();
+	// const { dataLoaded, isFormActive, setIsFormActive, getReminderStatus } =
+	// 	useStateContext();
+	const {
+		// setDataLoaded,
+		// setDisplayLoader,
+		setReminderData,
+		reminderData,
+		dataLoaded,
+	} = useStateContext();
+	const { isFormActive, setIsFormActive } = useStateContext();
 
 	let navigate = useNavigate();
 	useEffect(() => {
 		if (dataLoaded === false) {
 			navigate('/');
 		}
+		// getReminderStatus(weights);
 	}, [navigate, dataLoaded]);
+
+	useEffect(() => {
+		const getReminderStatus = () => {
+			log(weights, 'weights in context');
+			// const lastWeightRecord = weights && weights[0];
+			const lastWeightRecord = weights && weights[weights.length - 1];
+			const lastWeight = lastWeightRecord.load;
+			log(lastWeight, 'last weight');
+			const lastWeightDate = lastWeightRecord.createdAt;
+			log(lastWeightDate, 'lastWeightDate');
+			// const currentDay =
+			const isTodaySunday = isSunday(new Date());
+			log(isTodaySunday, ' isTodaySunday');
+			const isTodayMonday = isMonday(new Date());
+			log(isTodayMonday, 'isTodayMonday');
+			const nextMondayDate = nextMonday(new Date());
+			log(nextMondayDate, 'nextMondayDate');
+
+			const daysToNextWeighIn = differenceInCalendarDays(
+				new Date(nextMondayDate),
+				new Date()
+			);
+
+			log(daysToNextWeighIn, 'days to next monday');
+			// const daysOverdue =
+
+			const daysSinceLastWeighIn = differenceInCalendarDays(
+				new Date(),
+				new Date(lastWeightDate)
+			);
+			log(daysSinceLastWeighIn, 'days since last weigh in');
+
+			if (daysSinceLastWeighIn >= 8) {
+				log(daysSinceLastWeighIn, 'daysSinceLastWeighIn');
+				setReminderData({
+					...reminderData,
+					message: `you haven't weighed yourself for ${daysSinceLastWeighIn} days now. Don't give up!`,
+				});
+				return;
+			}
+			if (isTodaySunday === true) {
+				log('today is sunday');
+				setReminderData({
+					...reminderData,
+					message: "don't forget to weigh yourself tomorrow",
+				});
+				return;
+			}
+			if (isTodayMonday === true) {
+				log('today is monday');
+				setReminderData({
+					...reminderData,
+					message: "don't forget to weigh yourself today",
+				});
+				return;
+			}
+			setReminderData({
+				...reminderData,
+				message: "up to date so don't display this widget",
+			});
+		};
+		getReminderStatus(weights && weights);
+	}, [dataLoaded, weights]);
 	// const { weights, dispatch } = useWeightsContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
 	// const { dispatch: groupDispatch } = useGroupsContext();
@@ -133,6 +214,9 @@ const Home = () => {
 		>
 			{/* <WeightForm /> */}
 			{/* <TargetForm /> */}
+			{weights && weights.length >= 1 && (
+				<NextWeighInReminderWidget reminderData={reminderData} />
+			)}
 
 			{weights && weights.length === 0 && (
 				<>
@@ -247,6 +331,7 @@ const StyledHome = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
+	padding: 0.5rem;
 	.instruction-title {
 		color: ${({ theme }) => theme.secondaryColor};
 		font-weight: bold;

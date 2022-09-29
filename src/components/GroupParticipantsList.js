@@ -13,7 +13,7 @@ const GroupParticipantsList = ({ group }) => {
 
 	log(group, 'group group participants list');
 	return (
-		<StyledGroupParticipantsList className='group-participant-list-container'>
+		<StyledGroupParticipantsList className='group-participant-list-container br'>
 			<div className='group-participants-list-header'>
 				{/* <p>
 					<span>{group && group.title}</span>
@@ -53,8 +53,8 @@ const GroupParticipantsList = ({ group }) => {
 const StyledGroupParticipantsList = styled.div`
 	/* overflow-y: auto; */
 	background: ${({ theme }) => theme.white};
-	border-radius: 4px;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+	/* border-radius: 4px; */
+	/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 	padding: 1rem;
 	flex: 1;
 	.group-participants-list-header {

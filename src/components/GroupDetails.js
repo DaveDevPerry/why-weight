@@ -170,6 +170,7 @@ const StyledGroupDetails = styled.div`
 			/* flex: 1; */
 			.date-text {
 				font-size: 1.4rem;
+				color: ${({ theme }) => theme.secondaryColor};
 			}
 			.date-date {
 			}

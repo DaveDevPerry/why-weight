@@ -8,7 +8,7 @@ import { differenceInDays } from 'date-fns';
 
 const CountdownWidget = ({ target }) => {
 	return (
-		<StyledCountdownWidget className='countdown-widget'>
+		<StyledCountdownWidget className='countdown-widget br'>
 			{!target.deadline_reason && <p>No target reason</p>}
 			{target.deadline_reason && <p>{target.deadline_reason}</p>}
 			<p>
@@ -26,7 +26,7 @@ const StyledCountdownWidget = styled.div`
 	border-radius: 4px;
 	/* margin: 0 auto 10px auto; */
 	padding: 1rem;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+	/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -35,6 +35,12 @@ const StyledCountdownWidget = styled.div`
 		margin: 0;
 		color: ${({ theme }) => theme.txtGrey};
 		text-align: center;
+		&:first-of-type {
+			color: ${({ theme }) => theme.secondaryColor};
+			text-transform: capitalize;
+			font-size: 1.8rem;
+			font-weight: bold;
+		}
 	}
 `;
 

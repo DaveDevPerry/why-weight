@@ -92,13 +92,13 @@ const StyledFooter = styled.footer`
 				text-align: center;
 				text-transform: uppercase;
 				font-weight: bold;
-				padding: 1rem 0 0.5rem 0;
+				padding: 0.5rem 0 0.2rem 0;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
 				.nav-icon {
-					font-size: 2rem;
+					font-size: 2.4rem;
 					color: ${({ theme }) => theme.txtGrey};
 					position: relative;
 				}

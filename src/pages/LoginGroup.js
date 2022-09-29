@@ -58,7 +58,7 @@ const LoginGroup = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<form onSubmit={handleSubmit} className='login'>
+			<form onSubmit={handleSubmit} className='login br'>
 				<h3>Log in</h3>
 				<div>
 					<label>title:</label>
@@ -92,18 +92,22 @@ const StyledLogin = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 2rem;
+	padding: 0.5rem;
 	.login {
 		display: flex;
 		flex-direction: column;
 		row-gap: 1rem;
 		padding: 2rem;
 		background: ${({ theme }) => theme.white};
-		border-radius: 4px;
-		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+		/* border-radius: 4px; */
+		/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 		h3 {
 			text-align: center;
 			margin: 0;
 			color: ${({ theme }) => theme.txtDarkGrey};
+		}
+		label {
+			color: ${({ theme }) => theme.secondaryColor};
 		}
 		input {
 			padding: 0.8rem 1rem;

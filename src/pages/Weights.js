@@ -20,6 +20,7 @@ import { useNavigate } from 'react-router-dom';
 import NoUserWeightsWidget from '../components/NoUserWeightsWidget';
 import { useTargetsContext } from '../hooks/useTargetsContext';
 import ProgressWidget from '../components/ProgressWidget';
+import NextWeighInReminderWidget from '../components/NextWeightInReminderWidget';
 // import WeightConvertor from '../components/WeightConvertor';
 
 const Weights = () => {
@@ -29,7 +30,7 @@ const Weights = () => {
 	const { user } = useAuthContext();
 	const { targets } = useTargetsContext();
 
-	const { dataLoaded } = useStateContext();
+	const { dataLoaded, reminderData } = useStateContext();
 	// const { isFormActive, setIsFormActive } = useStateContext();
 
 	let navigate = useNavigate();
@@ -103,8 +104,11 @@ const Weights = () => {
 
 			{weights && weights.length > 0 ? (
 				<>
+					{' '}
+					{weights && weights.length >= 1 && (
+						<NextWeighInReminderWidget reminderData={reminderData} />
+					)}
 					<WeightUnitsWidget weights={weights} />
-
 					{targets &&
 						weights &&
 						weights.length > 1 &&
@@ -117,7 +121,6 @@ const Weights = () => {
 						))}
 					{/* <WeightConvertor /> */}
 					<WeightsProgressWidget weights={weights} />
-
 					<WeightsList weights={weights} />
 				</>
 			) : (

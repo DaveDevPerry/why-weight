@@ -76,7 +76,7 @@ const WeightFormInitial = ({ isFormActive, setIsFormActive }) => {
 
 	return (
 		<StyledWeightFormInitial
-			className='create'
+			className='create br'
 			onSubmit={handleSubmit}
 			// initial={{ height: 0 }}
 			// 			animate={{ height: '80%' }}
@@ -106,10 +106,10 @@ const WeightFormInitial = ({ isFormActive, setIsFormActive }) => {
 const StyledWeightFormInitial = styled.form`
 	color: ${({ theme }) => theme.txtGrey};
 	background: ${({ theme }) => theme.white};
-	border-radius: 4px;
+	/* border-radius: 4px; */
 	/* margin: 0 auto 10px auto; */
 	padding: 1rem 2rem 2rem 2rem;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+	/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

@@ -7,7 +7,7 @@ const GroupFormChoiceLinks = ({ setCurrentFormOpen, handleFormChoice }) => {
 		<StyledGroupFormChoiceLinks>
 			<NavLink
 				to='/groups/signup'
-				className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+				className={({ isActive }) => (isActive ? 'active br' : 'inactive br')}
 			>
 				<button
 				// onClick={(e) => {
@@ -31,7 +31,7 @@ const GroupFormChoiceLinks = ({ setCurrentFormOpen, handleFormChoice }) => {
 			</NavLink> */}
 			<NavLink
 				to='/groups/login'
-				className={({ isActive }) => (isActive ? 'active' : 'inactive')}
+				className={({ isActive }) => (isActive ? 'active br' : 'inactive br')}
 			>
 				<button
 				// onClick={(e) => {
@@ -86,6 +86,7 @@ const StyledGroupFormChoiceLinks = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	column-gap: 1rem;
+	padding: 0.5rem;
 	a {
 		flex: 1;
 		button {

@@ -4,19 +4,19 @@ import styled from 'styled-components';
 const WeightUnitsWidget = ({ weights }) => {
 	return (
 		<StyledWeightUnitsWidget>
-			<div className='wrapper'>
+			<div className='wrapper br'>
 				<p className='figure'>
 					<strong>{weights[0].load.toFixed(2)}</strong>
 				</p>
 				<p className='stat-name'>Kgs</p>
 			</div>
-			<div className='wrapper'>
+			<div className='wrapper br'>
 				<p className='figure'>
 					<strong>{(weights[0].load * 0.157473).toFixed(2)}</strong>
 				</p>
 				<p className='stat-name'>Stones</p>
 			</div>
-			<div className='wrapper'>
+			<div className='wrapper br'>
 				<p className='figure'>
 					<strong>{(weights[0].load * 2.20462).toFixed(2)}</strong>
 				</p>
@@ -36,6 +36,7 @@ const StyledWeightUnitsWidget = styled.div`
 	justify-content: space-evenly;
 	flex: 1;
 	column-gap: 1rem;
+	padding: 0.5rem;
 	.wrapper {
 		background: ${({ theme }) => theme.white};
 		border-radius: 4px;

@@ -74,7 +74,7 @@ const Group = () => {
 			{/* <div>Band {band._id}</div>
 			<div>Band {band.name}</div> */}
 			{/* <p>band page</p> */}
-			<div className='full-header'>
+			<div className='full-header br'>
 				<h3>{group && group.title}</h3>
 				<p>
 					chairperson: {group && group.chairperson_user_id.first_name}{' '}
@@ -82,7 +82,7 @@ const Group = () => {
 				</p>
 			</div>
 			{group && (
-				<div className='full-dates'>
+				<div className='full-dates br'>
 					{/* <h3>{group && group.title}</h3> */}
 					<div className='group-details-dates-container'>
 						<div className='dates-wrapper'>
@@ -98,7 +98,10 @@ const Group = () => {
 							</p>
 						</div>
 					</div>
-					<p>reason / event: {group && group.target_reason}</p>
+					<div className='bottom-wrapper'>
+						<p>reason / event:</p>
+						<p>{group && group.target_reason}</p>
+					</div>
 				</div>
 			)}
 
@@ -121,9 +124,16 @@ const Group = () => {
 						</li>
 					))}
 			</ul> */}
-			<GroupParticipantsList group={group && group} />
+			{group && group && <GroupParticipantsList group={group && group} />}
 
-			<InviteWidget group={group} />
+			{group && group.chairperson_user_id === user.userId ? (
+				<InviteWidget group={group} />
+			) : (
+				<p className='dev-red br'>
+					note for developers - user !chairperson so invite widget not displayed
+				</p>
+			)}
+
 			{/* </div> */}
 			{/* <div> */}
 			{/* {groupDetailsData && <BandGigsList gigs={groupDetailsData} />} */}
@@ -147,7 +157,7 @@ const StyledGroup = styled(motion.div)`
 	row-gap: 1rem;
 	flex: 1;
 	max-width: 42rem;
-	/* padding: 0 1rem; */
+	padding: 0.5rem;
 	overflow: hidden;
 	overflow-y: auto;
 	transition: all 200ms linear;
@@ -175,8 +185,8 @@ const StyledGroup = styled(motion.div)`
 	}
 	.full-header {
 		background: ${({ theme }) => theme.white};
-		border-radius: 4px;
-		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+		/* border-radius: 4px; */
+		/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 		display: flex;
 
 		align-items: center;
@@ -221,13 +231,13 @@ const StyledGroup = styled(motion.div)`
 	}
 	.full-dates {
 		background: ${({ theme }) => theme.white};
-		border-radius: 4px;
-		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+		/* border-radius: 4px; */
+		/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 		display: flex;
 
 		/* align-items: center; */
 		flex-direction: column;
-		row-gap: 1rem;
+		row-gap: 0.5rem;
 		flex: 1;
 		padding: 1rem;
 		h3 {
@@ -259,12 +269,23 @@ const StyledGroup = styled(motion.div)`
 				}
 			}
 		}
-		p {
-			margin: 0;
-			font-size: 1.6rem;
-			color: ${({ theme }) => theme.txtGrey};
-			text-transform: capitalize;
-			/* font-weight: bold; */
+		.bottom-wrapper {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			border-top: 1px solid grey;
+			padding-top: 0.5rem;
+			p {
+				margin: 0;
+				font-size: 1.6rem;
+				color: ${({ theme }) => theme.txtGrey};
+				text-transform: capitalize;
+				&:first-of-type {
+					color: ${({ theme }) => theme.secondaryColor};
+					font-size: 1.4rem;
+				}
+			}
 		}
 	}
 

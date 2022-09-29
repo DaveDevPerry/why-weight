@@ -7,7 +7,7 @@ import { FaCheck } from 'react-icons/fa';
 const ProgressWidget = ({ weights, target, percentage }) => {
 	// const percentage = 20.345;
 	return (
-		<StyledProgressWidget className='progress-widget'>
+		<StyledProgressWidget className='progress-widget br'>
 			<div className='progress-widget-wrapper-container'>
 				<div className='wrapper'>
 					<p className='figure'>
@@ -152,10 +152,10 @@ const ProgressWidget = ({ weights, target, percentage }) => {
 };
 const StyledProgressWidget = styled.div`
 	background: ${({ theme }) => theme.white};
-	border-radius: 4px;
+	/* border-radius: 4px; */
 	/* margin: 0 auto 10px auto; */
 	padding: 1rem;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+	/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 
 	display: flex;
 	flex-direction: column;

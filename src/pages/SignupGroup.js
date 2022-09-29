@@ -100,7 +100,7 @@ const SignupGroup = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<form onSubmit={handleSubmit} className='signup'>
+			<form onSubmit={handleSubmit} className='signup  br'>
 				<h3>Create a group</h3>
 				<div>
 					<label>group name:</label>
@@ -152,18 +152,22 @@ const SignupGroup = () => {
 	);
 };
 const StyledSignupGroup = styled(motion.div)`
+	padding: 0.5rem;
 	.signup {
 		display: flex;
 		flex-direction: column;
 		row-gap: 1rem;
 		padding: 2rem;
 		background: ${({ theme }) => theme.white};
-		border-radius: 4px;
-		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+		/* border-radius: 4px; */
+		/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 		h3 {
 			text-align: center;
 			margin: 0;
 			color: ${({ theme }) => theme.txtDarkGrey};
+		}
+		label {
+			color: ${({ theme }) => theme.secondaryColor};
 		}
 		input {
 			padding: 0.8rem 1rem;

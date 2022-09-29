@@ -9,18 +9,34 @@ import { useGroupsContext } from '../hooks/useGroupsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { log } from '../helper';
 import { useStateContext } from '../lib/context';
+// import {
+// 	differenceInCalendarDays,
+// 	isMonday,
+// 	isSunday,
+// 	nextMonday,
+// } from 'date-fns';
 // import { motion } from 'framer-motion';
 
 const Loader = () => {
 	const navigate = useNavigate();
 
 	const { dispatch } = useWeightsContext();
+	// const { weights, dispatch } = useWeightsContext();
 	const { dispatch: targetDispatch } = useTargetsContext();
 	// const { weights, dispatch } = useWeightsContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
 	const { dispatch: groupDispatch } = useGroupsContext();
 	const { user } = useAuthContext();
-	const { setDataLoaded, setDisplayLoader } = useStateContext();
+	// const { setDataLoaded, setDisplayLoader } = useStateContext();
+	const {
+		setDataLoaded,
+		setDisplayLoader,
+		// setReminderData,
+		// reminderData,
+		// dataLoaded,
+	} = useStateContext();
+	// const { setDataLoaded, setDisplayLoader, getReminderStatus, dataLoaded } =
+	// 	useStateContext();
 
 	useEffect(() => {
 		const fetchWeights = async () => {
@@ -49,6 +65,7 @@ const Loader = () => {
 			// setFadeOutLoader(true);
 			setDisplayLoader(false);
 			// navigate('/home');
+			// getReminderStatus(weights && weights);
 
 			setTimeout(() => {
 				navigate('/home');
@@ -115,6 +132,49 @@ const Loader = () => {
 	// 		navigate('/home');
 	// 	}, 2000);
 	// });
+
+	// useEffect(() => {
+	// 	const getReminderStatus = () => {
+	// 		log(weights, 'weights in context');
+	// 		const lastWeightRecord = weights && weights[0];
+	// 		// const lastWeightRecord = weights && weights[weights.length - 1];
+	// 		// const lastWeight = lastWeightRecord.load;
+	// 		// log(lastWeight, 'last weight');
+	// 		const lastWeightDate = lastWeightRecord.createdAt;
+	// 		log(lastWeightDate, 'lastWeightDate');
+	// 		// const currentDay =
+	// 		const isTodaySunday = isSunday(new Date());
+	// 		log(isTodaySunday, ' isTodaySunday');
+	// 		const isTodayMonday = isMonday(new Date());
+	// 		log(isTodayMonday, 'isTodayMonday');
+	// 		const nextMondayDate = nextMonday(new Date());
+	// 		log(nextMondayDate, 'nextMondayDate');
+
+	// 		const daysToNextWeighIn = differenceInCalendarDays(
+	// 			new Date(nextMondayDate),
+	// 			new Date()
+	// 		);
+
+	// 		log(daysToNextWeighIn, 'days to next monday');
+	// 		// const daysOverdue =
+
+	// 		if (isTodaySunday === true) {
+	// 			log('today is sunday');
+	// 			setReminderData({
+	// 				...reminderData,
+	// 				message: "don't forget to weigh yourself tomorrow",
+	// 			});
+	// 		}
+	// 		if (isTodayMonday === true) {
+	// 			log('today is monday');
+	// 			setReminderData({
+	// 				...reminderData,
+	// 				message: "don't forget to weigh yourself today",
+	// 			});
+	// 		}
+	// 	};
+	// 	getReminderStatus(weights && weights);
+	// }, [dataLoaded, weights]);
 	return (
 		<StyledLoader
 			className='site-loader'

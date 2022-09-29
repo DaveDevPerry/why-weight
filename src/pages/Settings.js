@@ -85,7 +85,7 @@ const Settings = ({ themeToggler, theme }) => {
 	log(targets, 'targets');
 	return (
 		<StyledSettings
-			className='settings-page'
+			className='settings-page br'
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
@@ -115,15 +115,15 @@ const StyledSettings = styled(motion.div)`
 	row-gap: 1rem;
 	padding: 2rem;
 	background: ${({ theme }) => theme.white};
-	border-radius: 4px;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+	/* border-radius: 4px; */
+	/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 	transition: all 200ms linear;
 	flex: 1;
 	height: --webkit-fill-available;
 	h3 {
 		text-align: center;
 		position: relative;
-		color: ${({ theme }) => theme.txtDarkGrey};
+		color: ${({ theme }) => theme.secondaryColor};
 		.close-icon {
 			position: absolute;
 			right: 0;

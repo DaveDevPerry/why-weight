@@ -25,7 +25,7 @@ const ShareWidget = ({ targets, weights }) => {
 		);
 	};
 	return (
-		<StyledShareWidget>
+		<StyledShareWidget className='br'>
 			{/* <div className='share-wrapper-whatsapp'> */}
 			<button
 				className='share-btn-whatsapp'
@@ -45,10 +45,10 @@ const ShareWidget = ({ targets, weights }) => {
 const StyledShareWidget = styled.div`
 	color: ${({ theme }) => theme.txtGrey};
 	background: ${({ theme }) => theme.white};
-	border-radius: 4px;
+	/* border-radius: 4px; */
 	/* margin: 0 auto 10px auto; */
 	/* padding: 1rem 2rem; */
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+	/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 	display: flex;
 	flex-direction: row;
 	/* justify-content: center; */

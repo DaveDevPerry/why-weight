@@ -94,7 +94,17 @@ input.error {
 
 .br{
   border-radius: 4px;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+	${'' /* box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.5); */}
+}
+p.dev-red{
+  color: ${({ theme }) => theme.error};
+  ${'' /* font-weight: bold; */}
+  text-align:center;
+  padding: 1rem;
+  font-style: italic;
+  border: 1px solid;
+  margin-top: 2rem;
 }
 
 `;
