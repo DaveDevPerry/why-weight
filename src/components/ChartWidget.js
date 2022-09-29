@@ -11,7 +11,7 @@ const ChartWidget = ({ targets, weights }) => {
 	return (
 		<StyledChartWidget className='chart-widget'>
 			{/* <p>chart widget</p> */}
-			<WeightLineChart weights={weights} />
+			<WeightLineChart weights={weights} targets={targets} />
 		</StyledChartWidget>
 	);
 };

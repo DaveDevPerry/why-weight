@@ -92,4 +92,9 @@ input.error {
   border: 1px solid ${({ theme }) => theme.error};
 }
 
+.br{
+  border-radius: 4px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+}
+
 `;

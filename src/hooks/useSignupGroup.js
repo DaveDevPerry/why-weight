@@ -9,7 +9,7 @@ export const useSignupGroup = () => {
 	// const { dispatch } = useAuthContext();
 	// const {user} = useAuthContext()
 
-	const signup = async (title, pin, userID) => {
+	const signup = async (title, pin, userID, target_date, target_reason) => {
 		setIsLoading(true);
 		setError(null);
 		// localhost is set as proxy in package.json
@@ -23,7 +23,13 @@ export const useSignupGroup = () => {
 				headers: {
 					'Content-Type': 'application/json',
 				},
-				body: JSON.stringify({ title, pin, userID }),
+				body: JSON.stringify({
+					title,
+					pin,
+					userID,
+					target_date,
+					target_reason,
+				}),
 			}
 		);
 		// this will return the data as json or the error

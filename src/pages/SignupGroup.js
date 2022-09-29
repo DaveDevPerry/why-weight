@@ -15,6 +15,8 @@ import { useStateContext } from '../lib/context';
 const SignupGroup = () => {
 	const [title, setTitle] = useState('');
 	const [pin, setPin] = useState('');
+	const [target_date, setTarget_date] = useState('');
+	const [target_reason, setTarget_reason] = useState('');
 	const { signup, isLoading, error } = useSignupGroup();
 	const { user } = useAuthContext();
 
@@ -36,7 +38,7 @@ const SignupGroup = () => {
 		log(userID, 'userID signupGroup');
 		// const userID = user._id;
 
-		await signup(title, pin, userID);
+		await signup(title, pin, userID, target_date, target_reason);
 
 		log('after creating a group');
 
@@ -116,6 +118,26 @@ const SignupGroup = () => {
 						onChange={(e) => setPin(e.target.value)}
 						value={pin}
 						autoComplete='off'
+					/>
+				</div>
+
+				<div>
+					<label>target date:</label>
+					<input
+						type='date'
+						onChange={(e) => setTarget_date(e.target.value)}
+						value={target_date}
+						autoComplete='off'
+					/>
+				</div>
+				<div>
+					<label>Reason / Event:</label>
+					<input
+						type='text'
+						// id='input-number'
+						onChange={(e) => setTarget_reason(e.target.value)}
+						value={target_reason}
+						// className={emptyFields.includes('deadline_reason') ? 'error' : ''}
 					/>
 				</div>
 

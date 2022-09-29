@@ -18,6 +18,8 @@ import WeightUnitsWidget from '../components/WeightUnitsWidget';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
 import NoUserWeightsWidget from '../components/NoUserWeightsWidget';
+import { useTargetsContext } from '../hooks/useTargetsContext';
+import ProgressWidget from '../components/ProgressWidget';
 // import WeightConvertor from '../components/WeightConvertor';
 
 const Weights = () => {
@@ -25,6 +27,7 @@ const Weights = () => {
 	const { weights, dispatch } = useWeightsContext();
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
 	const { user } = useAuthContext();
+	const { targets } = useTargetsContext();
 
 	const { dataLoaded } = useStateContext();
 	// const { isFormActive, setIsFormActive } = useStateContext();
@@ -101,6 +104,17 @@ const Weights = () => {
 			{weights && weights.length > 0 ? (
 				<>
 					<WeightUnitsWidget weights={weights} />
+
+					{targets &&
+						weights &&
+						weights.length > 1 &&
+						targets.map((target) => (
+							<ProgressWidget
+								key={target._id}
+								target={target}
+								weights={weights}
+							/>
+						))}
 					{/* <WeightConvertor /> */}
 					<WeightsProgressWidget weights={weights} />
 

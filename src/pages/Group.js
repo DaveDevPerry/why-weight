@@ -11,6 +11,7 @@ import { useGroupsContext } from '../hooks/useGroupsContext';
 import InviteWidget from '../components/InviteWidget';
 import GroupParticipantsList from '../components/GroupParticipantsList';
 import { useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
 
 const Group = () => {
 	const { user } = useAuthContext();
@@ -80,6 +81,26 @@ const Group = () => {
 					{group && group.chairperson_user_id.last_name}{' '}
 				</p>
 			</div>
+			{group && (
+				<div className='full-dates'>
+					{/* <h3>{group && group.title}</h3> */}
+					<div className='group-details-dates-container'>
+						<div className='dates-wrapper'>
+							<p className='date-text'>start date:</p>
+							<p className='date-date'>
+								{format(new Date(group.createdAt), 'dd/MM/yyyy')}
+							</p>
+						</div>
+						<div className='dates-wrapper'>
+							<p className='date-text'>goal date:</p>
+							<p className='date-date'>
+								{format(new Date(group.target_date), 'dd/MM/yyyy')}
+							</p>
+						</div>
+					</div>
+					<p>reason / event: {group && group.target_reason}</p>
+				</div>
+			)}
 
 			{/* <div className='group-participants-list-header'>
 				<p>
@@ -165,14 +186,88 @@ const StyledGroup = styled(motion.div)`
 		h3 {
 			color: ${({ theme }) => theme.secondaryColor};
 			font-size: 2rem;
+			text-transform: capitalize;
+		}
+
+		.group-details-dates-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-direction: row;
+			column-gap: 1rem;
+			flex: 1;
+			.dates-wrapper {
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				/* flex-direction: column; */
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				/* flex: 1; */
+				.date-text {
+					font-size: 1.4rem;
+				}
+				.date-date {
+				}
+			}
 		}
 		p {
 			margin: 0;
 			font-size: 1.6rem;
 			color: ${({ theme }) => theme.txtGrey};
 			text-transform: capitalize;
+			font-weight: bold;
 		}
 	}
+	.full-dates {
+		background: ${({ theme }) => theme.white};
+		border-radius: 4px;
+		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+		display: flex;
+
+		/* align-items: center; */
+		flex-direction: column;
+		row-gap: 1rem;
+		flex: 1;
+		padding: 1rem;
+		h3 {
+			color: ${({ theme }) => theme.secondaryColor};
+			font-size: 2rem;
+			text-transform: capitalize;
+		}
+
+		.group-details-dates-container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-direction: row;
+			column-gap: 1rem;
+			flex: 1;
+			.dates-wrapper {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				flex-wrap: wrap;
+				/* gap: 0.5rem; */
+				flex: 1;
+				.date-text {
+					font-size: 1.4rem;
+					color: ${({ theme }) => theme.secondaryColor};
+				}
+				.date-date {
+				}
+			}
+		}
+		p {
+			margin: 0;
+			font-size: 1.6rem;
+			color: ${({ theme }) => theme.txtGrey};
+			text-transform: capitalize;
+			/* font-weight: bold; */
+		}
+	}
+
 	/* .band-gigs-list-header {
 		display: flex;
 		justify-content: space-between;

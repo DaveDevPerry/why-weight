@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
 // import TargetForm from '../components/TargetForm';
 // import TargetDetails from '../components/TargetDetails';
 import CountdownWidget from '../components/CountdownWidget';
-import ProgressWidget from '../components/ProgressWidget';
+// import ProgressWidget from '../components/ProgressWidget';
 import ChartWidget from '../components/ChartWidget';
 import ProgressBarWidget from '../components/ProgressBarWidget';
 import TargetForm from '../components/TargetForm';
@@ -22,7 +22,7 @@ import ShareWidget from '../components/ShareWidget';
 import { useNavigate } from 'react-router-dom';
 import { useStateContext } from '../lib/context';
 import WeightFormInitial from '../components/WeightFormInitial';
-// import WeightGoalsWidget from '../components/WeightGoalsWidget';
+import WeightGoalsWidget from '../components/WeightGoalsWidget';
 // import TargetCountdownWidget from '../components/TargetCountdownWidget';
 // import TargetForm from '../components/TargetForm';
 // import WeightsList from '../components/WeightsList';
@@ -185,7 +185,7 @@ const Home = () => {
 							/>
 						))} */}
 
-					{/* {targets &&
+					{targets &&
 						weights &&
 						targets.map((target) => (
 							<WeightGoalsWidget
@@ -193,8 +193,8 @@ const Home = () => {
 								target={target}
 								weights={weights}
 							/>
-						))} */}
-					{targets &&
+						))}
+					{/* {targets &&
 						weights &&
 						weights.length > 1 &&
 						targets.map((target) => (
@@ -203,7 +203,7 @@ const Home = () => {
 								target={target}
 								weights={weights}
 							/>
-						))}
+						))} */}
 					{targets && weights && weights.length > 1 && (
 						<ShareWidget targets={targets} weights={weights} />
 					)}

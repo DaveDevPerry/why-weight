@@ -22,7 +22,9 @@ ChartJS.register(
 	Legend
 );
 
-const WeightLineChart = ({ weights }) => {
+const WeightLineChart = ({ weights, targets }) => {
+	const clonedWeights = [...weights];
+	// Math.max(...clonedWeights.map(o => o.target_weight))
 	const options = {
 		responsive: true,
 		plugins: {
@@ -33,6 +35,27 @@ const WeightLineChart = ({ weights }) => {
 				display: false,
 				text: 'weight timeline',
 			},
+		},
+		scales: {
+			y: {
+				suggestedMin: targets[0].target_weight,
+				suggestedMax:
+					Math.ceil(Math.max(...clonedWeights.map((o) => o.load)) / 5) * 5,
+				// suggestedMin: targets[0].target_weight,
+				// suggestedMax: weights[0].load + 10,
+				// suggestedMin: 60,
+				// suggestedMax: weights[0].load + 10,
+			},
+			// yAxes: [
+			// 	{
+			// 		display: true,
+			// 		ticks: {
+			// 			suggestedMin: 0, // minimum will be 0, unless there is a lower value.
+			// 			// OR //
+			// 			beginAtZero: true, // minimum value will be 0.
+			// 		},
+			// 	},
+			// ],
 		},
 	};
 

@@ -16,6 +16,8 @@ export const StateContext = ({ children }) => {
 	const [groupToView, setGroupToView] = useState(null);
 	const [groupDetailsData, setGroupDetailsData] = useState(null);
 
+	const [participantToView, setParticipantToView] = useState(null);
+
 	// const [cityToView, setCityToView] = useState(null);
 	// const [cityDetailsData, setCityDetailsData] = useState(null);
 
@@ -32,6 +34,8 @@ export const StateContext = ({ children }) => {
 				groupToView,
 				setGroupDetailsData,
 				groupDetailsData,
+				participantToView,
+				setParticipantToView,
 			}}
 		>
 			{children}

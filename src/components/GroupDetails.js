@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 // import { Link, useNavigate } from 'react-router-dom';
 import { log } from '../helper';
 import { useStateContext } from '../lib/context';
+import { format } from 'date-fns';
 
 // date fns
 // import formatDistanceToNow from 'date-fns/formatDistanceToNow';
@@ -41,7 +42,7 @@ const GroupDetails = ({ group }) => {
 
 	return (
 		<StyledGroupDetails
-			className='group-details'
+			className='group-details br'
 			onClick={(e) => {
 				e.preventDefault();
 				log(group.title, 'group on click');
@@ -50,63 +51,46 @@ const GroupDetails = ({ group }) => {
 			}}
 		>
 			<div className='full-header'>
-				<h3>{group.title}</h3>
-				<p>
-					chairperson: {group && group.chairperson_user_id.first_name}{' '}
-					{group && group.chairperson_user_id.last_name}{' '}
-				</p>
+				<div className='header-top'>
+					<h4>{group.title}</h4>
+					<div className='group-participants'>
+						<FaUsers className='participants-icon' />
+						<p className='figure'>{group && group.all_participants.length}</p>
+					</div>
+				</div>
+				<div className='header-bottom'>
+					<p>
+						chairperson: {group && group.chairperson_user_id.first_name}{' '}
+						{group && group.chairperson_user_id.last_name}{' '}
+					</p>
+				</div>
 			</div>
-
-			{/* <div className='full'>
-				<p>
-					chairperson: {group && group.chairperson_user_id.first_name}{' '}
-					{group && group.chairperson_user_id.last_name}{' '}
-				</p>
-			</div> */}
-			<div className='full'>
-				<div className='group-participants'>
-					<FaUsers className='participants-icon' />
-					<p className='figure'>{group && group.all_participants.length}</p>
+			<div className='group-details-dates-container'>
+				<div className='dates-wrapper'>
+					<p className='date-text'>start date:</p>
+					<p className='date-date'>
+						{format(new Date(group.createdAt), 'dd/MM/yyyy')}
+					</p>
+				</div>
+				<div className='dates-wrapper'>
+					<p className='date-text'>goal date:</p>
+					<p className='date-date'>
+						{format(new Date(group.target_date), 'dd/MM/yyyy')}
+					</p>
 				</div>
 			</div>
 			{/* <Link to={`/groups/${group._id}`} params={{ slug: group._id }}>
 					Read more
 				</Link> */}
 			{/* <Link to={`/groups/${group._id}`}>Read more</Link> */}
-			<div className='full-list'>
+			{/* <div className='full-list'>
 				{group &&
 					group.all_participants.map((item, index) => (
 						<p key={index}>
 							{item.first_name} {item.last_name}
 						</p>
 					))}
-			</div>
-			{/* <div className='group-participants'>
-				<FaUsers className='participants-icon' />
-				<p className='figure'>{group && group.all_participants.length}</p>
 			</div> */}
-			{/* <div className='full'>
-				<p>
-					<strong>{format(new Date(group.createdAt), 'dd/MM/yyyy')}</strong>
-				</p>
-				<p>
-					{formatDistanceToNow(new Date(group.createdAt), { addSuffix: true })}
-				</p>
-			</div>
-			<div className='group-figures'>
-				<p className='figure'>{group.title}</p>
-				<p className='figure'>{group.pin}</p>
-			</div> */}
-			{/* <p>
-				<strong>Reps: </strong>
-				{workout.reps}
-			</p> */}
-			{/* <p>
-				{formatDistanceToNow(new Date(weight.createdAt), { addSuffix: true })}
-			</p> */}
-			{/* <span className='material-symbols-outlined' onClick={handleClick}>
-				delete
-			</span> */}
 		</StyledGroupDetails>
 	);
 };
@@ -116,27 +100,79 @@ const StyledGroupDetails = styled.div`
 	/* margin: 0.5rem 0; */
 	padding: 0.5rem 1rem;
 	position: relative;
-	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05);
+	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.5);
 	display: flex;
 	justify-content: flex-start;
-	align-items: flex-start;
+	/* align-items: flex-start; */
 	flex-direction: column;
 	row-gap: 1rem;
 	.full-header {
 		display: flex;
-
-		align-items: flex-start;
+		/* align-items: flex-start; */
 		flex-direction: column;
 		flex: 1;
-		h3 {
-			color: ${({ theme }) => theme.secondaryColor};
-			font-size: 2rem;
+		.header-top {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			flex-direction: row;
+			flex: 1;
+			h4 {
+				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 1.8rem;
+				text-transform: capitalize;
+			}
+			.group-participants {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				column-gap: 0.5rem;
+				.participants-icon {
+					color: ${({ theme }) => theme.secondaryColor};
+					font-size: 2rem;
+				}
+				.figure {
+					color: ${({ theme }) => theme.txtDarkGrey};
+					font-size: 1.8rem;
+				}
+			}
 		}
-		p {
-			margin: 0;
-			font-size: 1.6rem;
-			color: ${({ theme }) => theme.txtGrey};
-			text-transform: capitalize;
+		.header-bottom {
+			p {
+				margin: 0;
+				font-size: 1.6rem;
+				color: ${({ theme }) => theme.txtGrey};
+				text-transform: capitalize;
+				font-weight: bold;
+			}
+
+			/* h3 {
+				color: ${({ theme }) => theme.secondaryColor};
+				font-size: 2rem;
+			} */
+		}
+	}
+
+	.group-details-dates-container {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-direction: row;
+		column-gap: 1rem;
+		flex: 1;
+		.dates-wrapper {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			/* flex-direction: column; */
+			flex-wrap: wrap;
+			gap: 0.5rem;
+			/* flex: 1; */
+			.date-text {
+				font-size: 1.4rem;
+			}
+			.date-date {
+			}
 		}
 	}
 	.full {
@@ -146,7 +182,7 @@ const StyledGroupDetails = styled.div`
 		flex-direction: row;
 		column-gap: 1rem;
 		flex: 1;
-		.group-participants {
+		/* .group-participants {
 			display: flex;
 			flex-direction: row;
 			align-items: center;
@@ -159,7 +195,7 @@ const StyledGroupDetails = styled.div`
 				color: ${({ theme }) => theme.txtDarkGrey};
 				font-size: 1.8rem;
 			}
-		}
+		} */
 		.group-figures {
 			width: 8rem;
 		}

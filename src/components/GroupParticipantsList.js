@@ -4,10 +4,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { log } from '../helper';
 import { FaUsers } from 'react-icons/fa';
+import { useStateContext } from '../lib/context';
 
 // import GroupDetails from './GroupDetails';
 
 const GroupParticipantsList = ({ group }) => {
+	const { setParticipantToView } = useStateContext();
+
 	log(group, 'group group participants list');
 	return (
 		<StyledGroupParticipantsList className='group-participant-list-container'>
@@ -29,7 +32,15 @@ const GroupParticipantsList = ({ group }) => {
 			<ol className='group-participants-list'>
 				{group &&
 					group.all_participants.map((participant) => (
-						<li key={participant._id}>
+						<li
+							key={participant._id}
+							onClick={(e) => {
+								e.preventDefault();
+								log(participant._id, 'participant id on click');
+								setParticipantToView(participant._id);
+								// navigate('/group');
+							}}
+						>
 							<p>
 								{participant.first_name} {participant.last_name}
 							</p>
@@ -73,8 +84,10 @@ const StyledGroupParticipantsList = styled.div`
 		margin-left: 2rem;
 		li {
 			display: list-item;
+			cursor: pointer;
 			p {
 				text-transform: capitalize;
+				pointer-events: none;
 			}
 		}
 	}

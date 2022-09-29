@@ -32,7 +32,8 @@ const StyledGroupsList = styled.div`
 		display: flex;
 		flex-direction: column;
 		flex: 1;
-		row-gap: 0.3rem;
+		row-gap: 1rem;
+		padding: 0.5rem;
 		/* overflow-y: auto; */
 		/* overflow-y: hidden; */
 		overflow-y: scroll;
