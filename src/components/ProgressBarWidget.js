@@ -18,15 +18,22 @@ const ProgressBarWidget = ({ percentage, targets, weights }) => {
 	return (
 		<>
 			{targets && weights && progressPercentage && progressPercentage > 0 && (
-				<StyledProgressBarWidget className='progress-bar-container'>
+				<StyledProgressBarWidget className='progress-bar-container br'>
 					{weightFluctuation < 0 && (
-						<p>You have gained {weightFluctuation} Kgs</p>
+						<p>
+							You have gained <span>{weightFluctuation} Kgs</span>
+						</p>
 					)}
 					{weightFluctuation > 0 && (
-						<p>You have lost {weightFluctuation} Kgs</p>
+						<p>
+							You have lost <span>{weightFluctuation} Kgs</span>
+						</p>
 					)}
 					<progress value={progressPercentage} max='100' className='progress' />
-					<p>{progressPercentage}% of goal reached</p>
+					<p>
+						<span>{progressPercentage}% </span>
+						of goal reached
+					</p>
 				</StyledProgressBarWidget>
 			)}
 		</>
@@ -34,10 +41,10 @@ const ProgressBarWidget = ({ percentage, targets, weights }) => {
 };
 const StyledProgressBarWidget = styled.div`
 	background: ${({ theme }) => theme.white};
-	border-radius: 4px;
+	/* border-radius: 4px; */
 	/* margin: 0 auto 10px auto; */
 	padding: 1rem 3rem;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+	/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -49,6 +56,9 @@ const StyledProgressBarWidget = styled.div`
 		margin: 0;
 		color: ${({ theme }) => theme.txtGrey};
 		font-size: 1.4rem;
+		span {
+			color: ${({ theme }) => theme.secondaryColor};
+		}
 	}
 	progress[value] {
 		width: 100%;
@@ -57,8 +67,11 @@ const StyledProgressBarWidget = styled.div`
 			height: 100%;
 			border-radius: 5px;
 			background-color: ${({ theme }) => theme.bgGrey};
-			border: 1px solid ${({ theme }) => theme.txtDarkGrey};
+			border: 1px solid ${({ theme }) => theme.bgLightGrey};
+			/* border: 1px solid ${({ theme }) => theme.txtDarkGrey}; */
 			width: 100%;
+			box-shadow: inset -2px -2px 5px rgba(0, 0, 0, 0.5),
+				inset 1px 1px 1px rgba(0, 0, 0, 0.5);
 		}
 		::-webkit-progress-value {
 			height: 100%;

@@ -62,6 +62,12 @@ const Group = () => {
 		}
 	}, [groupToView, dispatch, user]);
 
+	log(
+		group && group.chairperson_user_id,
+		user && user.userId,
+		'check for match'
+	);
+
 	// log(groupDetailsData, 'group details data - Group');
 
 	return (
@@ -126,7 +132,7 @@ const Group = () => {
 			</ul> */}
 			{group && group && <GroupParticipantsList group={group && group} />}
 
-			{group && group.chairperson_user_id === user.userId ? (
+			{group && group.chairperson_user_id._id === user.userId ? (
 				<InviteWidget group={group} />
 			) : (
 				<p className='dev-red br'>

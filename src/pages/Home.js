@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
 // import TargetForm from '../components/TargetForm';
 // import TargetDetails from '../components/TargetDetails';
 import CountdownWidget from '../components/CountdownWidget';
-// import ProgressWidget from '../components/ProgressWidget';
+import ProgressWidget from '../components/ProgressWidget';
 import ChartWidget from '../components/ChartWidget';
 import ProgressBarWidget from '../components/ProgressBarWidget';
 import TargetForm from '../components/TargetForm';
@@ -115,10 +115,17 @@ const Home = () => {
 				});
 				return;
 			}
+
 			setReminderData({
 				...reminderData,
-				message: "up to date so don't display this widget",
+				days: `${daysToNextWeighIn} days`,
+				message: `until your next weigh in!`,
+				// message: `${daysToNextWeighIn} days until your next weigh in!`,
 			});
+			// setReminderData({
+			// 	...reminderData,
+			// 	message: "up to date so don't display this widget",
+			// });
 		};
 		getReminderStatus(weights && weights);
 	}, [dataLoaded, weights]);
@@ -256,10 +263,10 @@ const Home = () => {
 
 			{targets && targets.length === 1 && weights && weights.length >= 1 && (
 				<>
-					{targets &&
+					{/* {targets &&
 						targets.map((target) => (
 							<CountdownWidget key={target._id} target={target} />
-						))}
+						))} */}
 					{/* {targets &&
 						targets.map((target) => (
 							<TargetCountdownWidget
@@ -268,7 +275,26 @@ const Home = () => {
 								isNextDayCountdownActive={true}
 							/>
 						))} */}
-
+					{targets && weights && (
+						<ProgressBarWidget
+							percentage={percentage}
+							targets={targets}
+							weights={weights}
+						/>
+					)}
+					{targets &&
+						weights &&
+						weights.length > 1 &&
+						targets.map((target) => (
+							<ProgressWidget
+								key={target._id}
+								target={target}
+								weights={weights}
+							/>
+						))}
+					{targets && weights && weights.length > 1 && (
+						<ChartWidget targets={targets} weights={weights} />
+					)}
 					{targets &&
 						weights &&
 						targets.map((target) => (
@@ -278,29 +304,20 @@ const Home = () => {
 								weights={weights}
 							/>
 						))}
-					{/* {targets &&
-						weights &&
-						weights.length > 1 &&
-						targets.map((target) => (
-							<ProgressWidget
-								key={target._id}
-								target={target}
-								weights={weights}
-							/>
-						))} */}
+
 					{targets && weights && weights.length > 1 && (
 						<ShareWidget targets={targets} weights={weights} />
 					)}
-					{targets && weights && (
+					{/* {targets && weights && (
 						<ProgressBarWidget
 							percentage={percentage}
 							targets={targets}
 							weights={weights}
 						/>
-					)}
-					{targets && weights && weights.length > 1 && (
+					)} */}
+					{/* {targets && weights && weights.length > 1 && (
 						<ChartWidget targets={targets} weights={weights} />
-					)}
+					)} */}
 				</>
 			)}
 

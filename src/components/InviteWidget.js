@@ -11,15 +11,21 @@ const InviteWidget = ({ group }) => {
 		// const groupPin = 'testgrouppin';
 
 		log(
-			`whatsapp://send?text=I have set up a group on Why Wait?  Would you like to join? Here are the group details.  GROUP NAME:${groupName}, PIN:${groupPin}. Sign up here - https://why-weight.vercel.app/signup`
+			`whatsapp://send?text=I have set up a group on Why Wait? Would you like to join? Create an account here - https://why-weight.vercel.app/signup and go to groups - join group and enter these details - GROUP NAME:${groupName}, PIN:${groupPin}.`
 		);
+		// log(
+		// 	`whatsapp://send?text=I have set up a group on Why Wait?  Would you like to join? Here are the group details.  GROUP NAME:${groupName}, PIN:${groupPin}. Create an account here - https://why-weight.vercel.app/signup and go to groups -  join group and enter these details - `
+		// );
 
+		window.open(
+			`whatsapp://send?text=I have set up a group on Why Wait? Would you like to join? Create an account here - https://why-weight.vercel.app/signup and go to groups - join group and enter these details - GROUP NAME:${groupName}, PIN:${groupPin}.`
+		);
 		// window.open(
 		// 	`whatsapp://send?text=I have set up a group on Why Wait?  Would you like to join? Here are the group details.  GROUP NAME:${groupName}, PIN:${groupPin}. Sign up here - https://why-weight.vercel.app/signup`
 		// );
 	};
 	return (
-		<StyledInviteWidget>
+		<StyledInviteWidget className='br'>
 			{/* <div className='share-wrapper-whatsapp'> */}
 			<button
 				className='share-btn-whatsapp'
@@ -42,8 +48,8 @@ const InviteWidget = ({ group }) => {
 const StyledInviteWidget = styled.div`
 	color: ${({ theme }) => theme.txtGrey};
 	background: ${({ theme }) => theme.white};
-	border-radius: 4px;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+	/* border-radius: 4px; */
+	/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 	display: flex;
 	flex-direction: row;
 	align-items: center;

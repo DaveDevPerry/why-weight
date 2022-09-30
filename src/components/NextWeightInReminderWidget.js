@@ -49,7 +49,11 @@ const NextWeighInReminderWidget = ({ reminderData }) => {
 	return (
 		<StyledNextWeighInReminderWidget className='br'>
 			{/* {isTodaySunday === true && (<p>today is sunday</p>)} */}
-			<p>{reminderData && reminderData.message}</p>
+			{/* <p>{reminderData && reminderData.message}</p> */}
+			<p>
+				<span>{reminderData && reminderData.days} </span>
+				{reminderData && reminderData.message}
+			</p>
 		</StyledNextWeighInReminderWidget>
 	);
 };
@@ -58,8 +62,11 @@ const StyledNextWeighInReminderWidget = styled.div`
 	background-color: ${({ theme }) => theme.white};
 	padding: 1rem;
 	p {
-		color: ${({ theme }) => theme.secondaryColor};
+		color: ${({ theme }) => theme.txtGrey};
 		text-align: center;
+		span {
+			color: ${({ theme }) => theme.secondaryColor};
+		}
 	}
 `;
 

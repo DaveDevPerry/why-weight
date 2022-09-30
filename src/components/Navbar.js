@@ -40,26 +40,33 @@ const Navbar = ({ targets }) => {
 			{user && (
 				<div>
 					<ul className='user-details-list'>
-						{user.first_name && (
+						{user.first_name && user.last_name && (
 							<li>
-								<p>first:</p>
+								<p>name:</p>
+								<span id='full-name'>
+									{user.first_name} {user.last_name}
+								</span>
+							</li>
+						)}
+						{/* {user.last_name && (
+							<li>
+								<p>last name:</p>
+								<span>{user.last_name}</span>
+							</li>
+						)} */}
+						{/* {user.first_name && (
+							<li>
+								<p>first name:</p>
 								<span>{user.first_name}</span>
 							</li>
 						)}
 						{user.last_name && (
 							<li>
-								<p>last:</p>
+								<p>last name:</p>
 								<span>{user.last_name}</span>
 							</li>
-						)}
-						{/* <li>
-							<p>first:</p>
-							<span>{user.first_name}</span>
-						</li>
-						<li>
-							<p>last:</p>
-							<span>{user.last_name}</span>
-						</li> */}
+						)} */}
+
 						<li>
 							<p>email:</p>
 							<span>{user.email}</span>
@@ -126,6 +133,10 @@ const StyledNavbar = styled.nav`
 				p {
 					width: 5rem;
 					text-align: right;
+					font-weight: bold;
+				}
+				#full-name {
+					text-transform: capitalize;
 				}
 			}
 		}
