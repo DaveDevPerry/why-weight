@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 // import WeightForm from '../components/WeightForm';
 // import TargetForm from '../components/TargetForm';
 // import TargetDetails from '../components/TargetDetails';
-import CountdownWidget from '../components/CountdownWidget';
+// import CountdownWidget from '../components/CountdownWidget';
 import ProgressWidget from '../components/ProgressWidget';
 import ChartWidget from '../components/ChartWidget';
 import ProgressBarWidget from '../components/ProgressBarWidget';
@@ -65,7 +65,7 @@ const Home = () => {
 			log(weights, 'weights in context');
 			// const lastWeightRecord = weights && weights[0];
 			const lastWeightRecord = weights && weights[weights.length - 1];
-			const lastWeight = lastWeightRecord.load;
+			const lastWeight = weights && lastWeightRecord.load;
 			log(lastWeight, 'last weight');
 			const lastWeightDate = lastWeightRecord.createdAt;
 			log(lastWeightDate, 'lastWeightDate');
