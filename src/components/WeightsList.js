@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import { log } from '../helper';
 import WeightDetails from './WeightDetails';
+import { FaUsers } from 'react-icons/fa';
 
 const WeightsList = ({ weights }) => {
 	const [testWeights, setTestWeights] = useState('');
@@ -27,6 +28,12 @@ const WeightsList = ({ weights }) => {
 	return (
 		<StyledWeightsList className='weight-list-container'>
 			{/* <p className='weights-list-header'>Recorded weigh-ins</p> */}
+			<div className='weight-history-list-header'>
+				<p>Weight history</p>
+				<div>
+					<FaUsers className='nav-icon' />x{weights && weights.length}
+				</div>
+			</div>
 			<div className='weights-list'>
 				{weights &&
 					testWeights &&
@@ -48,16 +55,37 @@ const WeightsList = ({ weights }) => {
 	);
 };
 const StyledWeightsList = styled.div`
-	/* overflow-y: auto; */
+	overflow-y: auto;
 	flex: 1;
-	p.weights-list-header {
+	.weight-history-list-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0rem;
+		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
+		margin-bottom: 0.5rem;
+		p {
+			color: ${({ theme }) => theme.secondaryColor};
+			/* font-weight: bold; */
+			span {
+				text-transform: capitalize;
+			}
+		}
+		div {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			column-gap: 0.5rem;
+			color: ${({ theme }) => theme.txtGrey};
+		}
+	}
+	/* p.weights-list-header {
 		padding: 0 1rem;
 		border-bottom: 1px solid ${({ theme }) => theme.txtGrey};
 		margin-bottom: 0.5rem;
 		font-size: 0.9em;
-	}
+	} */
 	.weights-list {
-		/* border: 2px solid blue; */
 		display: flex;
 		flex-direction: column;
 		flex: 1;

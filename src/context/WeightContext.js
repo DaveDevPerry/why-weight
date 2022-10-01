@@ -5,6 +5,7 @@ export const WeightsContext = createContext();
 export const weightsReducer = (state, action) => {
 	switch (action.type) {
 		case 'SET_WEIGHTS':
+			console.log(action.payload, 'set weights');
 			return {
 				weights: action.payload,
 			};

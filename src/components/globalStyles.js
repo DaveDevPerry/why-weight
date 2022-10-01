@@ -42,6 +42,7 @@ export const GlobalStyles = createGlobalStyle`
   max-width: 42rem;
   padding: 0 1rem;
   overflow-y:auto;
+  ${'' /* overflow: none; */}
 
   transition: all 200ms linear;
 }
@@ -105,6 +106,9 @@ p.dev-red{
   font-style: italic;
   border: 1px solid;
   margin-top: 2rem;
+}
+.mono-font{
+  font-family: 'Roboto Mono', monospace;
 }
 
 `;

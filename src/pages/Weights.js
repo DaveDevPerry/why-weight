@@ -13,7 +13,7 @@ import { motion } from 'framer-motion';
 // import CountdownWidget from '../components/CountdownWidget';
 // import ProgressWidget from '../components/ProgressWidget';
 import WeightsList from '../components/WeightsList';
-import WeightsProgressWidget from '../components/WeightsProgressWidget';
+// import WeightsProgressWidget from '../components/WeightsProgressWidget';
 import WeightUnitsWidget from '../components/WeightUnitsWidget';
 import { useStateContext } from '../lib/context';
 import { useNavigate } from 'react-router-dom';
@@ -120,7 +120,7 @@ const Weights = () => {
 							/>
 						))}
 					{/* <WeightConvertor /> */}
-					<WeightsProgressWidget weights={weights} />
+					{/* <WeightsProgressWidget weights={weights} /> */}
 					<WeightsList weights={weights} />
 				</>
 			) : (
@@ -139,7 +139,7 @@ const StyledWeights = styled(motion.div)`
 	/* justify-content: flex-start; */
 	/* overflow-y: auto; */
 	/* overflow-y: hidden; */
-	/* flex: 1; */
+	flex: 1;
 	/* overflow-y: auto; */
 	/* border: 2px solid red; */
 `;
