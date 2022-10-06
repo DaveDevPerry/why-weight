@@ -28,7 +28,12 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 	return (
 		<AnimatePresence mode='wait'>
 			<Routes>
-				<Route path='/' element={<Loader />} />
+				{/* <Route path='/' element={<Loader />} /> */}
+				<Route
+					path='/'
+					element={user ? <Loader /> : <Navigate to='/login' />}
+					// element={user ? <Home /> : <Navigate to='/login' />}
+				/>
 				<Route
 					path='/login'
 					element={!user ? <Login theme={theme} /> : <Navigate to='/' />}

@@ -59,18 +59,29 @@ const Loader = () => {
 		// if we have a value for the user then fetch the workouts
 		if (user) {
 			fetchWeights();
-		}
-		setTimeout(() => {
-			setDataLoaded(true);
-			// setFadeOutLoader(true);
-			setDisplayLoader(false);
-			// navigate('/home');
-			// getReminderStatus(weights && weights);
-
 			setTimeout(() => {
-				navigate('/home');
-			}, 2000);
-		}, 3000);
+				setDataLoaded(true);
+				// setFadeOutLoader(true);
+				setDisplayLoader(false);
+				// navigate('/home');
+				// getReminderStatus(weights && weights);
+
+				setTimeout(() => {
+					navigate('/home');
+				}, 2000);
+			}, 3000);
+		}
+		// setTimeout(() => {
+		// 	setDataLoaded(true);
+		// 	// setFadeOutLoader(true);
+		// 	setDisplayLoader(false);
+		// 	// navigate('/home');
+		// 	// getReminderStatus(weights && weights);
+
+		// 	setTimeout(() => {
+		// 		navigate('/home');
+		// 	}, 2000);
+		// }, 3000);
 	}, [dispatch, user]);
 
 	useEffect(() => {

@@ -62,7 +62,7 @@ const Home = () => {
 
 	useEffect(() => {
 		const getReminderStatus = () => {
-			if (weights.length >= 1) {
+			if (weights && weights.length >= 1) {
 				log(weights, 'weights in context');
 				const clonedWeights = [...weights];
 				// const lastWeightRecord = weights && weights[0];
