@@ -8,13 +8,37 @@ import { useStateContext } from '../lib/context';
 import { format } from 'date-fns';
 
 import { ImArrowUp, ImArrowDown } from 'react-icons/im';
+import { useNavigate } from 'react-router-dom';
+// import { useGroupsContext } from '../hooks/useGroupsContext';
+// import { useAuthContext } from '../hooks/useAuthContext';
 
 // import GroupDetails from './GroupDetails';
 
 const GroupParticipantsList = ({ group }) => {
+	const navigate = useNavigate();
+	// 	// const { user } = useAuthContext();
 	const { setParticipantToView } = useStateContext();
+	// const { dispatch } = useGroupsContext();
 
-	log(group, 'group group participants list');
+	// 	const getParticipant = async (participantID) => {
+	// 		log(participantToView, 'participantToView');
+	// 		log(participantToView && participantToView, 'participantToView 2');
+	// 		const response = await fetch(
+	// 			`${process.env.REACT_APP_BACKEND_URL}/api/user/${participantToView}`
+
+	// 		);
+
+	// 		const json = await response.json();
+	// 		log(json, 'json');
+	// 		const clonedUser = { ...json };
+
+	// 		log(clonedUser, 'cloned user');
+
+	// 		dispatch({ type: 'SET_PARTICIPANT', payload: clonedUser });
+
+	// 	};
+
+	// log(group, 'group group participants list');
 	return (
 		<StyledGroupParticipantsList className='group-participant-list-container br'>
 			<div className='group-participants-list-header'>
@@ -41,7 +65,8 @@ const GroupParticipantsList = ({ group }) => {
 								e.preventDefault();
 								log(participant._id, 'participant id on click');
 								setParticipantToView(participant._id);
-								// navigate('/group');
+								// getParticipant(participant._id);
+								navigate('/participant');
 							}}
 						>
 							<p>

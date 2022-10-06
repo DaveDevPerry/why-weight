@@ -12,6 +12,7 @@ import Groups from './pages/Groups';
 import Group from './pages/Group';
 import SignupGroup from './pages/SignupGroup';
 import LoginGroup from './pages/LoginGroup';
+import Participant from './pages/Participant';
 // import GroupsFullDetails from './pages/[slug]';
 // import CreateGroup from './pages/CreateGroup';
 // import JoinGroup from './pages/JoinGroup';
@@ -70,6 +71,20 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 					element={
 						user ? (
 							<Group
+							// setCurrentFormOpen={setCurrentFormOpen}
+							// currentFormOpen={currentFormOpen}
+							// handleFormChoice={handleFormChoice}
+							/>
+						) : (
+							<Navigate to='/login' />
+						)
+					}
+				/>
+				<Route
+					path='/participant'
+					element={
+						user ? (
+							<Participant
 							// setCurrentFormOpen={setCurrentFormOpen}
 							// currentFormOpen={currentFormOpen}
 							// handleFormChoice={handleFormChoice}

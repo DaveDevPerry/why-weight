@@ -1,11 +1,12 @@
 import { createContext, useReducer } from 'react';
+import { log } from '../helper';
 
 export const WeightsContext = createContext();
 
 export const weightsReducer = (state, action) => {
 	switch (action.type) {
 		case 'SET_WEIGHTS':
-			console.log(action.payload, 'set weights');
+			log(action.payload, 'set weights');
 			return {
 				weights: action.payload,
 			};

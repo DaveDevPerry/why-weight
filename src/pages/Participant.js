@@ -8,16 +8,22 @@ import { useAuthContext } from '../hooks/useAuthContext';
 // import { FaUsers } from 'react-icons/fa';
 import { log } from '../helper';
 import { useGroupsContext } from '../hooks/useGroupsContext';
-import InviteWidget from '../components/InviteWidget';
-import GroupParticipantsList from '../components/GroupParticipantsList';
+// import InviteWidget from '../components/InviteWidget';
+// import GroupParticipantsList from '../components/GroupParticipantsList';
 import { useNavigate } from 'react-router-dom';
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 import { isMobile } from 'react-device-detect';
+import ParticipantWeightsList from '../components/ParticipantWeightsList';
+import NoUserWeightsWidget from '../components/NoUserWeightsWidget';
+import NudgeParticipantWidget from '../components/NudgeParticipantWidget';
+import ParticipantProgressWidget from '../components/ParticipantProgressWidget';
+import ParticipantWeightUnitsWidget from '../components/ParticipantWeightUnitsWidget';
 
-const Group = () => {
+const Participant = () => {
 	const { user } = useAuthContext();
-	const { group, dispatch } = useGroupsContext();
-	const { groupToView } = useStateContext();
+	const { group, participant, dispatch } = useGroupsContext();
+	const { participantToView } = useStateContext();
+	// const { groupToView, participantToView } = useStateContext();
 
 	const { dataLoaded } = useStateContext();
 	// const { isFormActive, setIsFormActive } = useStateContext();
@@ -32,65 +38,117 @@ const Group = () => {
 	// 	useStateContext();
 
 	useEffect(() => {
-		log(groupToView, ' group in group');
+		log(participantToView, ' participant in group');
 
-		const fetchGroup = async () => {
+		const fetchParticipant = async () => {
 			const response = await fetch(
-				`${process.env.REACT_APP_BACKEND_URL}/api/groups`,
-				{
-					headers: {
-						Authorization: `Bearer ${user.token}`,
-					},
-				}
+				`${process.env.REACT_APP_BACKEND_URL}/api/user/${participantToView}`
+				// ,
+				// {
+				// 	headers: {
+				// 		Authorization: `Bearer ${user.token}`,
+				// 	},
+				// }
 			);
 			const json = await response.json();
+			log(json, 'json');
+			const clonedUser = { ...json };
+			log(clonedUser, 'cloned user');
+			clonedUser.weights.reverse();
+			log(clonedUser, 'cloned user');
 
-			const groupData = json.filter((obj) => obj.title === groupToView);
+			// log(new Date(clonedUser.weights[0].createdAt), 'created at');
+			// log(new Date(group.createdAt), 'created at group');
 
+			const clonedWeights = [...clonedUser.weights];
+
+			// filter weight dates after group start date
+			const groupWeights = clonedWeights.filter((weight) => {
+				log(new Date(weight.createdAt), 'created at');
+				log(new Date(group.createdAt), 'created at group');
+				return new Date(weight.createdAt) > new Date(group.createdAt);
+			});
+			log(clonedUser, 'cloned user');
+			log(clonedWeights, 'cloned user weights');
+			log(groupWeights, 'groupWeights user weights');
+
+			clonedUser.weights = groupWeights;
+			log(clonedWeights, 'cloned user weights');
+			// // filter weight dates after group start date
+			// clonedUser.weights.filter((weight) => {
+			// 	log(new Date(weight.createdAt), 'created at');
+			// 	log(new Date(group.createdAt), 'created at group');
+			// 	return new Date(weight.createdAt) < new Date(group.createdAt);
+			// });
+			// log(clonedUser, 'cloned user');
+			// log(clonedUser.weights, 'cloned user weights');
+
+			log(clonedUser, 'cloned user new');
+
+			const weightMovement =
+				groupWeights[0].load.toFixed(2) -
+				groupWeights[groupWeights.length - 1].load.toFixed(2);
+			log(weightMovement, 'weightMovement');
+			log(parseInt(weightMovement), 'weightMovement');
+			log(Number(weightMovement).toFixed(2), 'weightMovement');
+
+			clonedUser.weightMovement = weightMovement;
+
+			log(clonedUser, 'cloned user new');
 			if (response.ok) {
-				// setGroupDetailsData(groupData[0]);
-				// log(groupData, 'group data - Group');
-				dispatch({
-					type: 'SET_GROUP',
-					payload: groupData[0],
-				});
-				// log(groupData, 'res ok band data');
-				// log(sortedByDate, 'res ok sorted band data');
+				dispatch({ type: 'SET_PARTICIPANT', payload: clonedUser });
+				// dispatch({ type: 'SET_PARTICIPANT', payload: clonedUser });
 			}
 		};
 		if (user) {
-			fetchGroup();
+			fetchParticipant();
 		}
-	}, [groupToView, dispatch, user]);
+	}, [participantToView, dispatch, user]);
 
-	log(
-		group && group.chairperson_user_id,
-		user && user.userId,
-		'check for match'
-	);
+	// log(
+	// 	group && group.chairperson_user_id,
+	// 	user && user.userId,
+	// 	'check for match'
+	// );
 
 	// log(groupDetailsData, 'group details data - Group');
 
 	return (
-		<StyledGroup
-			className='band-page'
+		<StyledParticipant
+			className='participant-page'
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			{/* <div>Band {band._id}</div>
-			<div>Band {band.name}</div> */}
-			{/* <p>band page</p> */}
 			<div className='full-header br'>
-				<h3>{group && group.title}</h3>
-				<p>
+				<h3>
+					{participant && participant.first_name}{' '}
+					{participant && participant.last_name}
+				</h3>
+				{/* <h3>{group && group.title}</h3> */}
+				{/* <p>
+					weight status: {participant && participant.weightMovement.toFixed(2)}{' '}
+					Kgs
+				</p> */}
+				{/* <p>
 					chairperson: {group && group.chairperson_user_id.first_name}{' '}
 					{group && group.chairperson_user_id.last_name}{' '}
-				</p>
+				</p> */}
 			</div>
-			{group && (
+
+			<ParticipantWeightUnitsWidget
+				weight={participant && participant.weightMovement.toFixed(2)}
+			/>
+
+			{participant && participant.weights && participant.weights.length > 1 && (
+				<ParticipantProgressWidget
+					// key={target._id}
+					// target={target}
+					weights={participant.weights}
+				/>
+			)}
+			{/* {group && (
 				<div className='full-dates br'>
-					{/* <h3>{group && group.title}</h3> */}
 					<div className='group-details-dates-container'>
 						<div className='dates-wrapper'>
 							<p className='date-text'>start date:</p>
@@ -110,33 +168,49 @@ const Group = () => {
 						<p>{group && group.target_reason}</p>
 					</div>
 				</div>
+			)} */}
+
+			{participant && participant.weights.length > 0 ? (
+				<>
+					{/* {' '}
+					{participant && participant.weights.length >= 1 && (
+						<NextWeighInReminderWidget reminderData={reminderData} />
+					)} */}
+					{/* <WeightUnitsWidget weights={weights} /> */}
+					{/* {targets &&
+						weights &&
+						weights.length > 1 &&
+						targets.map((target) => (
+							<ProgressWidget
+								key={target._id}
+								target={target}
+								weights={weights}
+							/>
+						))} */}
+					{/* <WeightConvertor /> */}
+					{/* <WeightsProgressWidget weights={weights} /> */}
+					<ParticipantWeightsList
+						weights={participant && participant.weights}
+					/>
+				</>
+			) : (
+				<NoUserWeightsWidget
+				// setCurrentFormOpen={setCurrentFormOpen}
+				// handleFormChoice={handleFormChoice}
+				/>
 			)}
 
-			{/* <div className='group-participants-list-header'>
-				<p>
-					All Participants
-				</p>
-				<div>
-					<FaUsers className='nav-icon' />x
-					{group && group.all_participants.length}
+			{/* {group && participant && (
+				<div className='participant-widget'>
+					<p>{participant.first_name}</p>
 				</div>
-			</div>
-			<ul className='group-participants-list'>
-				{group &&
-					group.all_participants.map((participant) => (
-						<li key={participant._id}>
-							<p>
-								{participant.first_name} {participant.last_name}
-							</p>
-						</li>
-					))}
-			</ul> */}
-			{group && group && <GroupParticipantsList group={group && group} />}
+			)} */}
+			{/* {group && group && <GroupParticipantsList group={group && group} />} */}
 
 			{isMobile ? (
 				<>
 					{group && group.chairperson_user_id._id === user.userId ? (
-						<InviteWidget group={group} />
+						<NudgeParticipantWidget participant={participant} />
 					) : (
 						<p className='dev-red br'>
 							note for developers - user !chairperson so invite widget not
@@ -147,33 +221,10 @@ const Group = () => {
 			) : (
 				<p>not a mobile device</p>
 			)}
-
-			{/* {group && group.chairperson_user_id._id === user.userId ? (
-				<InviteWidget group={group} />
-			) : (
-				<p className='dev-red br'>
-					note for developers - user !chairperson so invite widget not displayed
-				</p>
-			)} */}
-
-			{/* </div> */}
-			{/* <div> */}
-			{/* {groupDetailsData && <BandGigsList gigs={groupDetailsData} />} */}
-			{/* </div> */}
-			{/* <div>
-				{groupDetailsData &&
-					groupDetailsData.map((gig, index) => {
-						return (
-							<li key={index}>
-								{gig.gig_date} - {gig.venue} - {gig.city}
-							</li>
-						);
-					})}
-			</div> */}
-		</StyledGroup>
+		</StyledParticipant>
 	);
 };
-const StyledGroup = styled(motion.div)`
+const StyledParticipant = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
@@ -340,4 +391,4 @@ const StyledGroup = styled(motion.div)`
 	} */
 `;
 
-export default Group;
+export default Participant;

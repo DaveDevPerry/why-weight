@@ -9,7 +9,7 @@ import { CgLoadbar } from 'react-icons/cg';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { format } from 'date-fns';
 
-const WeightDetails = ({ weight, difference }) => {
+const ParticipantWeightDetails = ({ weight, difference }) => {
 	// const { dispatch } = useWeightsContext();
 	// const { user } = useAuthContext();
 
@@ -33,7 +33,7 @@ const WeightDetails = ({ weight, difference }) => {
 	// };
 
 	return (
-		<StyledWeightDetails className='weight-details'>
+		<StyledParticipantWeightDetails className='weight-details'>
 			<div className='full'>
 				<p>
 					<strong>{format(new Date(weight.createdAt), 'dd/MM/yyyy')}</strong>
@@ -92,10 +92,10 @@ const WeightDetails = ({ weight, difference }) => {
 			{/* <span className='material-symbols-outlined' onClick={handleClick}>
 				delete
 			</span> */}
-		</StyledWeightDetails>
+		</StyledParticipantWeightDetails>
 	);
 };
-const StyledWeightDetails = styled.div`
+const StyledParticipantWeightDetails = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0.5rem 0; */
@@ -168,4 +168,4 @@ const StyledWeightDetails = styled.div`
 	}
 `;
 
-export default WeightDetails;
+export default ParticipantWeightDetails;

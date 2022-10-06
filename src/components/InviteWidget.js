@@ -2,28 +2,91 @@ import React from 'react';
 import styled from 'styled-components';
 import { BsFillShareFill, BsWhatsapp } from 'react-icons/bs';
 import { log } from '../helper';
+// import { isMobile } from 'react-device-detect';
 
 const InviteWidget = ({ group }) => {
 	const shareMobile = () => {
+		// if (
+		// 	'https://c6c8j7x5.rocketcdn.me/Android|iPhone/i.test(navigator.userAgent)'
+		// ) {
+		// 	// This checks if the current device is in fact mobile
+		// 	log('mobile device');
+		// } else {
+		// 	log('non mobile device');
+		// }
+
 		const groupName = group.title;
 		const groupPin = group.pinString;
-		// const groupName = 'test group name';
-		// const groupPin = 'testgrouppin';
+
+		// if (isMobile) {
+		// 	log('is mobile');
 
 		log(
 			`whatsapp://send?text=I have set up a group on Why Wait? Would you like to join? Create an account here - https://why-weight.vercel.app/signup and go to groups - join group and enter these details - GROUP NAME:${groupName}, PIN:${groupPin}.`
 		);
-		// log(
-		// 	`whatsapp://send?text=I have set up a group on Why Wait?  Would you like to join? Here are the group details.  GROUP NAME:${groupName}, PIN:${groupPin}. Create an account here - https://why-weight.vercel.app/signup and go to groups -  join group and enter these details - `
-		// );
 
 		window.open(
 			`whatsapp://send?text=I have set up a group on Why Wait? Would you like to join? Create an account here - https://why-weight.vercel.app/signup and go to groups - join group and enter these details - GROUP NAME:${groupName}, PIN:${groupPin}.`
 		);
-		// window.open(
-		// 	`whatsapp://send?text=I have set up a group on Why Wait?  Would you like to join? Here are the group details.  GROUP NAME:${groupName}, PIN:${groupPin}. Sign up here - https://why-weight.vercel.app/signup`
-		// );
+		// } else {
+		// 	log('is not mobile');
+		// }
 	};
+
+	// renderContent = () => {
+	//   if (isMobile) {
+	// 		const shareMobile = () => {
+	// 			const groupName = group.title;
+	// 			const groupPin = group.pinString;
+
+	// 			log(
+	// 				`whatsapp://send?text=I have set up a group on Why Wait? Would you like to join? Create an account here - https://why-weight.vercel.app/signup and go to groups - join group and enter these details - GROUP NAME:${groupName}, PIN:${groupPin}.`
+	// 			);
+
+	// 			window.open(
+	// 				`whatsapp://send?text=I have set up a group on Why Wait? Would you like to join? Create an account here - https://why-weight.vercel.app/signup and go to groups - join group and enter these details - GROUP NAME:${groupName}, PIN:${groupPin}.`
+	// 			);
+	// 			// window.open(
+	// 			// 	`whatsapp://send?text=I have set up a group on Why Wait?  Would you like to join? Here are the group details.  GROUP NAME:${groupName}, PIN:${groupPin}. Sign up here - https://why-weight.vercel.app/signup`
+	// 			// );
+	// 		};
+	//     return (	<StyledInviteWidget className='br'>
+	// 		<button
+	// 			className='share-btn-whatsapp'
+	// 			onClick={() => {
+	// 				shareMobile();
+	// 			}}
+	// 		>
+	// 			<BsFillShareFill size='20px' className='share-icon' />
+	// 			<div className='btn-share-content'>
+	// 				<p>invite people to join</p>
+	// 				<h3>{group && group.title}</h3>
+	// 			</div>
+	// 			<BsWhatsapp size='25px' className='share-icon' />
+	// 		</button>
+	// 	</StyledInviteWidget>)
+	//   }
+	//   return (	<StyledInviteWidget className='br'>
+	// 	<button
+	// 		className='share-btn-whatsapp'
+	// 		onClick={() => {
+	// 			// shareMobile();
+	// 		}}
+	// 	>
+	// 		<BsFillShareFill size='20px' className='share-icon' />
+	// 		<div className='btn-share-content'>
+	// 			<p>non mobile device</p>
+	// 			{/* <h3>{group && group.title}</h3> */}
+	// 		</div>
+	// 		<BsWhatsapp size='25px' className='share-icon' />
+	// 	</button>
+	// </StyledInviteWidget>)
+	// };
+
+	// render() {
+	//   return this.renderContent();
+	// };
+
 	return (
 		<StyledInviteWidget className='br'>
 			{/* <div className='share-wrapper-whatsapp'> */}

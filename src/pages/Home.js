@@ -5,6 +5,7 @@ import { useTargetsContext } from '../hooks/useTargetsContext';
 
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { isMobile } from 'react-device-detect';
 
 // components
 // import WeightDetails from '../components/WeightDetails';
@@ -56,6 +57,19 @@ const Home = () => {
 	useEffect(() => {
 		if (dataLoaded === false) {
 			navigate('/');
+		}
+		if (isMobile) {
+			log('is mobile');
+
+			// log(
+			// 	`whatsapp://send?text=I have set up a group on Why Wait? Would you like to join? Create an account here - https://why-weight.vercel.app/signup and go to groups - join group and enter these details - GROUP NAME:${groupName}, PIN:${groupPin}.`
+			// );
+
+			// window.open(
+			// 	`whatsapp://send?text=I have set up a group on Why Wait? Would you like to join? Create an account here - https://why-weight.vercel.app/signup and go to groups - join group and enter these details - GROUP NAME:${groupName}, PIN:${groupPin}.`
+			// );
+		} else {
+			log('is not mobile');
 		}
 		// getReminderStatus(weights);
 	}, [navigate, dataLoaded]);
@@ -309,9 +323,19 @@ const Home = () => {
 							/>
 						))}
 
-					{targets && weights && weights.length > 1 && (
-						<ShareWidget targets={targets} weights={weights} />
+					{isMobile ? (
+						<>
+							{targets && weights && weights.length > 1 && (
+								<ShareWidget targets={targets} weights={weights} />
+							)}
+						</>
+					) : (
+						<p>not a mobile device</p>
 					)}
+
+					{/* {targets && weights && weights.length > 1 && (
+						<ShareWidget targets={targets} weights={weights} />
+					)} */}
 					{/* {targets && weights && (
 						<ProgressBarWidget
 							percentage={percentage}
