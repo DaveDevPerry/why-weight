@@ -27,13 +27,13 @@ function App() {
 					<BrowserRouter>
 						<Toaster />
 						<Header />
-						<div className='pages'>
-							<AnimatedRoutes
-								user={user}
-								themeToggler={themeToggler}
-								theme={theme}
-							/>
-						</div>
+						{/* <div className='pages'> */}
+						<AnimatedRoutes
+							user={user}
+							themeToggler={themeToggler}
+							theme={theme}
+						/>
+						{/* </div> */}
 						<Footer />
 					</BrowserRouter>
 				</div>

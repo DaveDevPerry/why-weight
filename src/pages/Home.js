@@ -376,7 +376,40 @@ const StyledHome = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
-	padding: 0.5rem;
+	/* padding: 0.5rem; */
+	max-width: 100rem;
+	/* max-width: 42rem; */
+	/* border: 2px solid blue; */
+	padding: 0.5rem 1rem;
+	overflow-y: scroll;
+	/* overflow: hidden; */
+	z-index: 1;
+	/* overflow-y: auto; */
+	transition: all 200ms linear;
+	margin: 0 auto;
+	/* background-color: rgba(0, 0, 0, 0.4); */
+	/* background-color: rgba(241, 241, 241, 0.9); */
+	scroll-behavior: smooth;
+	scroll-behavior: smooth;
+	scrollbar-width: normal;
+	scrollbar-color: ${({ theme }) => theme.primaryColor};
+	::-webkit-scrollbar {
+		width: 5px;
+		background: rgb(75, 74, 74);
+		user-select: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+	}
+	::-webkit-scrollbar-thumb {
+		background-color: ${({ theme }) => theme.primaryColor};
+		-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+	}
+	::-webkit-scrollbar-corner {
+		background: rgb(75, 74, 74);
+	}
 	.instruction-title {
 		color: ${({ theme }) => theme.secondaryColor};
 		font-weight: bold;

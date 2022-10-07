@@ -120,7 +120,7 @@ const StyledGroups = styled(motion.div)`
 	/* justify-content: flex-start; */
 	/* overflow-y: auto; */
 	/* overflow-y: hidden; */
-	/* flex: 1; */
+	flex: 1;
 	/* overflow-y: auto; */
 	/* border: 2px solid red; */
 `;

@@ -163,10 +163,11 @@ const StyledWeightModel = styled(motion.div)`
 	bottom: -1rem;
 	/* bottom: calc(0 + 1rem); */
 	left: 50%;
-	width: max-content;
+	/* width: max-content; */
 	/* margin: 1rem; */
 	transform: translate(-50%, -100%);
-	/* z-index: -1; */
+	z-index: 5;
+	width: calc(100% - 2rem);
 `;
 
 export default Header;

@@ -100,7 +100,7 @@ const StyledWeightDetails = styled.div`
 	border-radius: 4px;
 	/* margin: 0.5rem 0; */
 	padding: 0.5rem 1rem;
-	position: relative;
+	/* position: relative; */
 	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05);
 	display: flex;
 	justify-content: space-between;

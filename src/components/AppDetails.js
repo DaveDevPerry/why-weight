@@ -5,7 +5,7 @@ const AppDetails = ({ theme }) => {
 	useEffect(() => {}, [theme]);
 	// const theme = 'dark';
 	return (
-		<StyledAppDetails>
+		<StyledAppDetails className='br'>
 			<div
 				className={theme && theme === 'light' ? 'label-img' : 'label-img dark'}
 			></div>
@@ -56,11 +56,12 @@ const StyledAppDetails = styled.div`
 	justify-content: space-between;
 	/* display: flex;
 	flex-direction: column; */
-	padding: 2rem 1rem;
-	padding-bottom: 3rem;
+	padding: 1rem;
+	/* padding: 2rem 1rem; */
+	/* padding-bottom: 3rem; */
 	background: ${({ theme }) => theme.white};
-	border-radius: 4px;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+	/* border-radius: 4px; */
+	/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 	transition: all 200ms linear;
 	.dev-link-container {
 		display: flex;

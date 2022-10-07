@@ -35,7 +35,20 @@ const WeightsList = ({ weights }) => {
 					{weights && weights.length}
 				</div>
 			</div>
-			<div className='weights-list'>
+			<div className='weights-list-container'>
+				<div className='weights-list'>
+					{weights &&
+						testWeights &&
+						weights.map((weight, index) => (
+							<WeightDetails
+								key={weight._id}
+								weight={weight}
+								difference={testWeights[index]}
+							/>
+						))}
+				</div>
+			</div>
+			{/* <div className='weights-list'>
 				{weights &&
 					testWeights &&
 					weights.map((weight, index) => (
@@ -45,7 +58,7 @@ const WeightsList = ({ weights }) => {
 							difference={testWeights[index]}
 						/>
 					))}
-			</div>
+			</div> */}
 			{/* <div className='weights-list'>
 				{weights &&
 					weights.map((weight) => (
@@ -84,21 +97,32 @@ const StyledWeightsList = styled.div`
 			}
 		}
 	}
-	/* p.weights-list-header {
-		padding: 0 1rem;
-		border-bottom: 1px solid ${({ theme }) => theme.txtGrey};
-		margin-bottom: 0.5rem;
-		font-size: 0.9em;
-	} */
-	.weights-list {
+	.weights-list-container {
+		overflow-y: auto;
+		flex: 1;
+		.weights-list {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			row-gap: 0.3rem;
+			overflow-y: scroll;
+		}
+	}
+	/* .weights-list {
 		display: flex;
 		flex-direction: column;
 		flex: 1;
 		row-gap: 0.3rem;
-		/* overflow-y: auto; */
-		/* overflow-y: hidden; */
 		overflow-y: scroll;
-	}
+	} */
+
+	/* .weights-list {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		row-gap: 0.3rem;
+		overflow-y: scroll;
+	} */
 `;
 
 export default WeightsList;

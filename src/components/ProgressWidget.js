@@ -161,7 +161,7 @@ const StyledProgressWidget = styled.div`
 	flex-direction: column;
 	/* align-items: center; */
 	justify-content: center;
-	flex: 1;
+	/* flex: 1; */
 	row-gap: 1rem;
 	.progress-widget-wrapper-container {
 		display: flex;

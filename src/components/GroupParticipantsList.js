@@ -157,7 +157,7 @@ const StyledGroupParticipantsList = styled.div`
 	/* border-radius: 4px; */
 	/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 	padding: 1rem;
-	flex: 1;
+	/* flex: 1; */
 	.group-participants-list-header {
 		display: flex;
 		justify-content: space-between;

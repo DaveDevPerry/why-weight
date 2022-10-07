@@ -115,6 +115,7 @@ const StyledForm = styled.form`
 	flex-direction: column;
 	justify-content: center;
 	row-gap: 1rem;
+	/* z-index: 5000000; */
 	p.form-title {
 		padding: 0 2rem;
 		border-bottom: 1px solid ${({ theme }) => theme.txtGrey};

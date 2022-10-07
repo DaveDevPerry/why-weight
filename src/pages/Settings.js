@@ -120,6 +120,8 @@ const StyledSettings = styled(motion.div)`
 	transition: all 200ms linear;
 	flex: 1;
 	height: --webkit-fill-available;
+	transition: all 200ms linear;
+	margin: 0 auto;
 	h3 {
 		text-align: center;
 		position: relative;

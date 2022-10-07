@@ -17,6 +17,9 @@ export const GlobalStyles = createGlobalStyle`
 	  -moz-user-select: none;
 	  -ms-user-select: none;
 	  user-select: none;
+    width: 100vw;
+	height: 100vh;
+  overflow: hidden;
   }
   body {
     -webkit-font-smoothing: antialiased;
@@ -26,6 +29,8 @@ export const GlobalStyles = createGlobalStyle`
 	font-weight: 400;
   font-family: "Poppins";
   transition: all 200ms linear;
+  width: 100vw;
+	height: 100vh;
   }
   .App {
     width: 100vw;
@@ -37,15 +42,16 @@ export const GlobalStyles = createGlobalStyle`
   justify-content: space-between;
   row-gap: 1rem;
  
-  .pages{
+  ${
+		'' /* .pages{
     flex: 1;
   max-width: 42rem;
   padding: 0 1rem;
   overflow-y:auto;
-  ${'' /* overflow: none; */}
 
   transition: all 200ms linear;
-}
+} */
+	}
   }
 
 header a {

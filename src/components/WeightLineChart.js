@@ -32,7 +32,7 @@ const WeightLineChart = ({ weights, targets }) => {
 				display: false,
 			},
 			title: {
-				display: false,
+				display: true,
 				text: 'weight timeline',
 			},
 		},

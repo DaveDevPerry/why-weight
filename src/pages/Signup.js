@@ -44,7 +44,7 @@ const Signup = ({ theme }) => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<form onSubmit={handleSubmit} className='signup'>
+			<form onSubmit={handleSubmit} className='signup br'>
 				<h3>Sign up</h3>
 				<div>
 					<label>Email:</label>
@@ -92,14 +92,31 @@ const Signup = ({ theme }) => {
 	);
 };
 const StyledSignup = styled(motion.div)`
+	display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
+	/* padding: 0.5rem; */
+	max-width: 100rem;
+	padding: 0.5rem 1rem;
+	/* max-width: 42rem; */
+	/* border: 2px solid blue; */
+	/* padding: 0 1rem; */
+	overflow-y: scroll;
+	/* overflow: hidden; */
+	z-index: 1;
+	/* overflow-y: auto; */
+	transition: all 200ms linear;
+	margin: 0 auto;
+	flex: 1;
 	.signup {
 		display: flex;
 		flex-direction: column;
 		row-gap: 1rem;
 		padding: 2rem;
 		background: ${({ theme }) => theme.white};
-		border-radius: 4px;
-		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+		/* border-radius: 4px; */
+		/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
+
 		h3 {
 			text-align: center;
 			margin: 0;

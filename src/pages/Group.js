@@ -78,6 +78,21 @@ const Group = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
+			{isMobile ? (
+				<>
+					{group && group.chairperson_user_id._id === user.userId ? (
+						<InviteWidget group={group} />
+					) : (
+						<p className='dev-red br'>
+							note for developers - user !chairperson so invite widget not
+							displayed
+						</p>
+					)}
+				</>
+			) : (
+				<p>not a mobile device</p>
+			)}
+
 			{/* <div>Band {band._id}</div>
 			<div>Band {band.name}</div> */}
 			{/* <p>band page</p> */}
@@ -133,7 +148,7 @@ const Group = () => {
 			</ul> */}
 			{group && group && <GroupParticipantsList group={group && group} />}
 
-			{isMobile ? (
+			{/* {isMobile ? (
 				<>
 					{group && group.chairperson_user_id._id === user.userId ? (
 						<InviteWidget group={group} />
@@ -146,7 +161,7 @@ const Group = () => {
 				</>
 			) : (
 				<p>not a mobile device</p>
-			)}
+			)} */}
 
 			{/* {group && group.chairperson_user_id._id === user.userId ? (
 				<InviteWidget group={group} />
@@ -213,7 +228,7 @@ const StyledGroup = styled(motion.div)`
 
 		align-items: center;
 		flex-direction: column;
-		flex: 1;
+		/* flex: 1; */
 		padding: 1rem;
 		h3 {
 			color: ${({ theme }) => theme.secondaryColor};
@@ -260,7 +275,7 @@ const StyledGroup = styled(motion.div)`
 		/* align-items: center; */
 		flex-direction: column;
 		row-gap: 0.5rem;
-		flex: 1;
+		/* flex: 1; */
 		padding: 1rem;
 		h3 {
 			color: ${({ theme }) => theme.secondaryColor};
