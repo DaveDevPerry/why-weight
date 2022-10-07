@@ -51,9 +51,8 @@ const GroupParticipantsList = ({ group }) => {
 					{/* <span> {groupToView}</span> */}
 				</p>
 				<div>
-					<FaUsers className='nav-icon' />x
+					<FaUsers className='nav-icon' />
 					{group && group.all_participants.length}
-					{/* {groupDetailsData && groupDetailsData.all_participants.length} */}
 				</div>
 			</div>
 			<ol className='group-participants-list'>
@@ -101,7 +100,7 @@ const GroupParticipantsList = ({ group }) => {
 								).toFixed(2)}
 								Kgs
 							</span>
-							<span>
+							<span className='mono-font'>
 								{format(
 									new Date(
 										participant.weights[
@@ -168,7 +167,7 @@ const StyledGroupParticipantsList = styled.div`
 		margin-bottom: 0.5rem;
 		p {
 			color: ${({ theme }) => theme.secondaryColor};
-			/* font-weight: bold; */
+			font-weight: bold;
 			span {
 				text-transform: capitalize;
 			}
@@ -179,13 +178,17 @@ const StyledGroupParticipantsList = styled.div`
 			align-items: center;
 			column-gap: 0.5rem;
 			color: ${({ theme }) => theme.txtGrey};
+			font-weight: bold;
+			.nav-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+			}
 		}
 	}
 	ol.group-participants-list {
 		/* list-style-type: disc; */
-		margin-left: 2rem;
+		/* margin-left: 2rem; */
 		li {
-			display: list-item;
+			/* display: list-item; */
 			cursor: pointer;
 			display: flex;
 			align-items: center;

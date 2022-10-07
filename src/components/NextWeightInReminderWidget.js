@@ -60,7 +60,7 @@ const NextWeighInReminderWidget = ({ reminderData }) => {
 
 const StyledNextWeighInReminderWidget = styled.div`
 	background-color: ${({ theme }) => theme.white};
-	padding: 1rem;
+	padding: 0.5rem 1rem;
 	p {
 		color: ${({ theme }) => theme.txtGrey};
 		text-align: center;

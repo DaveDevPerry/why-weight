@@ -36,11 +36,11 @@ const StyledWeightUnitsWidget = styled.div`
 	justify-content: space-evenly;
 	flex: 1;
 	column-gap: 1rem;
-	padding: 0.5rem;
+	/* padding: 0.5rem; */
 	.wrapper {
 		background: ${({ theme }) => theme.white};
 		border-radius: 4px;
-		padding: 1rem;
+		padding: 0.5rem;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -52,15 +52,16 @@ const StyledWeightUnitsWidget = styled.div`
 		}
 		p.figure {
 			margin: 0;
-			font-size: 1em;
+			font-size: 1.6rem;
 			color: ${({ theme }) => theme.txtGrey};
 		}
 		p.stat-name {
 			margin: 0;
-			font-size: 1em;
+			font-size: 1.6rem;
 			color: ${({ theme }) => theme.secondaryColor};
 			/* color: ${({ theme }) => theme.txtGrey}; */
 			text-transform: capitalize;
+			line-height: 1;
 		}
 	}
 `;

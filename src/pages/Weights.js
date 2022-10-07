@@ -140,7 +140,7 @@ const StyledWeights = styled(motion.div)`
 	/* overflow-y: auto; */
 	/* overflow-y: hidden; */
 	flex: 1;
-	/* overflow-y: auto; */
+	overflow-y: auto;
 	/* border: 2px solid red; */
 `;
 

@@ -31,7 +31,8 @@ const WeightsList = ({ weights }) => {
 			<div className='weight-history-list-header'>
 				<p>Weight history</p>
 				<div>
-					<FaUsers className='nav-icon' />x{weights && weights.length}
+					<FaUsers className='nav-icon' />
+					{weights && weights.length}
 				</div>
 			</div>
 			<div className='weights-list'>
@@ -66,7 +67,7 @@ const StyledWeightsList = styled.div`
 		margin-bottom: 0.5rem;
 		p {
 			color: ${({ theme }) => theme.secondaryColor};
-			/* font-weight: bold; */
+			font-weight: bold;
 			span {
 				text-transform: capitalize;
 			}
@@ -77,6 +78,10 @@ const StyledWeightsList = styled.div`
 			align-items: center;
 			column-gap: 0.5rem;
 			color: ${({ theme }) => theme.txtGrey};
+			font-weight: bold;
+			.nav-icon {
+				color: ${({ theme }) => theme.secondaryColor};
+			}
 		}
 	}
 	/* p.weights-list-header {
