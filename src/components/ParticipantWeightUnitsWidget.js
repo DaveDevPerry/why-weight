@@ -34,7 +34,7 @@ const StyledParticipantWeightUnitsWidget = styled.div`
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-evenly;
-	flex: 1;
+	/* flex: 1; */
 	column-gap: 1rem;
 	padding: 0.5rem;
 	.wrapper {

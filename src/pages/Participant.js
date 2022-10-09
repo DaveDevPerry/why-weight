@@ -54,7 +54,8 @@ const Participant = () => {
 			log(json, 'json');
 			const clonedUser = { ...json };
 			log(clonedUser, 'cloned user');
-			clonedUser.weights.reverse();
+			// clonedUser.weights.reverse();
+			// clonedUser.weights.reverse();
 			log(clonedUser, 'cloned user');
 
 			// log(new Date(clonedUser.weights[0].createdAt), 'created at');
@@ -63,11 +64,15 @@ const Participant = () => {
 			const clonedWeights = [...clonedUser.weights];
 
 			// filter weight dates after group start date
-			const groupWeights = clonedWeights.filter((weight) => {
-				log(new Date(weight.createdAt), 'created at');
-				log(new Date(group.createdAt), 'created at group');
-				return new Date(weight.createdAt) > new Date(group.createdAt);
-			});
+			const groupWeights = clonedWeights
+				.sort((a, b) => {
+					return new Date(b.createdAt) > new Date(a.createdAt);
+				})
+				.filter((weight) => {
+					log(new Date(weight.createdAt), 'created at');
+					log(new Date(group.createdAt), 'created at group');
+					return new Date(weight.createdAt) > new Date(group.createdAt);
+				});
 			log(clonedUser, 'cloned user');
 			log(clonedWeights, 'cloned user weights');
 			log(groupWeights, 'groupWeights user weights');
@@ -190,7 +195,7 @@ const Participant = () => {
 					{/* <WeightConvertor /> */}
 					{/* <WeightsProgressWidget weights={weights} /> */}
 					<ParticipantWeightsList
-						weights={participant && participant.weights}
+						weights={participant && participant.weights.reverse()}
 					/>
 				</>
 			) : (
@@ -228,7 +233,14 @@ const StyledParticipant = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
-	flex: 1;
+	/* padding: 0.5rem; */
+	max-width: 100rem;
+	padding: 0.5rem 1rem;
+	overflow: hidden;
+	z-index: 1;
+	transition: all 200ms linear;
+	margin: 0 auto;
+	/* flex: 1;
 	max-width: 42rem;
 	padding: 0.5rem;
 	overflow: hidden;
@@ -239,14 +251,13 @@ const StyledParticipant = styled(motion.div)`
 	scrollbar-width: normal;
 	scrollbar-color: ${({ theme }) => theme.primaryColor};
 	::-webkit-scrollbar {
-		/* height: 12px !important; */
 		width: 5px;
 		background: rgb(75, 74, 74);
-		user-select: none; /* supported by Chrome and Opera */
-		-webkit-user-select: none; /* Safari */
-		-khtml-user-select: none; /* Konqueror HTML */
-		-moz-user-select: none; /* Firefox */
-		-ms-user-select: none; /* Internet Explorer/Edge */
+		user-select: none; 
+		-webkit-user-select: none; 
+		-khtml-user-select: none; 
+		-moz-user-select: none; 
+		-ms-user-select: none; 
 	}
 	::-webkit-scrollbar-thumb {
 		background-color: ${({ theme }) => theme.primaryColor};
@@ -255,16 +266,15 @@ const StyledParticipant = styled(motion.div)`
 	}
 	::-webkit-scrollbar-corner {
 		background: rgb(75, 74, 74);
-	}
+	} */
 	.full-header {
 		background: ${({ theme }) => theme.white};
-		/* border-radius: 4px; */
-		/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
+
 		display: flex;
 
 		align-items: center;
 		flex-direction: column;
-		flex: 1;
+		/* flex: 1; */
 		padding: 1rem;
 		h3 {
 			color: ${({ theme }) => theme.secondaryColor};
@@ -278,7 +288,7 @@ const StyledParticipant = styled(motion.div)`
 			align-items: center;
 			flex-direction: row;
 			column-gap: 1rem;
-			flex: 1;
+			/* flex: 1; */
 			.dates-wrapper {
 				display: flex;
 				justify-content: flex-start;
