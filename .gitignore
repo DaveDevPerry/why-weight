@@ -5,4 +5,6 @@ node_modules
 
 
 /src/components/GroupForm copy.js
+/src/components/GroupParticipantsList copy.js
+
 

@@ -44,8 +44,78 @@ const Group = () => {
 				}
 			);
 			const json = await response.json();
+			const clonedForGroup = [...json];
+			const groupData = clonedForGroup.filter(
+				(obj) => obj.title === groupToView
+			);
 
-			const groupData = json.filter((obj) => obj.title === groupToView);
+			const clonedForParticipants = [...json];
+			const groupPartData = clonedForParticipants.filter(
+				(obj) => obj.title === groupToView
+			);
+			const clonedGroup = [...groupPartData];
+			log(clonedGroup, 'cloned group');
+			const clonedParticipants = [...clonedGroup[0].all_participants];
+			log(clonedParticipants, 'cloned Participants');
+
+			const getGroupWeights = clonedParticipants.map((participant) => {
+				const weights = participant.weights
+					// .sort((a, b) => {
+					// 	return new Date(b.createdAt) > new Date(a.createdAt);
+					// })
+					.filter((weight) => {
+						// log(new Date(weight.createdAt), 'created at');
+						// log(new Date(groupData[0].createdAt), 'created at group');
+						return (
+							new Date(weight.createdAt) > new Date(groupData[0].createdAt)
+						);
+					})
+					.sort((a, b) => {
+						return new Date(a.createdAt) - new Date(b.createdAt);
+					});
+				const weightMovement =
+					weights[0].load.toFixed(2) -
+					weights[weights.length - 1].load.toFixed(2);
+
+				return { ...participant, weights, weightMovement };
+			});
+
+			log(getGroupWeights, ' get group weights');
+			// filter weight dates after group start date
+			// 	const groupWeights = clonedWeights
+			// 	.sort((a, b) => {
+			// 		return new Date(b.createdAt) > new Date(a.createdAt);
+			// 	})
+			// 	.filter((weight) => {
+			// 		log(new Date(weight.createdAt), 'created at');
+			// 		log(new Date(group.createdAt), 'created at group');
+			// 		return new Date(weight.createdAt) > new Date(group.createdAt);
+			// 	});
+			// log(clonedUser, 'cloned user');
+			// log(clonedWeights, 'cloned user weights');
+			// log(groupWeights, 'groupWeights user weights');
+
+			// clonedUser.weights = groupWeights;
+			// log(clonedWeights, 'cloned user weights');
+
+			// log(clonedUser, 'cloned user new');
+
+			// const weightMovement =
+			// 	groupWeights[0].load.toFixed(2) -
+			// 	groupWeights[groupWeights.length - 1].load.toFixed(2);
+			// log(weightMovement, 'weightMovement');
+			// log(parseInt(weightMovement), 'weightMovement');
+			// log(Number(weightMovement).toFixed(2), 'weightMovement');
+
+			// clonedUser.weightMovement = weightMovement;
+
+			// log(clonedUser, 'cloned user new');
+
+			// const compileParticipantsData = () => {
+			// 	const clonedGroup = [...group]
+			// 	const clonedParticipants = [...clonedGroup.allParticipants]
+
+			// }
 
 			if (response.ok) {
 				// setGroupDetailsData(groupData[0]);
@@ -53,6 +123,10 @@ const Group = () => {
 				dispatch({
 					type: 'SET_GROUP',
 					payload: groupData[0],
+				});
+				dispatch({
+					type: 'SET_PARTICIPANTS',
+					payload: getGroupWeights,
 				});
 				// log(groupData, 'res ok band data');
 				// log(sortedByDate, 'res ok sorted band data');

@@ -44,6 +44,12 @@ export const groupsReducer = (state, action) => {
 			return {
 				// groups: state.users.filter((user) => user._id === action.payload._id),
 			};
+		case 'SET_PARTICIPANTS':
+			log(action.payload, 'group set participants payload');
+			return {
+				...state,
+				participants: action.payload,
+			};
 		case 'SET_PARTICIPANT':
 			log(action.payload, 'group set participant payload');
 			return {
@@ -60,6 +66,7 @@ export const GroupsContextProvider = ({ children }) => {
 		groups: null,
 		group: null,
 		participant: null,
+		participants: null,
 	});
 
 	return (

@@ -9,6 +9,7 @@ import { format } from 'date-fns';
 
 import { ImArrowUp, ImArrowDown } from 'react-icons/im';
 import { useNavigate } from 'react-router-dom';
+import { useGroupsContext } from '../hooks/useGroupsContext';
 // import { useGroupsContext } from '../hooks/useGroupsContext';
 // import { useAuthContext } from '../hooks/useAuthContext';
 
@@ -18,27 +19,8 @@ const GroupParticipantsList = ({ group }) => {
 	const navigate = useNavigate();
 	// 	// const { user } = useAuthContext();
 	const { setParticipantToView } = useStateContext();
-	// const { dispatch } = useGroupsContext();
+	const { participants } = useGroupsContext();
 
-	// 	const getParticipant = async (participantID) => {
-	// 		log(participantToView, 'participantToView');
-	// 		log(participantToView && participantToView, 'participantToView 2');
-	// 		const response = await fetch(
-	// 			`${process.env.REACT_APP_BACKEND_URL}/api/user/${participantToView}`
-
-	// 		);
-
-	// 		const json = await response.json();
-	// 		log(json, 'json');
-	// 		const clonedUser = { ...json };
-
-	// 		log(clonedUser, 'cloned user');
-
-	// 		dispatch({ type: 'SET_PARTICIPANT', payload: clonedUser });
-
-	// 	};
-
-	// log(group, 'group group participants list');
 	return (
 		<StyledGroupParticipantsList className='group-participant-list-container br'>
 			<div className='group-participants-list-header'>
@@ -57,61 +39,60 @@ const GroupParticipantsList = ({ group }) => {
 			</div>
 			<ol className='group-participants-list'>
 				{group &&
-					group.all_participants.map((participant) => (
-						<li
-							key={participant._id}
-							onClick={(e) => {
-								e.preventDefault();
-								log(participant._id, 'participant id on click');
-								setParticipantToView(participant._id);
-								// getParticipant(participant._id);
-								navigate('/participant');
-							}}
-						>
-							<p>
-								{participant.first_name} {participant.last_name}
-							</p>
-							{/* <span>
-								{(
-									participant.weights[0].load -
-									participant.weights[participant.weights.length - 1].load
-								).toFixed(2) < 0 && <ImArrowUp className='arrow-icon red' />}
-								{(
-									participant.weights[0].load -
-									participant.weights[participant.weights.length - 1].load
-								).toFixed(2) > 0 && (
-									<ImArrowDown className='arrow-icon green' />
-								)}
-							</span> */}
-							<span className='mono-font'>
-								{(
-									participant.weights[0].load -
-									participant.weights[participant.weights.length - 1].load
-								).toFixed(2) < 0 && <ImArrowUp className='arrow-icon red' />}
-								{(
-									participant.weights[0].load -
-									participant.weights[participant.weights.length - 1].load
-								).toFixed(2) > 0 && (
-									<ImArrowDown className='arrow-icon green' />
-								)}
-								{(
-									participant.weights[0].load -
-									participant.weights[participant.weights.length - 1].load
-								).toFixed(2)}
-								Kgs
-							</span>
-							<span className='mono-font'>
-								{format(
-									new Date(
-										participant.weights[
-											participant.weights.length - 1
-										].createdAt
-									),
-									'dd/MM'
-								)}
-							</span>
-						</li>
-					))}
+					participants &&
+					participants
+						.sort((a, b) => {
+							return b.weightMovement - a.weightMovement;
+						})
+						.map((participant) => (
+							<li
+								key={participant._id}
+								onClick={(e) => {
+									e.preventDefault();
+									log(participant._id, 'participant id on click');
+									setParticipantToView(participant._id);
+									// getParticipant(participant._id);
+									navigate('/participant');
+								}}
+							>
+								<div className='list-item-row'>
+									<p>
+										{participant.first_name} {participant.last_name}
+									</p>
+
+									<span className='mono-font'>
+										{participant.weightMovement.toFixed(2)}
+										Kgs
+										{/* {participant.weightMovement.toFixed(2) < 0 && (
+											<ImArrowUp className='arrow-icon red' />
+										)}
+										{participant.weightMovement.toFixed(2) > 0 && (
+											<ImArrowDown className='arrow-icon green' />
+										)} */}
+										{/* {participant.weightMovement.toFixed(2)}
+										Kgs */}
+									</span>
+									<span className='arrow-wrapper'>
+										{participant.weightMovement.toFixed(2) < 0 && (
+											<ImArrowUp className='arrow-icon red' />
+										)}
+										{participant.weightMovement.toFixed(2) > 0 && (
+											<ImArrowDown className='arrow-icon green' />
+										)}
+									</span>
+									<span className='mono-font'>
+										{format(
+											new Date(
+												participant.weights[
+													participant.weights.length - 1
+												].createdAt
+											),
+											'dd/MM'
+										)}
+									</span>
+								</div>
+							</li>
+						))}
 			</ol>
 			{/* <ol className='group-participants-list'>
 				{group &&
@@ -186,34 +167,36 @@ const StyledGroupParticipantsList = styled.div`
 	}
 	ol.group-participants-list {
 		/* list-style-type: disc; */
-		/* margin-left: 2rem; */
+		margin-left: 2rem;
 		li {
-			/* display: list-item; */
+			display: list-item;
 			cursor: pointer;
-			display: flex;
-			align-items: center;
-			column-gap: 1rem;
-			p {
-				text-transform: capitalize;
-				pointer-events: none;
-				flex: 1;
-			}
-			span {
-				font-size: 1.2rem;
+			.list-item-row {
 				display: flex;
 				align-items: center;
-				column-gap: 0.3rem;
+				column-gap: 1rem;
+				p {
+					text-transform: capitalize;
+					pointer-events: none;
+					flex: 1;
+				}
+				span {
+					font-size: 1.2rem;
+					display: flex;
+					align-items: center;
+					column-gap: 0.3rem;
 
-				/* display: grid;
+					/* display: grid;
 				place-content: center; */
-				.arrow-icon {
-					font-size: 1rem;
-				}
-				.arrow-icon.green {
-					color: ${({ theme }) => theme.primaryColor};
-				}
-				.arrow-icon.red {
-					color: ${({ theme }) => theme.error};
+					.arrow-icon {
+						font-size: 1.2rem;
+					}
+					.arrow-icon.green {
+						color: ${({ theme }) => theme.primaryColor};
+					}
+					.arrow-icon.red {
+						color: ${({ theme }) => theme.error};
+					}
 				}
 			}
 		}
