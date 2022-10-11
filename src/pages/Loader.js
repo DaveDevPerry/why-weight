@@ -49,9 +49,15 @@ const Loader = () => {
 				}
 			);
 			const json = await response.json();
+			log(json, 'json weights loader');
+			// const sortedWeights = json.sort((a, b) => {
+			// 	return new Date(b.createdAt) - new Date(a.createdAt);
+			// });
+			// log(sortedWeights, 'sorted weights loader');
 			if (response.ok) {
 				dispatch({
 					type: 'SET_WEIGHTS',
+					// payload: sortedWeights,
 					payload: json,
 				});
 			}

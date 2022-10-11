@@ -26,8 +26,8 @@ export const AuthContextProvider = ({ children }) => {
 		log(user, 'user auth context use effect');
 
 		if (user) {
-			localStorage.removeItem('user-why-weight');
-			// dispatch({ type: 'LOGIN', payload: user });
+			// localStorage.removeItem('user-why-weight');
+			dispatch({ type: 'LOGIN', payload: user });
 		}
 	}, []);
 
