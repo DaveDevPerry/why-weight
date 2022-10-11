@@ -39,13 +39,17 @@ const ParticipantWeightsList = ({ weights }) => {
 			<div className='weights-list'>
 				{weights &&
 					participantTestWeights &&
-					weights.map((weight, index) => (
-						<ParticipantWeightDetails
-							key={weight._id}
-							weight={weight}
-							difference={participantTestWeights[index]}
-						/>
-					))}
+					weights
+						.sort((a, b) => {
+							return new Date(b.createdAt) - new Date(a.createdAt);
+						})
+						.map((weight, index) => (
+							<ParticipantWeightDetails
+								key={weight._id}
+								weight={weight}
+								difference={participantTestWeights[index]}
+							/>
+						))}
 			</div>
 			{/* <div className='weights-list'>
 				{weights &&

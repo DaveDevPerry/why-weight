@@ -8,10 +8,11 @@ export const weightsReducer = (state, action) => {
 		case 'SET_WEIGHTS':
 			log(action.payload, 'set weights');
 			const sortedWeights =
-				null ||
-				action.payload.sort((a, b) => {
-					return new Date(b.createdAt) - new Date(a.createdAt);
-				});
+				action.payload === null
+					? null
+					: action.payload.sort((a, b) => {
+							return new Date(a.createdAt) - new Date(b.createdAt);
+					  });
 			log(sortedWeights, 'sorted weights context set weights');
 			return {
 				weights: sortedWeights,

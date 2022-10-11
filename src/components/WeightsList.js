@@ -5,9 +5,11 @@ import styled from 'styled-components';
 import { log } from '../helper';
 import WeightDetails from './WeightDetails';
 import { FaUsers } from 'react-icons/fa';
+import { useWeightsContext } from '../hooks/useWeightsContext';
 
-const WeightsList = ({ weights }) => {
+const WeightsList = () => {
 	const [testWeights, setTestWeights] = useState('');
+	const { weights } = useWeightsContext();
 	// const weightDiffs = [];
 	useEffect(() => {
 		const clonedWeights = [...weights];
@@ -24,7 +26,7 @@ const WeightsList = ({ weights }) => {
 		setTestWeights(weightDiffs);
 		log(clonedWeights, 'cloned');
 		log(weightDiffs, 'weight diffs');
-	}, [weights]);
+	}, []);
 	return (
 		<StyledWeightsList className='weight-list-container'>
 			{/* <p className='weights-list-header'>Recorded weigh-ins</p> */}
@@ -39,13 +41,17 @@ const WeightsList = ({ weights }) => {
 				<div className='weights-list'>
 					{weights &&
 						testWeights &&
-						weights.map((weight, index) => (
-							<WeightDetails
-								key={weight._id}
-								weight={weight}
-								difference={testWeights[index]}
-							/>
-						))}
+						weights
+							.sort((a, b) => {
+								return new Date(b.createdAt) - new Date(a.createdAt);
+							})
+							.map((weight, index) => (
+								<WeightDetails
+									key={weight._id}
+									weight={weight}
+									difference={testWeights[index]}
+								/>
+							))}
 				</div>
 			</div>
 			{/* <div className='weights-list'>

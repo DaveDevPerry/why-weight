@@ -85,43 +85,77 @@ const Settings = ({ themeToggler, theme }) => {
 	log(targets, 'targets');
 	return (
 		<StyledSettings
-			className='settings-page br'
+			className='settings-page'
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<h3>
-				User settings
-				<CgCloseR className='close-icon' onClick={handleClose} />
-			</h3>
+			<div className='wrapper br'>
+				<h3>
+					User settings
+					<CgCloseR className='close-icon' onClick={handleClose} />
+				</h3>
 
-			<Toggle toggleTheme={themeToggler} theme={theme} />
-			<Navbar targets={targets} />
-			{!targets && <TargetForm />}
-			{!user.first_name && <UserForm />}
-			{/* {targets && targets.length === 0 && <TargetForm />} */}
-			{/* <UserForm /> */}
+				<Toggle toggleTheme={themeToggler} theme={theme} />
+				<Navbar targets={targets} />
+				{!targets && <TargetForm />}
+				{!user.first_name && <UserForm />}
+				{/* {targets && targets.length === 0 && <TargetForm />} */}
+				{/* <UserForm /> */}
 
-			<a href='https://www.daveperry.tech' className='developer-link'>
-				developed by © daveperry.tech 2022
-			</a>
+				<a href='https://www.daveperry.tech' className='developer-link'>
+					developed by © daveperry.tech 2022
+				</a>
+			</div>
 		</StyledSettings>
 	);
 };
 const StyledSettings = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
+	row-gap: 1rem;
+	/* justify-content: flex-start; */
+	/* overflow-y: auto; */
+	/* overflow-y: hidden; */
+	flex: 1;
+	/* overflow-y: auto; */
+	/* border: 2px solid red; */
+	/* padding: 0.5rem; */
+	max-width: 100rem;
+	/* max-width: 42rem; */
+	/* border: 2px solid blue; */
+	padding: 0.5rem 1rem;
+	overflow: hidden;
+	z-index: 1;
+	/* overflow-y: auto; */
+	transition: all 200ms linear;
+	margin: 0 auto;
+	/* display: flex;
+	flex-direction: column;
 	justify-content: space-between;
 	row-gap: 1rem;
 	padding: 2rem;
 	background: ${({ theme }) => theme.white};
-	/* border-radius: 4px; */
-	/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 	transition: all 200ms linear;
 	flex: 1;
 	height: --webkit-fill-available;
 	transition: all 200ms linear;
-	margin: 0 auto;
+	margin: 0 auto; */
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		row-gap: 1rem;
+		padding: 2rem;
+		background: ${({ theme }) => theme.white};
+		/* border-radius: 4px; */
+		/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
+		transition: all 200ms linear;
+		flex: 1;
+		/* height: --webkit-fill-available; */
+		transition: all 200ms linear;
+		/* margin: 0 auto; */
+	}
 	h3 {
 		text-align: center;
 		position: relative;

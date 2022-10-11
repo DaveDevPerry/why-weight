@@ -25,6 +25,8 @@ export const useLogout = () => {
 		targetsDispatch({ type: 'SET_TARGETS', payload: null });
 		groupsDispatch({ type: 'SET_GROUP', payload: null });
 		groupsDispatch({ type: 'SET_GROUPS', payload: null });
+		groupsDispatch({ type: 'SET_PARTICIPANTS', payload: null });
+		groupsDispatch({ type: 'SET_PARTICIPANT', payload: null });
 		userDispatch({ type: 'SET_USER', payload: null });
 		setGroupToView(null);
 	};

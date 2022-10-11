@@ -232,7 +232,7 @@ const Participant = () => {
 const StyledParticipant = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
-	row-gap: 1rem;
+	row-gap: 0.5rem;
 	/* padding: 0.5rem; */
 	max-width: 100rem;
 	padding: 0.5rem 1rem;
@@ -275,7 +275,7 @@ const StyledParticipant = styled(motion.div)`
 		align-items: center;
 		flex-direction: column;
 		/* flex: 1; */
-		padding: 1rem;
+		padding: 0.5rem 1rem;
 		h3 {
 			color: ${({ theme }) => theme.secondaryColor};
 			font-size: 2rem;

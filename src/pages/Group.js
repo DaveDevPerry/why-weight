@@ -147,7 +147,7 @@ const Group = () => {
 
 	return (
 		<StyledGroup
-			className='band-page'
+			className='group-page'
 			initial={{ width: 0 }}
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
@@ -266,6 +266,25 @@ const StyledGroup = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
 	row-gap: 1rem;
+	/* justify-content: flex-start; */
+	/* overflow-y: auto; */
+	/* overflow-y: hidden; */
+	flex: 1;
+	/* overflow-y: auto; */
+	/* border: 2px solid red; */
+	padding: 0.5rem;
+	max-width: 100rem;
+	/* max-width: 42rem; */
+	/* border: 2px solid blue; */
+	padding: 0 1rem;
+	overflow: hidden;
+	z-index: 1;
+	/* overflow-y: auto; */
+	transition: all 200ms linear;
+	margin: 0 auto;
+	/* display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
 	flex: 1;
 	max-width: 42rem;
 	padding: 0.5rem;
@@ -277,14 +296,13 @@ const StyledGroup = styled(motion.div)`
 	scrollbar-width: normal;
 	scrollbar-color: ${({ theme }) => theme.primaryColor};
 	::-webkit-scrollbar {
-		/* height: 12px !important; */
 		width: 5px;
 		background: rgb(75, 74, 74);
-		user-select: none; /* supported by Chrome and Opera */
-		-webkit-user-select: none; /* Safari */
-		-khtml-user-select: none; /* Konqueror HTML */
-		-moz-user-select: none; /* Firefox */
-		-ms-user-select: none; /* Internet Explorer/Edge */
+		user-select: none; 
+		-webkit-user-select: none; 
+		-khtml-user-select: none; 
+		-moz-user-select: none;
+		-ms-user-select: none; 
 	}
 	::-webkit-scrollbar-thumb {
 		background-color: ${({ theme }) => theme.primaryColor};
@@ -293,7 +311,7 @@ const StyledGroup = styled(motion.div)`
 	}
 	::-webkit-scrollbar-corner {
 		background: rgb(75, 74, 74);
-	}
+	} */
 	.full-header {
 		background: ${({ theme }) => theme.white};
 		/* border-radius: 4px; */
