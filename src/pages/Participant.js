@@ -240,6 +240,7 @@ const StyledParticipant = styled(motion.div)`
 	z-index: 1;
 	transition: all 200ms linear;
 	margin: 0 auto;
+	flex: 1;
 	/* flex: 1;
 	max-width: 42rem;
 	padding: 0.5rem;

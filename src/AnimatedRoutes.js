@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
+// import AuthVerify from './common/AuthVerify';
+
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -13,6 +15,7 @@ import Group from './pages/Group';
 import SignupGroup from './pages/SignupGroup';
 import LoginGroup from './pages/LoginGroup';
 import Participant from './pages/Participant';
+// import { useLogout } from './hooks/useLogout';
 // import GroupsFullDetails from './pages/[slug]';
 // import CreateGroup from './pages/CreateGroup';
 // import JoinGroup from './pages/JoinGroup';
@@ -20,6 +23,7 @@ import Participant from './pages/Participant';
 // import GroupsFullDetails from './pages/groups/[slug]';
 
 const AnimatedRoutes = ({ user, themeToggler, theme }) => {
+	// const { logout } = useLogout();
 	// const tempGroupID = '62f5817cdb2d716e19dfaba7';
 	const [currentFormOpen, setCurrentFormOpen] = useState('');
 
@@ -163,6 +167,8 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 						}
 					/> */}
 			</Routes>
+			{/* <AuthVerify /> */}
+			{/* <AuthVerify logout={logout} /> */}
 		</AnimatePresence>
 	);
 };

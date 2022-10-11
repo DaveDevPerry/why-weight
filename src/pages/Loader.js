@@ -9,6 +9,7 @@ import { useGroupsContext } from '../hooks/useGroupsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import { log } from '../helper';
 import { useStateContext } from '../lib/context';
+import AuthVerify from '../common/AuthVerify';
 // import {
 // 	differenceInCalendarDays,
 // 	isMonday,
@@ -210,6 +211,7 @@ const Loader = () => {
 					<div className='pad'></div>
 				</div>
 			</div> */}
+			<AuthVerify />
 		</StyledLoader>
 	);
 };
