@@ -137,19 +137,19 @@ const StyledWeights = styled(motion.div)`
 	flex-direction: column;
 	row-gap: 1rem;
 	/* justify-content: flex-start; */
-	/* overflow-y: auto; */
 	/* overflow-y: hidden; */
-	/* flex: 1;
-	overflow-y: auto; */
+	/* overflow-y: hidden; */
+	flex: 1;
+	/* overflow-y: auto; */
 	/* border: 2px solid red; */
 	padding: 0.5rem;
 	max-width: 100rem;
 	/* max-width: 42rem; */
 	/* border: 2px solid blue; */
 	padding: 0 1rem;
-	overflow: hidden;
+	/* overflow: hidden; */
 	z-index: 1;
-	/* overflow-y: auto; */
+	overflow-y: auto;
 	transition: all 200ms linear;
 	margin: 0 auto;
 	/* background-color: rgba(0, 0, 0, 0.4); */

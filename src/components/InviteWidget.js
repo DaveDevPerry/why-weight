@@ -123,7 +123,8 @@ const StyledInviteWidget = styled.div`
 		justify-content: space-between;
 		letter-spacing: 2px;
 		font-size: 1.6rem;
-		padding: 1rem 2rem;
+		padding: 0.5rem 1rem;
+		/* padding: 1rem 2rem; */
 		background-color: ${({ theme }) => theme.white};
 		border: none;
 		border-radius: 5px;

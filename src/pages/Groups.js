@@ -118,11 +118,21 @@ const StyledGroups = styled(motion.div)`
 	flex-direction: column;
 	row-gap: 1rem;
 	/* justify-content: flex-start; */
-	/* overflow-y: auto; */
+	/* overflow-y: hidden; */
 	/* overflow-y: hidden; */
 	flex: 1;
 	/* overflow-y: auto; */
 	/* border: 2px solid red; */
+	/* padding: 0.5rem; */
+	max-width: 100rem;
+	/* max-width: 42rem; */
+	/* border: 2px solid blue; */
+	padding: 0.5rem 1rem;
+	/* overflow: hidden; */
+	z-index: 1;
+	overflow-y: auto;
+	transition: all 200ms linear;
+	margin: 0 auto;
 `;
 
 export default Groups;

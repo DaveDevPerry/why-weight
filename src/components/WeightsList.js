@@ -76,12 +76,15 @@ const WeightsList = () => {
 };
 const StyledWeightsList = styled.div`
 	overflow-y: auto;
-	flex: 1;
+	/* flex: 1; */
+	display: flex;
+	flex-direction: column;
+	/* border: 1px solid green; */
 	.weight-history-list-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 0rem;
+		padding: 0 0.5rem;
 		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
 		margin-bottom: 0.5rem;
 		p {
@@ -104,14 +107,17 @@ const StyledWeightsList = styled.div`
 		}
 	}
 	.weights-list-container {
-		overflow-y: auto;
-		flex: 1;
+		/* overflow-y: auto; */
+		/* flex: 1; */
+		overflow-y: scroll;
+		/* border: 1px solid; */
+		scroll-behavior: smooth;
 		.weights-list {
 			display: flex;
 			flex-direction: column;
-			flex: 1;
+			/* flex: 1; */
 			row-gap: 0.3rem;
-			overflow-y: scroll;
+			/* overflow-y: scroll; */
 		}
 	}
 	/* .weights-list {

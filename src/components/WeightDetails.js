@@ -36,9 +36,11 @@ const WeightDetails = ({ weight, difference }) => {
 		<StyledWeightDetails className='weight-details'>
 			<div className='full'>
 				<p>
-					<strong>{format(new Date(weight.createdAt), 'dd/MM/yyyy')}</strong>
+					<strong className='mono-font'>
+						{format(new Date(weight.createdAt), 'dd/MM/yyyy')}
+					</strong>
 				</p>
-				<p>
+				<p className='font-italic'>
 					{formatDistanceToNow(new Date(weight.createdAt), { addSuffix: true })}
 				</p>
 			</div>
@@ -76,10 +78,13 @@ const WeightDetails = ({ weight, difference }) => {
 			{/* <h4>{weight.load}</h4> */}
 			<div className='weight-figures'>
 				<p>
-					<strong>{weight.load.toFixed(2)} Kgs</strong>
+					<strong className='mono-font'>{weight.load.toFixed(2)}</strong> Kgs
 				</p>
 				<p>
-					<strong>{(weight.load * 2.20462).toFixed(2)} Lbs</strong>
+					<strong className='mono-font'>
+						{(weight.load * 2.20462).toFixed(2)}
+					</strong>{' '}
+					Lbs
 				</p>
 			</div>
 			{/* <p>
@@ -99,7 +104,8 @@ const StyledWeightDetails = styled.div`
 	background: ${({ theme }) => theme.white};
 	border-radius: 4px;
 	/* margin: 0.5rem 0; */
-	padding: 0.5rem 1rem;
+	padding: 0.2rem 0.5rem;
+	/* padding: 0.5rem 1rem; */
 	/* position: relative; */
 	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05);
 	display: flex;
@@ -108,6 +114,9 @@ const StyledWeightDetails = styled.div`
 	column-gap: 1rem;
 	.full {
 		flex: 1;
+		.font-italic {
+			font-style: italic;
+		}
 	}
 	p {
 		margin: 0;
@@ -164,7 +173,8 @@ const StyledWeightDetails = styled.div`
 			} */
 	}
 	.weight-figures {
-		width: 8rem;
+		width: 7.5rem;
+		text-align: left;
 	}
 `;
 

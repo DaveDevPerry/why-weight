@@ -86,7 +86,7 @@ const StyledGroupFormChoiceLinks = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	column-gap: 1rem;
-	padding: 0.5rem;
+	/* padding: 0.5rem; */
 	a {
 		flex: 1;
 		button {
