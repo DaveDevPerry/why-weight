@@ -55,27 +55,7 @@ const WeightDetails = ({ weight, difference }) => {
 					{difference == 0 && <CgLoadbar className='arrow-icon gold' />}
 				</div>
 			)}
-			{/* <div className='wrapper-icon'>
-				<div>
-					<p className='figure'>{difference}</p>
-					<p className='figure'>{(difference * 2.20462).toFixed(2)}</p>
-				</div>
-				{difference > 0 && <ImArrowUp className='arrow-icon red' />}
-				{difference < 0 && <ImArrowDown className='arrow-icon green' />}
-			</div> */}
-			{/* <div className='wrapper-icon'>
-				<p className='figure'>
-					{difference}
-				</p>
-				{difference > 0 && <ImArrowUp className='arrow-icon red' />}
-				{difference < 0 && <ImArrowDown className='arrow-icon green' />}
-				<p className='figure'>
-					{(difference * 2.20462).toFixed(2)}
-				</p>
-			</div> */}
 
-			{/* <h4>{format(new Date(weight.createdAt), 'dd/MM/yyyy')}</h4> */}
-			{/* <h4>{weight.load}</h4> */}
 			<div className='weight-figures'>
 				<p>
 					<strong className='mono-font'>{weight.load.toFixed(2)}</strong> Kgs
@@ -87,16 +67,6 @@ const WeightDetails = ({ weight, difference }) => {
 					Lbs
 				</p>
 			</div>
-			{/* <p>
-				<strong>Reps: </strong>
-				{workout.reps}
-			</p> */}
-			{/* <p>
-				{formatDistanceToNow(new Date(weight.createdAt), { addSuffix: true })}
-			</p> */}
-			{/* <span className='material-symbols-outlined' onClick={handleClick}>
-				delete
-			</span> */}
 		</StyledWeightDetails>
 	);
 };

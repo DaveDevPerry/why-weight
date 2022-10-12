@@ -59,9 +59,9 @@ const LoginGroup = () => {
 			exit={{ x: window.innerWidth }}
 		>
 			<form onSubmit={handleSubmit} className='login br'>
-				<h3>Log in</h3>
+				<h3>Join a group</h3>
 				<div>
-					<label>title:</label>
+					<label>group name:</label>
 					<input
 						type='text'
 						onChange={(e) => setTitle(e.target.value)}
@@ -70,7 +70,7 @@ const LoginGroup = () => {
 					/>
 				</div>
 				<div>
-					<label>pin:</label>
+					<label>group pin:</label>
 					<input
 						type='password'
 						onChange={(e) => setPin(e.target.value)}
@@ -78,7 +78,7 @@ const LoginGroup = () => {
 						autoComplete='current-pin'
 					/>
 				</div>
-				<button disabled={isLoading}>Log in</button>
+				<button disabled={isLoading}>Join group</button>
 				{error && <div className='error'>{error}</div>}
 			</form>
 
@@ -91,8 +91,20 @@ const LoginGroup = () => {
 const StyledLogin = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
-	row-gap: 2rem;
-	padding: 0.5rem;
+	row-gap: 1rem;
+	/* padding: 0.5rem; */
+	padding: 0.5rem 1rem;
+	max-width: 100rem;
+	/* max-width: 42rem; */
+	/* border: 2px solid blue; */
+	/* padding: 0 1rem; */
+	/* overflow-y: scroll; */
+	/* overflow: hidden; */
+	z-index: 1;
+	/* overflow-y: auto; */
+	transition: all 200ms linear;
+	margin: 0 auto;
+	flex: 1;
 	.login {
 		display: flex;
 		flex-direction: column;

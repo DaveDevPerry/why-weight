@@ -381,12 +381,14 @@ const StyledHome = styled(motion.div)`
 	/* max-width: 42rem; */
 	/* border: 2px solid blue; */
 	padding: 0.5rem 1rem;
-	overflow-y: scroll;
+	overflow-y: auto;
+	/* overflow-y: scroll; */
 	/* overflow: hidden; */
 	z-index: 1;
 	/* overflow-y: auto; */
 	transition: all 200ms linear;
 	margin: 0 auto;
+	flex: 1;
 	/* background-color: rgba(0, 0, 0, 0.4); */
 	/* background-color: rgba(241, 241, 241, 0.9); */
 	scroll-behavior: smooth;

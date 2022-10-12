@@ -21,6 +21,7 @@ const GroupsList = ({ groups }) => {
 const StyledGroupsList = styled.div`
 	/* overflow-y: auto; */
 	flex: 1;
+	/* padding: 0.5rem; */
 	p.groups-list-header {
 		padding: 0 1rem;
 		border-bottom: 1px solid ${({ theme }) => theme.txtGrey};
@@ -36,7 +37,7 @@ const StyledGroupsList = styled.div`
 		padding: 0.5rem;
 		/* overflow-y: auto; */
 		/* overflow-y: hidden; */
-		overflow-y: scroll;
+		overflow-y: auto;
 	}
 `;
 

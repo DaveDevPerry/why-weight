@@ -254,6 +254,7 @@ const StyledGroups = styled(motion.div)`
 	row-gap: 1rem;
 	/* border: 2px solid green; */
 	height: -webkit-fill-available;
+	flex: 1;
 	/* justify-content: flex-start; */
 	/* overflow-y: auto; */
 	/* overflow-y: hidden; */

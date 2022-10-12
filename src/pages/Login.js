@@ -81,7 +81,7 @@ const StyledLogin = styled(motion.div)`
 	/* max-width: 42rem; */
 	/* border: 2px solid blue; */
 	/* padding: 0 1rem; */
-	overflow-y: scroll;
+	/* overflow-y: scroll; */
 	/* overflow: hidden; */
 	z-index: 1;
 	/* overflow-y: auto; */

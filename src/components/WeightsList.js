@@ -109,7 +109,7 @@ const StyledWeightsList = styled.div`
 	.weights-list-container {
 		/* overflow-y: auto; */
 		/* flex: 1; */
-		overflow-y: scroll;
+		overflow-y: auto;
 		/* border: 1px solid; */
 		scroll-behavior: smooth;
 		.weights-list {

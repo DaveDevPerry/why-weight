@@ -36,7 +36,7 @@ const StyledParticipantWeightUnitsWidget = styled.div`
 	justify-content: space-evenly;
 	/* flex: 1; */
 	column-gap: 1rem;
-	padding: 0.5rem;
+	/* padding: 0.5rem; */
 	.wrapper {
 		background: ${({ theme }) => theme.white};
 		border-radius: 4px;

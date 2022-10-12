@@ -212,7 +212,19 @@ const Participant = () => {
 			)} */}
 			{/* {group && group && <GroupParticipantsList group={group && group} />} */}
 
-			{isMobile ? (
+			{isMobile && (
+				<>
+					{group && group.chairperson_user_id._id === user.userId ? (
+						<NudgeParticipantWidget participant={participant} />
+					) : (
+						<p className='dev-red br'>
+							note for developers - user !chairperson so invite widget not
+							displayed
+						</p>
+					)}
+				</>
+			)}
+			{/* {isMobile ? (
 				<>
 					{group && group.chairperson_user_id._id === user.userId ? (
 						<NudgeParticipantWidget participant={participant} />
@@ -225,14 +237,14 @@ const Participant = () => {
 				</>
 			) : (
 				<p>not a mobile device</p>
-			)}
+			)} */}
 		</StyledParticipant>
 	);
 };
 const StyledParticipant = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
-	row-gap: 0.5rem;
+	row-gap: 1rem;
 	/* padding: 0.5rem; */
 	max-width: 100rem;
 	padding: 0.5rem 1rem;

@@ -49,7 +49,7 @@ const StyledProgressBarWidget = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	flex: 1;
+	/* flex: 1; */
 	row-gap: 0.3rem;
 	/* padding: 0 1rem; */
 	p {

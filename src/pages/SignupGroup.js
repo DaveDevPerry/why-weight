@@ -152,7 +152,22 @@ const SignupGroup = () => {
 	);
 };
 const StyledSignupGroup = styled(motion.div)`
-	padding: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	row-gap: 1rem;
+	/* padding: 0.5rem; */
+	padding: 0.5rem 1rem;
+	max-width: 100rem;
+	/* max-width: 42rem; */
+	/* border: 2px solid blue; */
+	/* padding: 0 1rem; */
+	/* overflow-y: scroll; */
+	/* overflow: hidden; */
+	z-index: 1;
+	/* overflow-y: auto; */
+	transition: all 200ms linear;
+	margin: 0 auto;
+	flex: 1;
 	.signup {
 		display: flex;
 		flex-direction: column;

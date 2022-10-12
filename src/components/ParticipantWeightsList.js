@@ -36,20 +36,22 @@ const ParticipantWeightsList = ({ weights }) => {
 					{weights && weights.length}
 				</div>
 			</div>
-			<div className='weights-list'>
-				{weights &&
-					participantTestWeights &&
-					weights
-						.sort((a, b) => {
-							return new Date(b.createdAt) - new Date(a.createdAt);
-						})
-						.map((weight, index) => (
-							<ParticipantWeightDetails
-								key={weight._id}
-								weight={weight}
-								difference={participantTestWeights[index]}
-							/>
-						))}
+			<div className='weights-list-container'>
+				<div className='weights-list'>
+					{weights &&
+						participantTestWeights &&
+						weights
+							.sort((a, b) => {
+								return new Date(b.createdAt) - new Date(a.createdAt);
+							})
+							.map((weight, index) => (
+								<ParticipantWeightDetails
+									key={weight._id}
+									weight={weight}
+									difference={participantTestWeights[index]}
+								/>
+							))}
+				</div>
 			</div>
 			{/* <div className='weights-list'>
 				{weights &&
@@ -62,12 +64,14 @@ const ParticipantWeightsList = ({ weights }) => {
 };
 const StyledParticipantWeightsList = styled.div`
 	overflow-y: auto;
-	flex: 1;
+	/* flex: 1; */
+	display: flex;
+	flex-direction: column;
 	.weight-history-list-header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: 0rem;
+		padding: 0 0.5rem;
 		border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
 		margin-bottom: 0.5rem;
 		p {
@@ -89,21 +93,26 @@ const StyledParticipantWeightsList = styled.div`
 			}
 		}
 	}
+	.weights-list-container {
+		/* overflow-y: auto; */
+		/* flex: 1; */
+		overflow-y: auto;
+		/* border: 1px solid; */
+		scroll-behavior: smooth;
+		.weights-list {
+			display: flex;
+			flex-direction: column;
+			/* flex: 1; */
+			row-gap: 0.3rem;
+			/* overflow-y: scroll; */
+		}
+	}
 	/* p.weights-list-header {
 		padding: 0 1rem;
 		border-bottom: 1px solid ${({ theme }) => theme.txtGrey};
 		margin-bottom: 0.5rem;
 		font-size: 0.9em;
 	} */
-	.weights-list {
-		display: flex;
-		flex-direction: column;
-		flex: 1;
-		row-gap: 0.3rem;
-		/* overflow-y: auto; */
-		/* overflow-y: hidden; */
-		overflow-y: scroll;
-	}
 `;
 
 export default ParticipantWeightsList;
