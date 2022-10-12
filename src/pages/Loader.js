@@ -200,7 +200,7 @@ const Loader = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			<h1>Why Wait?</h1>
+			<h1>Why Weight?</h1>
 			<IoScale className='nav-icon' />
 			<p>© daveperry.tech 2022</p>
 			{/* <div className='scale-wrapper'>

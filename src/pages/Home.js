@@ -323,7 +323,14 @@ const Home = () => {
 							/>
 						))}
 
-					{isMobile ? (
+					{isMobile && (
+						<>
+							{targets && weights && weights.length > 1 && (
+								<ShareWidget targets={targets} weights={weights} />
+							)}
+						</>
+					)}
+					{/* {isMobile ? (
 						<>
 							{targets && weights && weights.length > 1 && (
 								<ShareWidget targets={targets} weights={weights} />
@@ -331,7 +338,7 @@ const Home = () => {
 						</>
 					) : (
 						<p>not a mobile device</p>
-					)}
+					)} */}
 
 					{/* {targets && weights && weights.length > 1 && (
 						<ShareWidget targets={targets} weights={weights} />

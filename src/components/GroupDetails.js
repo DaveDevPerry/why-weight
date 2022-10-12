@@ -42,7 +42,7 @@ const GroupDetails = ({ group }) => {
 
 	return (
 		<StyledGroupDetails
-			className='group-details br'
+			className='group-details'
 			onClick={(e) => {
 				e.preventDefault();
 				log(group.title, 'group on click');
@@ -96,11 +96,11 @@ const GroupDetails = ({ group }) => {
 };
 const StyledGroupDetails = styled.div`
 	background: ${({ theme }) => theme.white};
-	/* border-radius: 4px; */
+	border-radius: 4px;
 	/* margin: 0.5rem 0; */
 	padding: 0.5rem 1rem;
 	/* position: relative; */
-	/* box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.5); */
+	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.5);
 	display: flex;
 	justify-content: flex-start;
 	/* align-items: flex-start; */
