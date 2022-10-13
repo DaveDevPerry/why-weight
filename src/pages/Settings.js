@@ -120,7 +120,8 @@ const Settings = ({ themeToggler, theme }) => {
 				</h3>
 
 				<Navbar targets={targets} />
-				<TargetWidget targets={targets} />
+
+				{targets && targets.length === 1 && <TargetWidget targets={targets} />}
 				<UserPreferences toggleTheme={themeToggler} theme={theme} />
 				{/* <Toggle toggleTheme={themeToggler} theme={theme} />
 				<UserDefaultMeasurementUnit theme={theme} /> */}

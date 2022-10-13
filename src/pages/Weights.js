@@ -105,9 +105,12 @@ const Weights = () => {
 			{weights && weights.length > 0 ? (
 				<>
 					{' '}
-					{weights && weights.length >= 1 && (
+					{weights && weights.length >= 1 && reminderData.days !== null && (
 						<NextWeighInReminderWidget reminderData={reminderData} />
 					)}
+					{/* {weights && weights.length >= 1 && (
+						<NextWeighInReminderWidget reminderData={reminderData} />
+					)} */}
 					<WeightUnitsWidget weights={weights} />
 					{targets &&
 						weights &&

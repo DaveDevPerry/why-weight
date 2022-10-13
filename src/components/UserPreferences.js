@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import Toggle from './Toggler';
 import UserDefaultMeasurementUnit from './UserDefaultMeasurementUnit';
 
-const UserPreferences = ({ theme, themeToggler }) => {
+const UserPreferences = ({ theme, toggleTheme }) => {
 	return (
 		<StyledUserPreferences>
 			<h5 className='sub-heading'>preferences</h5>
 
-			<Toggle toggleTheme={themeToggler} theme={theme} />
+			<Toggle toggleTheme={toggleTheme} theme={theme} />
 			<UserDefaultMeasurementUnit theme={theme} />
 		</StyledUserPreferences>
 	);

@@ -19,6 +19,9 @@ const GroupParticipantDetails = ({ participant, difference }) => {
 	const { setParticipantToView } = useStateContext();
 	// const { participants } = useGroupsContext();
 
+	log(participant, 'participant');
+	log(participant.weightMovement, 'participant weight movement');
+
 	return (
 		<StyledGroupParticipantDetails
 			className='group-participant-details'
@@ -43,24 +46,10 @@ const GroupParticipantDetails = ({ participant, difference }) => {
 							{ addSuffix: true }
 						)}
 					</p>
-					{/* <span className='mono-font'>
-										{format(
-											new Date(
-												participant.weights[
-													participant.weights.length - 1
-												].createdAt
-											),
-											'dd/MM'
-										)}
-									</span> */}
 				</div>
 
-				{participant.weightMovement && (
+				{participant.weightMovement && participant.weights.length > 1 ? (
 					<div className='wrapper-icon'>
-						{/* <div>
-						<p className='figure'>{difference}</p>
-						<p className='figure'>{(difference * 2.20462).toFixed(2)}</p>
-					</div> */}
 						{participant.weightMovement.toFixed(2) < 0 && (
 							<ImArrowUp className='arrow-icon red' />
 						)}
@@ -71,68 +60,44 @@ const GroupParticipantDetails = ({ participant, difference }) => {
 							<CgLoadbar className='arrow-icon gold' />
 						)}
 					</div>
+				) : (
+					<div className='wrapper-icon'>
+						<CgLoadbar className='arrow-icon gold' />
+					</div>
 				)}
 
-				<div className='weight-figures'>
-					<p>
-						<strong className='mono-font'>
-							{participant.weightMovement.toFixed(2)}
-						</strong>{' '}
-						Kgs
-					</p>
-					<p>
-						<strong className='mono-font'>
-							{(participant.weightMovement * 2.20462).toFixed(2)}
-						</strong>{' '}
-						Lbs
-					</p>
-				</div>
-
-				{/* <span className='arrow-wrapper'>
-										{participant.weightMovement.toFixed(2) < 0 && (
-											<ImArrowUp className='arrow-icon red' />
-										)}
-										{participant.weightMovement.toFixed(2) > 0 && (
-											<ImArrowDown className='arrow-icon green' />
-										)}
-										{participant.weightMovement.toFixed(2) == 0 && (
-											<CgLoadbar className='arrow-icon gold' />
-										)}
-									</span> */}
-			</div>
-			{/* <div className='full'>
-				<p>
-					<strong className='mono-font'>
-						{format(new Date(weight.createdAt), 'dd/MM/yyyy')}
-					</strong>
-				</p>
-				<p className='font-italic'>
-					{formatDistanceToNow(new Date(weight.createdAt), { addSuffix: true })}
-				</p>
-			</div>
-			{difference && (
-				<div className='wrapper-icon'>
-					<div>
-						<p className='figure'>{difference}</p>
-						<p className='figure'>{(difference * 2.20462).toFixed(2)}</p>
+				{participant.weightMovement && participant.weights.length > 1 ? (
+					<div className='weight-figures'>
+						<p>
+							<strong className='mono-font'>
+								{participant.weightMovement.toFixed(2)}
+							</strong>{' '}
+							Kgs
+						</p>
+						<p>
+							<strong className='mono-font'>
+								{(participant.weightMovement * 2.20462).toFixed(2)}
+							</strong>{' '}
+							Lbs
+						</p>
 					</div>
-					{difference > 0 && <ImArrowUp className='arrow-icon red' />}
-					{difference < 0 && <ImArrowDown className='arrow-icon green' />}
-					{difference == 0 && <CgLoadbar className='arrow-icon gold' />}
-				</div>
-			)}
-
-			<div className='weight-figures'>
-				<p>
-					<strong className='mono-font'>{weight.load.toFixed(2)}</strong> Kgs
-				</p>
-				<p>
-					<strong className='mono-font'>
-						{(weight.load * 2.20462).toFixed(2)}
-					</strong>{' '}
-					Lbs
-				</p>
-			</div> */}
+				) : (
+					<div className='weight-figures'>
+						{/* <p>
+							<strong className='mono-font'>
+								{participant.weightMovement.toFixed(2)}
+							</strong>{' '}
+							Kgs
+						</p>
+						<p>
+							<strong className='mono-font'>
+								{(participant.weightMovement * 2.20462).toFixed(2)}
+							</strong>{' '}
+							Lbs
+						</p> */}
+					</div>
+				)}
+			</div>
 		</StyledGroupParticipantDetails>
 	);
 };

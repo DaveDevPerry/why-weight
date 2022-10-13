@@ -13,7 +13,7 @@ const WeightsList = () => {
 	// const weightDiffs = [];
 	useEffect(() => {
 		const clonedWeights = [...weights];
-		// clonedWeights.reverse();
+		clonedWeights.reverse();
 		// log(clonedWeights, 'cloned reversed');
 		const weightDiffs = [];
 

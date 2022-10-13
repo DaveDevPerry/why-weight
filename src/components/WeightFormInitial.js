@@ -87,7 +87,9 @@ const WeightFormInitial = ({ isFormActive, setIsFormActive }) => {
 			</h3>
 
 			<div className='input-wrapper'>
-				<label>Weight (in kg):</label>
+				<label>
+					Weight <span>(kilograms)</span>
+				</label>
 				<input
 					type='number'
 					id='input-number'
@@ -126,7 +128,8 @@ const StyledWeightFormInitial = styled.form`
 		text-align: center;
 		margin: 0;
 		position: relative;
-		color: ${({ theme }) => theme.txtDarkGrey};
+		/* color: ${({ theme }) => theme.txtDarkGrey}; */
+		/* color: ${({ theme }) => theme.txtGrey}; */
 		.close-icon {
 			position: absolute;
 			right: 0;
@@ -145,6 +148,12 @@ const StyledWeightFormInitial = styled.form`
 			font-size: 0.9em;
 			text-align: right;
 			flex: 1;
+			span {
+				font-size: 0.9em;
+				text-align: right;
+				flex: 1;
+				color: ${({ theme }) => theme.secondaryColor};
+			}
 		}
 		#input-number {
 			padding: 0.8rem 1rem;

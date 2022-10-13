@@ -6,7 +6,7 @@ import GroupFormChoiceLinks from './GroupFormChoiceLinks';
 const NoUserGroupsWidget = ({ setCurrentFormOpen, handleFormChoice }) => {
 	// log(group, 'group');
 	return (
-		<StyledNoUserGroupsWidget>
+		<StyledNoUserGroupsWidget className='br'>
 			<h3>groups</h3>
 			<h4>
 				groups enable you and your friends to share progress and are helpful if
@@ -30,14 +30,17 @@ const NoUserGroupsWidget = ({ setCurrentFormOpen, handleFormChoice }) => {
 	);
 };
 const StyledNoUserGroupsWidget = styled.div`
-	background: ${({ theme }) => theme.white};
-	border-radius: 4px;
+	/* background: ${({ theme }) => theme.white}; */
+	/* border-radius: 4px; */
 	padding: 2rem;
-	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05);
+	/* box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05); */
 	display: flex;
 	flex-direction: column;
 	row-gap: 2rem;
 	h3 {
+		color: ${({ theme }) => theme.secondaryColor};
+		font-size: 2rem;
+		text-transform: capitalize;
 	}
 	h4 {
 	}
@@ -57,6 +60,9 @@ const StyledNoUserGroupsWidget = styled.div`
 			p {
 				/* width: 5rem; */
 				/* text-align: right; */
+			}
+			&::marker {
+				color: ${({ theme }) => theme.secondaryColor};
 			}
 		}
 	}

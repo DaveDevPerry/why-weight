@@ -6,7 +6,7 @@ import styled from 'styled-components';
 const NoUserWeightsWidget = ({ setCurrentFormOpen, handleFormChoice }) => {
 	// log(group, 'group');
 	return (
-		<StyledNoUserWeightsWidget>
+		<StyledNoUserWeightsWidget className='br'>
 			<h3>weights</h3>
 			<h4>
 				your weight data will be displayed here once you have recorded your
@@ -30,14 +30,17 @@ const NoUserWeightsWidget = ({ setCurrentFormOpen, handleFormChoice }) => {
 	);
 };
 const StyledNoUserWeightsWidget = styled.div`
-	background: ${({ theme }) => theme.white};
-	border-radius: 4px;
+	/* background: ${({ theme }) => theme.white}; */
+	/* border-radius: 4px; */
 	padding: 2rem;
-	box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05);
+	/* box-shadow: 2px 2px 0.5rem rgba(0, 0, 0, 0.05); */
 	display: flex;
 	flex-direction: column;
 	row-gap: 2rem;
 	h3 {
+		color: ${({ theme }) => theme.secondaryColor};
+		font-size: 2rem;
+		text-transform: capitalize;
 	}
 	h4 {
 	}

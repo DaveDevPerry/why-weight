@@ -135,13 +135,13 @@ const Home = () => {
 
 				setReminderData({
 					...reminderData,
-					days: `${daysToNextWeighIn} days`,
-					message: `until your next weigh in!`,
-					// message: `${daysToNextWeighIn} days until your next weigh in!`,
+					days: null,
+					message: null,
 				});
 				// setReminderData({
 				// 	...reminderData,
-				// 	message: "up to date so don't display this widget",
+				// 	days: `${daysToNextWeighIn} days`,
+				// 	message: `until your next weigh in!`,
 				// });
 			}
 		};
@@ -239,13 +239,13 @@ const Home = () => {
 		>
 			{/* <WeightForm /> */}
 			{/* <TargetForm /> */}
-			{weights && weights.length >= 1 && (
+			{weights && weights.length >= 1 && reminderData.days !== null && (
 				<NextWeighInReminderWidget reminderData={reminderData} />
 			)}
 
 			{weights && weights.length === 0 && (
-				<>
-					<br />
+				<div className='initial-card-wrapper'>
+					{/* <br /> */}
 					<p className='instruction-title'>
 						1. Enter your current weight in kilograms
 					</p>
@@ -253,19 +253,17 @@ const Home = () => {
 						isFormActive={isFormActive}
 						setIsFormActive={setIsFormActive}
 					/>
-				</>
+				</div>
 			)}
-
 			{targets && targets.length === 0 && (
-				<>
-					<br />
+				<div className='initial-card-wrapper mt'>
+					{/* <br /> */}
 					<p className='instruction-title'>
 						2. Set your initial weight loss target
 					</p>
 					<TargetForm />
-				</>
+				</div>
 			)}
-
 			{/* {weights && weights.length === 0 && (
 				<>
 					<br />
@@ -278,7 +276,6 @@ const Home = () => {
 					/>
 				</>
 			)} */}
-
 			{targets && targets.length === 1 && weights && weights.length >= 1 && (
 				<>
 					{/* {targets &&
@@ -355,7 +352,6 @@ const Home = () => {
 					)} */}
 				</>
 			)}
-
 			{/* {targets &&
 				targets.map((target) => (
 					<CountdownWidget key={target._id} target={target} />
@@ -382,6 +378,7 @@ const Home = () => {
 const StyledHome = styled(motion.div)`
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-start;
 	row-gap: 1rem;
 	/* padding: 0.5rem; */
 	max-width: 100rem;
@@ -419,9 +416,16 @@ const StyledHome = styled(motion.div)`
 	::-webkit-scrollbar-corner {
 		background: rgb(75, 74, 74);
 	}
-	.instruction-title {
-		color: ${({ theme }) => theme.secondaryColor};
-		font-weight: bold;
+	.initial-card-wrapper {
+		.instruction-title {
+			color: ${({ theme }) => theme.secondaryColor};
+			/* font-weight: bold; */
+			padding: 00.5rem;
+			/* font-size */
+		}
+		&.mt {
+			margin-top: 2rem;
+		}
 	}
 `;
 

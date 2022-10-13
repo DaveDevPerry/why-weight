@@ -56,14 +56,12 @@ const TargetForm = () => {
 	};
 
 	return (
-		<StyledForm className='create' onSubmit={handleSubmit}>
-			<h3>Set Your Targets</h3>
+		<StyledForm className='create br' onSubmit={handleSubmit}>
+			<h3>Set Your Ideal Weight</h3>
 
 			<div className='input-wrapper'>
 				<label>
-					Desired weight
-					<br />
-					(in kg):
+					Desired weight <span>(kilograms)</span>
 				</label>
 				<input
 					type='number'
@@ -85,7 +83,7 @@ const TargetForm = () => {
 				/>
 			</div>
 			<div className='input-wrapper'>
-				<label>Deadline:</label>
+				<label>Goal date:</label>
 				<input
 					type='date'
 					id='input-number'
@@ -94,7 +92,7 @@ const TargetForm = () => {
 					className={emptyFields.includes('deadline_date') ? 'error' : ''}
 				/>
 			</div>
-			<button>Add Target</button>
+			<button>Add Ideal Weight</button>
 			{error && <div className='error'>{error}</div>}
 		</StyledForm>
 	);
@@ -102,14 +100,15 @@ const TargetForm = () => {
 const StyledForm = styled.form`
 	color: ${({ theme }) => theme.txtGrey};
 	background: ${({ theme }) => theme.white};
-	border-radius: 4px;
+	/* border-radius: 4px; */
 	/* margin: 0 auto 10px auto; */
 	padding: 1rem 2rem 2rem 2rem;
-	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+	/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	row-gap: 1rem;
+
 	p.form-title {
 		padding: 0 2rem;
 		border-bottom: 1px solid ${({ theme }) => theme.txtGrey};
@@ -131,6 +130,12 @@ const StyledForm = styled.form`
 			font-size: 0.9em;
 			text-align: right;
 			flex: 1;
+			span {
+				font-size: 0.9em;
+				text-align: right;
+				flex: 1;
+				color: ${({ theme }) => theme.secondaryColor};
+			}
 		}
 		#input-number {
 			padding: 0.8rem 1rem;
