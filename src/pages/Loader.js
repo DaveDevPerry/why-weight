@@ -79,8 +79,8 @@ const Loader = () => {
 
 				setTimeout(() => {
 					navigate('/home');
-				}, 2000);
-			}, 3000);
+				}, 1000);
+			}, 2000);
 		}
 		// setTimeout(() => {
 		// 	setDataLoaded(true);
@@ -232,7 +232,7 @@ const StyledLoader = styled(motion.section)`
 	height: 100vh;
 	width: 100%;
 	height: 100%;
-	background-color: ${({ theme }) => theme.secondaryColor};
+	background-color: ${({ theme }) => theme.loader};
 	/* @include flex(center, center, column); */
 	display: flex;
 	justify-content: center;
@@ -242,15 +242,18 @@ const StyledLoader = styled(motion.section)`
 	z-index: 500;
 	h1 {
 		font-size: 2rem;
-		color: ${({ theme }) => theme.bgGrey};
+		/* color: ${({ theme }) => theme.bgGrey}; */
+		color: ${({ theme }) => theme.syntax};
 	}
 	.nav-icon {
 		font-size: 10rem;
-		color: ${({ theme }) => theme.bgGrey};
+		/* color: ${({ theme }) => theme.bgGrey}; */
+		color: ${({ theme }) => theme.syntax};
 	}
 	p {
 		font-size: 1.4rem;
-		color: ${({ theme }) => theme.bgGrey};
+		/* color: ${({ theme }) => theme.bgGrey}; */
+		color: ${({ theme }) => theme.syntax};
 	}
 
 	/* .scale-wrapper {

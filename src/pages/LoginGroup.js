@@ -7,6 +7,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { log } from '../helper';
 import toast from 'react-hot-toast';
 import { useStateContext } from '../lib/context';
+import { useLogout } from '../hooks/useLogout';
 
 const LoginGroup = () => {
 	// const navigate = useNavigate();
@@ -15,6 +16,7 @@ const LoginGroup = () => {
 	const [pin, setPin] = useState('');
 	const { login, error, isLoading } = useLoginGroup();
 	const { user } = useAuthContext();
+	const { logout } = useLogout();
 
 	const { dataLoaded } = useStateContext();
 	// const { isFormActive, setIsFormActive } = useStateContext();
@@ -36,15 +38,16 @@ const LoginGroup = () => {
 		notify(title);
 
 		setTimeout(() => {
+			logout();
 			navigate('/');
 		}, 3000);
 	};
 
 	// create a toast
 	const notify = (title) => {
-		toast.success(`you have successfully joined ${title}.`, {
+		toast.success(`you have successfully joined ${title}. Please login again`, {
 			// toast.success(`${headline_band} gig successfully added.`, {
-			duration: 3000,
+			duration: 5000,
 			style: {
 				border: '2px solid #1da000',
 			},

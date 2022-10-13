@@ -37,6 +37,7 @@ const StyledNoUserWeightsWidget = styled.div`
 	display: flex;
 	flex-direction: column;
 	row-gap: 2rem;
+	color: ${({ theme }) => theme.txtGrey};
 	h3 {
 		color: ${({ theme }) => theme.secondaryColor};
 		font-size: 2rem;

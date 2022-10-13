@@ -1,6 +1,7 @@
 export const lightTheme = {
 	primaryColor: '#1aac83',
 	secondaryColor: 'rgb(38, 151, 244)',
+	loader: 'rgb(38, 151, 244)',
 	error: '#e7195a',
 	bgError: '#ffefef',
 	white: '#ffffff',
@@ -31,6 +32,7 @@ export const darkTheme = {
 	// error: '#e71919',
 	bgError: '#ffefef',
 	white: '#000000',
+	loader: '#000000',
 	// white: '#0e0e0e',
 	// white: '#1b1a1a',
 	// white: '#212121',

@@ -118,6 +118,7 @@ const StyledLogin = styled(motion.div)`
 	}
 	p {
 		text-align: center;
+		color: ${({ theme }) => theme.txtGrey};
 		a {
 			color: ${({ theme }) => theme.secondaryColor};
 			text-decoration: none;

@@ -22,11 +22,11 @@ const InviteWidget = ({ group }) => {
 		// 	log('is mobile');
 
 		log(
-			`whatsapp://send?text=I have set up a group on Why Wait? Would you like to join? Create an account here - https://why-weight.vercel.app/signup and go to groups - join group and enter these details - GROUP NAME:${groupName}, PIN:${groupPin}.`
+			`whatsapp://send?text=I have set up a group on Why Weight? Would you like to join? Create an account here - https://why-weight.vercel.app/signup and go to groups - join group and enter these details - GROUP NAME:${groupName}, PIN:${groupPin}.`
 		);
 
 		window.open(
-			`whatsapp://send?text=I have set up a group on Why Wait? Would you like to join? Create an account here - https://why-weight.vercel.app/signup and go to groups - join group and enter these details - GROUP NAME:${groupName}, PIN:${groupPin}.`
+			`whatsapp://send?text=I have set up a group on Why Weight? Would you like to join?  - https://why-weight.vercel.app/groups/login - join group and enter these details - GROUP NAME:${groupName}, PIN:${groupPin}.`
 		);
 		// } else {
 		// 	log('is not mobile');
