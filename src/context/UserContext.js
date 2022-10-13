@@ -21,6 +21,8 @@ export const usersReducer = (state, action) => {
 			log(state, 'state, update user');
 
 			return {
+				// ...state,
+				// defaultMeasurementUnit: action.payload.defaultMeasurementUnit,
 				...action.payload,
 			};
 		// return {

@@ -13,15 +13,62 @@ const UserDefaultMeasurementUnit = ({ targets }) => {
 	// const { logout } = useLogout();
 	const { user } = useAuthContext();
 	const { active_user } = useUsersContext();
+	// const { active_user, dispatch } = useUsersContext();
+	// const { defaultUnitViewMode } =
+	// 	useStateContext();
 	const { setUnitMode, setDefaultUnitViewMode, defaultUnitViewMode } =
 		useStateContext();
 
-	const handleClick = (mode) => {
-		// logout();
+	const handleClick = async (mode) => {
 		log(mode, ' mode clicked');
 		setUnitMode(mode);
 		setDefaultUnitViewMode(mode);
+		// e.preventDefault();
+
+		if (!user) {
+			log('You must be logged in');
+			return;
+		}
+		// const newDefaultUnit = { mode };
+		// log(newDefaultUnit, 'new newDefaultUnit fields');
+		const userId = user.userId;
+
+		const response = await fetch(
+			`${process.env.REACT_APP_BACKEND_URL}/api/user/${userId}`,
+			// `${process.env.REACT_APP_BACKEND_URL}/api/user/62f2f3463d7a73511caca8c4`,
+			// `${process.env.REACT_APP_BACKEND_URL}/api/users`,
+			{
+				method: 'PATCH',
+				body: JSON.stringify({ mode }),
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${user.token}`,
+				},
+			}
+		);
+		const json = await response.json();
+		log(json, 'json after update');
+
+		if (!response.ok) {
+			log(json.error);
+			// setEmptyFields(json.emptyFields);
+		}
+		if (response.ok) {
+			// setFirst_name('');
+			// setLast_name('');
+			// setError(null);
+			// setEmptyFields([]);
+			log('new newDefaultUnit added', json);
+			// dispatch({ type: 'UPDATE_USER', payload: json });
+		}
 	};
+
+	// const handleClick = (mode) => {
+	// 	// logout();
+	// 	log(mode, ' mode clicked');
+	// 	setUnitMode(mode);
+	// 	setDefaultUnitViewMode(mode);
+	// };
 	return (
 		<StyledUserDefaultMeasurementUnit>
 			{user && active_user && (
