@@ -11,7 +11,7 @@ const TargetWidget = ({ targets }) => {
 			</h3> */}
 			<h5 className='sub-heading'>target weight</h5>
 			<ul className='target-list'>
-				{targets.length === 1 && (
+				{targets && targets.length === 1 && (
 					<>
 						<li>
 							<p>target:</p>
