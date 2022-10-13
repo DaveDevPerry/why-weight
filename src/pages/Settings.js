@@ -3,23 +3,45 @@ import { useTargetsContext } from '../hooks/useTargetsContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import Toggle from '../components/Toggler';
+// import Toggle from '../components/Toggler';
 import Navbar from '../components/Navbar';
 import TargetForm from '../components/TargetForm';
-import { CgCloseR } from 'react-icons/cg';
+// import { CgCloseR } from 'react-icons/cg';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import UserForm from '../components/UserForm';
 import { log } from '../helper';
 import { useStateContext } from '../lib/context';
-import UserDefaultMeasurementUnit from '../components/UserDefaultMeasurementUnit';
+// import UserDefaultMeasurementUnit from '../components/UserDefaultMeasurementUnit';
+import TargetWidget from '../components/TargetWidget';
 // import UserForm from '../components/UserForm';
+// import AppDetails from '../components/AppDetails';
+import toast from 'react-hot-toast';
+import { useLogout } from '../hooks/useLogout';
+import UserPreferences from '../components/UserPreferences';
 
 const Settings = ({ themeToggler, theme }) => {
+	const { logout } = useLogout();
 	const { targets, dispatch } = useTargetsContext();
 	const { user } = useAuthContext();
 	const { dataLoaded } = useStateContext();
 	// const { isFormActive, setIsFormActive } = useStateContext();
+
+	const handleClick = () => {
+		logout();
+		notify();
+	};
+
+	// create a toast
+	const notify = () => {
+		toast.success(`you are now logged out.`, {
+			// toast.success(`${headline_band} gig successfully added.`, {
+			duration: 3000,
+			style: {
+				border: '2px solid #1da000',
+			},
+		});
+	};
 
 	let navigate = useNavigate();
 	useEffect(() => {
@@ -80,9 +102,9 @@ const Settings = ({ themeToggler, theme }) => {
 	// 	}
 	// }, [dispatch, user]);
 
-	const handleClose = () => {
-		navigate('/home');
-	};
+	// const handleClose = () => {
+	// 	navigate('/home');
+	// };
 	log(targets, 'targets');
 	return (
 		<StyledSettings
@@ -93,22 +115,28 @@ const Settings = ({ themeToggler, theme }) => {
 		>
 			<div className='wrapper br'>
 				<h3>
-					User settings
-					<CgCloseR className='close-icon' onClick={handleClose} />
+					Settings
+					{/* <CgCloseR className='close-icon' onClick={handleClose} /> */}
 				</h3>
 
-				<Toggle toggleTheme={themeToggler} theme={theme} />
-				<UserDefaultMeasurementUnit theme={theme} />
 				<Navbar targets={targets} />
+				<TargetWidget targets={targets} />
+				<UserPreferences toggleTheme={themeToggler} theme={theme} />
+				{/* <Toggle toggleTheme={themeToggler} theme={theme} />
+				<UserDefaultMeasurementUnit theme={theme} /> */}
 				{!targets && <TargetForm />}
 				{!user.first_name && <UserForm />}
 				{/* {targets && targets.length === 0 && <TargetForm />} */}
 				{/* <UserForm /> */}
-
-				<a href='https://www.daveperry.tech' className='developer-link'>
+				{/* <a href='https://www.daveperry.tech' className='developer-link'>
 					developed by © daveperry.tech 2022
-				</a>
+				</a> */}
+				<div className='btn-container'>
+					<button onClick={handleClick}>Log out</button>
+				</div>
 			</div>
+			{/* <TargetWidget targets={targets} /> */}
+			{/* <AppDetails theme={theme} /> */}
 		</StyledSettings>
 	);
 };
@@ -127,7 +155,7 @@ const StyledSettings = styled(motion.div)`
 	/* max-width: 42rem; */
 	/* border: 2px solid blue; */
 	padding: 0.5rem 1rem;
-	overflow: hidden;
+	overflow-y: auto;
 	z-index: 1;
 	/* overflow-y: auto; */
 	transition: all 200ms linear;
@@ -148,7 +176,7 @@ const StyledSettings = styled(motion.div)`
 		flex-direction: column;
 		justify-content: space-between;
 		row-gap: 1rem;
-		padding: 2rem;
+		padding: 1rem 2rem;
 		background: ${({ theme }) => theme.white};
 		/* border-radius: 4px; */
 		/* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05); */
@@ -157,6 +185,26 @@ const StyledSettings = styled(motion.div)`
 		/* height: --webkit-fill-available; */
 		transition: all 200ms linear;
 		/* margin: 0 auto; */
+		.btn-container {
+			border-top: 1px solid ${({ theme }) => theme.secondaryColor};
+			margin-top: 1rem;
+			width: 100%;
+			padding: 1rem 0rem;
+			text-align: right;
+			button {
+				align-self: flex-end;
+				background: ${({ theme }) => theme.white};
+				color: ${({ theme }) => theme.secondaryColor};
+				border: 2px solid ${({ theme }) => theme.secondaryColor};
+				/* color: ${({ theme }) => theme.primaryColor};
+			border: 2px solid ${({ theme }) => theme.primaryColor}; */
+				padding: 0.3rem 0.6rem;
+				border-radius: 0.4rem;
+				font-family: 'Poppins';
+				cursor: pointer;
+				font-size: 1em;
+			}
+		}
 	}
 	h3 {
 		text-align: center;

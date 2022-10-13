@@ -152,7 +152,11 @@ const Group = () => {
 			animate={{ width: '100%' }}
 			exit={{ x: window.innerWidth }}
 		>
-			{isMobile && (
+			{isMobile && group && group.chairperson_user_id._id === user.userId && (
+				<InviteWidget group={group} />
+			)}
+
+			{/* {isMobile && (
 				<>
 					{group && group.chairperson_user_id._id === user.userId ? (
 						<InviteWidget group={group} />
@@ -163,7 +167,7 @@ const Group = () => {
 						</p>
 					)}
 				</>
-			)}
+			)} */}
 			{/* {isMobile ? (
 				<>
 					{group && group.chairperson_user_id._id === user.userId ? (

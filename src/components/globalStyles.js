@@ -101,6 +101,7 @@ input.error {
 
 .br{
   border-radius: 4px;
+  background-color:  ${({ theme }) => theme.white};
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 	${'' /* box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.5); */}
 }

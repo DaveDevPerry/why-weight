@@ -28,29 +28,9 @@ const Header = () => {
 				<Link to='/'>
 					<h1>Why Weight?</h1>
 				</Link>
-				{/* <nav>
-					{user && (
-						<div>
-							<span>{user.email}</span>
-							<button onClick={handleClick}>Log out</button>
-						</div>
-					)}
-					{!user && (
-						<div>
-							<Link to='/login'>Login</Link>
-							<Link to='/signup'>Signup</Link>
-						</div>
-					)}
-				</nav> */}
-				{/* <NavLink
-					to='/groups'
-					className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-				>
-					<RiGroup2Fill className='settings-icon' />
-				</NavLink> */}
+
 				<nav className='top-nav'>
 					<BsPlusCircleFill className='add-icon' onClick={handleClick} />
-					{/* <BsPlusCircleFill className='add-icon' onClick={handleClick} /> */}
 					<NavLink
 						to='/settings'
 						className={({ isActive }) => (isActive ? 'active' : 'inactive')}
@@ -73,7 +53,6 @@ const Header = () => {
 					</StyledWeightModel>
 				)}
 			</AnimatePresence>
-			{/* </div> */}
 		</StyledHeader>
 	);
 };

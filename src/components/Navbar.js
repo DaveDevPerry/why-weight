@@ -1,31 +1,31 @@
 import { Link } from 'react-router-dom';
-import { useLogout } from '../hooks/useLogout';
+// import { useLogout } from '../hooks/useLogout';
 import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 import { log } from '../helper';
-import toast from 'react-hot-toast';
+// import toast from 'react-hot-toast';
 
 const Navbar = ({ targets }) => {
-	const { logout } = useLogout();
+	// const { logout } = useLogout();
 	const { user } = useAuthContext();
 
-	const handleClick = () => {
-		logout();
-		notify();
-	};
+	// const handleClick = () => {
+	// 	logout();
+	// 	notify();
+	// };
 	log(user._id, ' user id in nav');
 
 	// create a toast
-	const notify = () => {
-		toast.success(`you are now logged out.`, {
-			// toast.success(`${headline_band} gig successfully added.`, {
-			duration: 3000,
-			style: {
-				border: '2px solid #1da000',
-			},
-		});
-	};
+	// const notify = () => {
+	// 	toast.success(`you are now logged out.`, {
+	// 		// toast.success(`${headline_band} gig successfully added.`, {
+	// 		duration: 3000,
+	// 		style: {
+	// 			border: '2px solid #1da000',
+	// 		},
+	// 	});
+	// };
 	return (
 		<StyledNavbar>
 			{/* <div className='container'> */}
@@ -39,6 +39,7 @@ const Navbar = ({ targets }) => {
 			{/* <nav> */}
 			{user && (
 				<div>
+					<h5 className='sub-heading'>account</h5>
 					<ul className='user-details-list'>
 						{user.first_name && user.last_name && (
 							<li>
@@ -48,34 +49,13 @@ const Navbar = ({ targets }) => {
 								</span>
 							</li>
 						)}
-						{/* {user.last_name && (
-							<li>
-								<p>last name:</p>
-								<span>{user.last_name}</span>
-							</li>
-						)} */}
-						{/* {user.first_name && (
-							<li>
-								<p>first name:</p>
-								<span>{user.first_name}</span>
-							</li>
-						)}
-						{user.last_name && (
-							<li>
-								<p>last name:</p>
-								<span>{user.last_name}</span>
-							</li>
-						)} */}
 
 						<li>
 							<p>email:</p>
 							<span>{user.email}</span>
 						</li>
-						<li>
-							<p>&nbsp;</p>
-							<span>&nbsp;</span>
-						</li>
-						{targets.length === 1 && (
+
+						{/* {targets.length === 1 && (
 							<>
 								<li>
 									<p>target:</p>
@@ -92,10 +72,10 @@ const Navbar = ({ targets }) => {
 									<span>{targets[0].deadline_reason}</span>
 								</li>
 							</>
-						)}
+						)} */}
 					</ul>
 
-					<button onClick={handleClick}>Log out</button>
+					{/* <button onClick={handleClick}>Log out</button> */}
 				</div>
 			)}
 			{!user && (
@@ -117,21 +97,28 @@ const StyledNavbar = styled.nav`
 	/* margin: 0 auto; */
 	/* padding: 0.5rem 1rem; */
 	color: ${({ theme }) => theme.txtGrey};
-	flex: 1;
+	/* flex: 1; */
 	div {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		justify-content: flex-start;
-		row-gap: 3rem;
+		/* row-gap: 0.5rem; */
+		.sub-heading {
+			color: ${({ theme }) => theme.secondaryColor};
+			border-bottom: 1px solid ${({ theme }) => theme.secondaryColor};
+			margin-bottom: 1rem;
+			width: 100%;
+		}
 		.user-details-list {
 			list-style: none;
+			font-size: 1.4rem;
 			li {
 				display: flex;
 				align-items: center;
 				column-gap: 1rem;
 				p {
-					width: 5rem;
+					width: 6rem;
 					text-align: right;
 					font-weight: bold;
 				}
@@ -161,19 +148,17 @@ const StyledNavbar = styled.nav`
 		a {
 			text-decoration: none;
 		}
-		button {
+		/* button {
 			align-self: flex-end;
 			background: ${({ theme }) => theme.white};
 			color: ${({ theme }) => theme.secondaryColor};
 			border: 2px solid ${({ theme }) => theme.secondaryColor};
-			/* color: ${({ theme }) => theme.primaryColor};
-			border: 2px solid ${({ theme }) => theme.primaryColor}; */
 			padding: 0.3rem 0.6rem;
 			border-radius: 0.4rem;
 			font-family: 'Poppins';
 			cursor: pointer;
 			font-size: 1em;
-		}
+		} */
 	}
 	/* } */
 `;

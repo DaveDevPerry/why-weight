@@ -110,14 +110,6 @@ const Participant = () => {
 		}
 	}, [participantToView, dispatch, user]);
 
-	// log(
-	// 	group && group.chairperson_user_id,
-	// 	user && user.userId,
-	// 	'check for match'
-	// );
-
-	// log(groupDetailsData, 'group details data - Group');
-
 	return (
 		<StyledParticipant
 			className='participant-page'
@@ -130,15 +122,6 @@ const Participant = () => {
 					{participant && participant.first_name}{' '}
 					{participant && participant.last_name}
 				</h3>
-				{/* <h3>{group && group.title}</h3> */}
-				{/* <p>
-					weight status: {participant && participant.weightMovement.toFixed(2)}{' '}
-					Kgs
-				</p> */}
-				{/* <p>
-					chairperson: {group && group.chairperson_user_id.first_name}{' '}
-					{group && group.chairperson_user_id.last_name}{' '}
-				</p> */}
 			</div>
 
 			<ParticipantWeightUnitsWidget
@@ -146,73 +129,23 @@ const Participant = () => {
 			/>
 
 			{participant && participant.weights && participant.weights.length > 1 && (
-				<ParticipantProgressWidget
-					// key={target._id}
-					// target={target}
-					weights={participant.weights}
-				/>
+				<ParticipantProgressWidget weights={participant.weights} />
 			)}
-			{/* {group && (
-				<div className='full-dates br'>
-					<div className='group-details-dates-container'>
-						<div className='dates-wrapper'>
-							<p className='date-text'>start date:</p>
-							<p className='date-date'>
-								{format(new Date(group.createdAt), 'dd/MM/yyyy')}
-							</p>
-						</div>
-						<div className='dates-wrapper'>
-							<p className='date-text'>goal date:</p>
-							<p className='date-date'>
-								{format(new Date(group.target_date), 'dd/MM/yyyy')}
-							</p>
-						</div>
-					</div>
-					<div className='bottom-wrapper'>
-						<p>reason / event:</p>
-						<p>{group && group.target_reason}</p>
-					</div>
-				</div>
-			)} */}
 
 			{participant && participant.weights.length > 0 ? (
 				<>
-					{/* {' '}
-					{participant && participant.weights.length >= 1 && (
-						<NextWeighInReminderWidget reminderData={reminderData} />
-					)} */}
-					{/* <WeightUnitsWidget weights={weights} /> */}
-					{/* {targets &&
-						weights &&
-						weights.length > 1 &&
-						targets.map((target) => (
-							<ProgressWidget
-								key={target._id}
-								target={target}
-								weights={weights}
-							/>
-						))} */}
-					{/* <WeightConvertor /> */}
-					{/* <WeightsProgressWidget weights={weights} /> */}
 					<ParticipantWeightsList
 						weights={participant && participant.weights.reverse()}
 					/>
 				</>
 			) : (
-				<NoUserWeightsWidget
-				// setCurrentFormOpen={setCurrentFormOpen}
-				// handleFormChoice={handleFormChoice}
-				/>
+				<NoUserWeightsWidget />
 			)}
 
-			{/* {group && participant && (
-				<div className='participant-widget'>
-					<p>{participant.first_name}</p>
-				</div>
-			)} */}
-			{/* {group && group && <GroupParticipantsList group={group && group} />} */}
-
-			{isMobile && (
+			{isMobile && group && group.chairperson_user_id._id === user.userId && (
+				<NudgeParticipantWidget participant={participant} />
+			)}
+			{/* {isMobile && (
 				<>
 					{group && group.chairperson_user_id._id === user.userId ? (
 						<NudgeParticipantWidget participant={participant} />
@@ -223,20 +156,6 @@ const Participant = () => {
 						</p>
 					)}
 				</>
-			)}
-			{/* {isMobile ? (
-				<>
-					{group && group.chairperson_user_id._id === user.userId ? (
-						<NudgeParticipantWidget participant={participant} />
-					) : (
-						<p className='dev-red br'>
-							note for developers - user !chairperson so invite widget not
-							displayed
-						</p>
-					)}
-				</>
-			) : (
-				<p>not a mobile device</p>
 			)} */}
 		</StyledParticipant>
 	);

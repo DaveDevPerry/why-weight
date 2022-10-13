@@ -75,7 +75,7 @@ const UserDefaultMeasurementUnit = ({ targets }) => {
 				<div>
 					<ul className='user-details-list'>
 						<li>
-							<p>Units:</p>
+							<p>weight unit:</p>
 							<ul id='view-mode-menu'>
 								<li
 									id='kilograms'
@@ -172,28 +172,35 @@ const StyledUserDefaultMeasurementUnit = styled.nav`
 		row-gap: 3rem;
 		.user-details-list {
 			list-style: none;
+			font-size: 1.4rem;
 			li {
 				display: flex;
-				align-items: center;
+				align-items: flex-start;
+				/* align-items: center; */
 				column-gap: 1rem;
 				p {
 					/* width: 12rem; */
-					width: 8.5rem;
+					width: 11rem;
+					/* width: 8.5rem; */
 					text-align: right;
+					font-weight: bold;
 				}
 				#view-mode-menu {
 					display: flex;
 					justify-content: flex-start;
-					align-items: center;
-					flex-direction: row;
+					align-items: flex-start;
+					flex-direction: column;
+					/* flex-direction: row; */
 					list-style: none;
 					/* width: 100%; */
-					column-gap: 0.5rem;
+					row-gap: 0.3rem;
+					/* column-gap: 0.5rem; */
 					li {
 						cursor: pointer;
 						/* flex: 1; */
+						font-size: 1.4rem;
 						.view-mode-btn {
-							padding: 0.3rem;
+							padding: 0.3rem 1rem;
 							outline: none;
 							border: none;
 							border-radius: 0.5rem;
@@ -203,6 +210,7 @@ const StyledUserDefaultMeasurementUnit = styled.nav`
 							/* pointer-events: none; */
 							border: 2px solid ${({ theme }) => theme.txtGrey};
 							/* flex: 1; */
+							font-size: 1.4rem;
 						}
 						/* span {
 							pointer-events: none !important;
@@ -211,7 +219,7 @@ const StyledUserDefaultMeasurementUnit = styled.nav`
 							/* li { */
 							/* cursor: pointer; */
 							.view-mode-btn {
-								padding: 0.3rem;
+								padding: 0.3rem 1rem;
 								outline: none;
 								border: none;
 								border-radius: 0.5rem;
