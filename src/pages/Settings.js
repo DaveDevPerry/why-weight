@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import UserForm from '../components/UserForm';
 import { log } from '../helper';
 import { useStateContext } from '../lib/context';
+import UserDefaultMeasurementUnit from '../components/UserDefaultMeasurementUnit';
 // import UserForm from '../components/UserForm';
 
 const Settings = ({ themeToggler, theme }) => {
@@ -97,6 +98,7 @@ const Settings = ({ themeToggler, theme }) => {
 				</h3>
 
 				<Toggle toggleTheme={themeToggler} theme={theme} />
+				<UserDefaultMeasurementUnit theme={theme} />
 				<Navbar targets={targets} />
 				{!targets && <TargetForm />}
 				{!user.first_name && <UserForm />}

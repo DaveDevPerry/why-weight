@@ -10,6 +10,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import { log } from '../helper';
 import { useStateContext } from '../lib/context';
 import AuthVerify from '../common/AuthVerify';
+import { useUsersContext } from '../hooks/useUserContext';
 // import {
 // 	differenceInCalendarDays,
 // 	isMonday,
@@ -28,10 +29,13 @@ const Loader = () => {
 	// const { targets, dispatch: targetDispatch } = useTargetsContext();
 	const { dispatch: groupDispatch } = useGroupsContext();
 	const { user } = useAuthContext();
+	const { active_user } = useUsersContext();
 	// const { setDataLoaded, setDisplayLoader } = useStateContext();
 	const {
 		setDataLoaded,
 		setDisplayLoader,
+		setUnitMode,
+		setDefaultUnitViewMode,
 		// setReminderData,
 		// reminderData,
 		// dataLoaded,
@@ -141,6 +145,11 @@ const Loader = () => {
 			fetchGroups();
 		}
 	}, [groupDispatch, user]);
+
+	useEffect(() => {
+		setDefaultUnitViewMode(active_user.defaultMeasurementUnit);
+		setUnitMode(active_user.defaultMeasurementUnit);
+	}, [user]);
 
 	// ADD PARTICIPANTS
 

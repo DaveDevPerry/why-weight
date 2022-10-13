@@ -5,11 +5,15 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import styled from 'styled-components';
 import { CgCloseR } from 'react-icons/cg';
 import toast from 'react-hot-toast';
+import { useStateContext } from '../lib/context';
+import { log } from '../helper';
 // import { motion } from 'framer-motion';
 
 const WeightForm = ({ isFormActive, setIsFormActive }) => {
 	const { dispatch } = useWeightsContext();
 	const { user } = useAuthContext();
+
+	const { unitMode } = useStateContext();
 
 	// const navigate = useNavigate();
 
@@ -26,12 +30,51 @@ const WeightForm = ({ isFormActive, setIsFormActive }) => {
 			setError('You must be logged in');
 			return;
 		}
-		const weight = { load };
+
+		let loadConvertedToKilograms;
+
+		// check user unit input and convert to kilos if needed
+		switch (unitMode) {
+			case 'kilograms':
+				// code block
+				loadConvertedToKilograms = { load };
+				break;
+			case 'stones':
+				// code block
+				const stoneToKiloConversion = 6.35;
+				// const stonesInput = { load };
+				const stonesInput = load;
+				log(stonesInput, 'stones input');
+				const convertedFromStones = (
+					stonesInput * stoneToKiloConversion
+				).toFixed(2);
+				loadConvertedToKilograms = { load: convertedFromStones };
+				// loadConvertedToKilograms = stonesInput * stoneToKiloConversion;
+				break;
+			case 'pounds':
+				// code block
+				const poundsToKiloConversion = 0.453592;
+				const poundsInput = load;
+				const convertedFromPounds = (
+					poundsInput * poundsToKiloConversion
+				).toFixed(2);
+				loadConvertedToKilograms = { load: convertedFromPounds };
+				break;
+			default:
+				// code block
+				loadConvertedToKilograms = { load };
+		}
+
+		log(loadConvertedToKilograms, 'load converted');
+
+		const weight = loadConvertedToKilograms;
+		// const weight = { load };
+
+		log(weight, 'weight from load');
 
 		const response = await fetch(
 			`${process.env.REACT_APP_BACKEND_URL}/api/weights`,
 			{
-				// const response = await fetch('/api/weights', {
 				method: 'POST',
 				body: JSON.stringify(weight),
 				headers: {
@@ -47,16 +90,12 @@ const WeightForm = ({ isFormActive, setIsFormActive }) => {
 			setEmptyFields(json.emptyFields);
 		}
 		if (response.ok) {
-			// setNewWeight('');
 			setLoad('');
-			// setReps('');
 			setError(null);
 			setEmptyFields([]);
-			// log('new weight added', json);
 			dispatch({ type: 'CREATE_WEIGHT', payload: json });
 		}
 		setIsFormActive(!isFormActive);
-		// notify(JSON.stringify(weight));
 		notify(weight.load);
 	};
 	const handleClose = () => {
@@ -88,7 +127,10 @@ const WeightForm = ({ isFormActive, setIsFormActive }) => {
 			</h3>
 
 			<div className='input-wrapper'>
-				<label>Weight (in kg):</label>
+				<label>
+					Weight <span>({unitMode})</span>
+				</label>
+				{/* <label>Weight (in kg):</label> */}
 				<input
 					type='number'
 					id='input-number'
@@ -147,6 +189,12 @@ const StyledForm = styled.form`
 			font-size: 0.9em;
 			text-align: right;
 			flex: 1;
+			span {
+				font-size: 0.9em;
+				text-align: right;
+				flex: 1;
+				color: ${({ theme }) => theme.secondaryColor};
+			}
 		}
 		#input-number {
 			padding: 0.8rem 1rem;

@@ -32,6 +32,9 @@ export const StateContext = ({ children }) => {
 	const [reminderData, setReminderData] = useState({
 		message: '',
 	});
+
+	const [unitMode, setUnitMode] = useState(null);
+	const [defaultUnitViewMode, setDefaultUnitViewMode] = useState(null);
 	// const getReminderStatus = (weights) => {
 	// 	log(weights, 'weights in context');
 	// 	const lastWeightRecord = weights && weights[0];
@@ -90,6 +93,10 @@ export const StateContext = ({ children }) => {
 				// getReminderStatus,
 				reminderData,
 				setReminderData,
+				unitMode,
+				setUnitMode,
+				defaultUnitViewMode,
+				setDefaultUnitViewMode,
 			}}
 		>
 			{children}

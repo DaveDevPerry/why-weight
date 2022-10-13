@@ -1,10 +1,14 @@
 import { useState } from 'react';
+import { useStateContext } from '../lib/context';
 import { useAuthContext } from './useAuthContext';
+import { useUsersContext } from './useUserContext';
 
 export const useLogin = () => {
 	const [error, setError] = useState(null);
 	const [isLoading, setIsLoading] = useState(null);
 	const { dispatch } = useAuthContext();
+	const { dispatch: userDispatch } = useUsersContext();
+	const { setUnitMode, setDefaultUnitViewMode } = useStateContext();
 
 	const login = async (email, password) => {
 		setIsLoading(true);
@@ -48,7 +52,11 @@ export const useLogin = () => {
 			localStorage.setItem('user-why-weight', JSON.stringify(json));
 			// update auth context with email
 			dispatch({ type: 'LOGIN', payload: json });
+			userDispatch({ type: 'SET_USER', payload: json });
 			// update loading state to false as finished
+
+			setDefaultUnitViewMode(json.defaultMeasurementUnit);
+			setUnitMode(json.defaultMeasurementUnit);
 			setIsLoading(false);
 		}
 	};
