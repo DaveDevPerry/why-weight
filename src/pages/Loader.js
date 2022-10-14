@@ -80,7 +80,7 @@ const Loader = () => {
 				setTimeout(() => {
 					navigate('/home');
 				}, 1000);
-			}, 2000);
+			}, 1000);
 		}
 		// setTimeout(() => {
 		// 	setDataLoaded(true);

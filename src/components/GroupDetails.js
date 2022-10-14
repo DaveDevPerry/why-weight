@@ -106,6 +106,7 @@ const StyledGroupDetails = styled.div`
 	/* align-items: flex-start; */
 	flex-direction: column;
 	row-gap: 1rem;
+	cursor: pointer;
 	.full-header {
 		display: flex;
 		/* align-items: flex-start; */

@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+![Screenshot](./src/assets/screens_whyweight.webp)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project Link: [Why Weight?](https://why-weight.vercel.app)
 
-## Available Scripts
+# Why Weight?
 
-In the project directory, you can run:
+<!-- A little info about your project and/ or overview that explains **what** the project is about. -->
 
-### `npm start`
+An app to keep track of all your weight. Not only that, but you can create a group and invite friends to join and this displays progress in the form of a league.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<!-- ## Game Details
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Each player choses ten numbers (from available lotto numbers range). Mark off each of your numbers if the ball was drawn in the official lotto draw. The winner is the first person to match all ten numbers. -->
 
-### `npm test`
+## Motivation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I wanted to continue learning the MERN stack so I decided to build this app . Ultimately helping me closer to my goal of building out full stack applications.
 
-### `npm run build`
+## Code
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I used the MERN stack for this. In addition it includes custom hooks and functions.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Future Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Automated weight reminder emails or push notifications
+- Progressive Web App
+- Improved desktop layout design
 
-### `npm run eject`
+<!-- ## Code Example
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise. -->
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<!-- ## Installation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Provide step by step series of examples and explanations about how to get a development env running. -->
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<!-- ## API Reference
 
-## Learn More
+Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Tests
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Describe and show how to run the tests with code examples. -->
 
-### Code Splitting
+<!-- ## How to use? -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Contact
 
-### Analyzing the Bundle Size
+If you want to contact me you can reach me at [daveperry.tech](https://daveperry.tech)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<!-- [loopy lotto repo](https://github.com/your_username/repo_name) -->
 
-### Making a Progressive Web App
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<!-- A short snippet describing the license (MIT, Apache etc) -->
 
-### Advanced Configuration
+Distributed under the MIT License. See [LICENSE.txt](LICENSE.txt) for more information.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- MIT © [Dave Perry]() -->

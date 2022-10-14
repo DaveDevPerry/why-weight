@@ -7,20 +7,23 @@ import { AuthContextProvider } from './context/AuthContext';
 import { TargetsContextProvider } from './context/TargetContext';
 import { GroupsContextProvider } from './context/GroupContext';
 import { UsersContextProvider } from './context/UserContext';
+import { ViewportContextProvider } from './context/ViewportContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<AuthContextProvider>
-			<GroupsContextProvider>
-				<UsersContextProvider>
-					<TargetsContextProvider>
-						<WeightsContextProvider>
-							<App />
-						</WeightsContextProvider>
-					</TargetsContextProvider>
-				</UsersContextProvider>
-			</GroupsContextProvider>
-		</AuthContextProvider>
+		<ViewportContextProvider>
+			<AuthContextProvider>
+				<GroupsContextProvider>
+					<UsersContextProvider>
+						<TargetsContextProvider>
+							<WeightsContextProvider>
+								<App />
+							</WeightsContextProvider>
+						</TargetsContextProvider>
+					</UsersContextProvider>
+				</GroupsContextProvider>
+			</AuthContextProvider>
+		</ViewportContextProvider>
 	</React.StrictMode>
 );

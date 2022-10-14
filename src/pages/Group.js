@@ -49,6 +49,8 @@ const Group = () => {
 				(obj) => obj.title === groupToView
 			);
 
+			log(groupData, 'group data');
+
 			const clonedForParticipants = [...json];
 			const groupPartData = clonedForParticipants.filter(
 				(obj) => obj.title === groupToView
@@ -76,6 +78,8 @@ const Group = () => {
 				const weightMovement =
 					weights[0].load.toFixed(2) -
 					weights[weights.length - 1].load.toFixed(2);
+
+				log(weightMovement, 'weight movement');
 
 				return { ...participant, weights, weightMovement };
 			});

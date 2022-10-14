@@ -28,22 +28,13 @@ const Footer = () => {
 							to='/home'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
-							{/* Home */}
 							<HiPresentationChartLine className='nav-icon' />
 							<p>home</p>
 						</NavLink>
-						{/* <NavLink
-							to='/add-weight'
-							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
-						> */}
-						{/* <BsPlusCircleFill className='add-icon' onClick={handleClick} /> */}
-						{/* </NavLink> */}
-
 						<NavLink
 							to='/weights'
 							className={({ isActive }) => (isActive ? 'active' : 'inactive')}
 						>
-							{/* Weights */}
 							<IoScale className='nav-icon' />
 							<p>weights</p>
 						</NavLink>

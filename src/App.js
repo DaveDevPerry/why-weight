@@ -11,9 +11,12 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import { StateContext } from './lib/context';
 import { Toaster } from 'react-hot-toast';
+import { useViewport } from './hooks/useViewport';
 
 function App() {
 	const { user } = useAuthContext();
+	const { width } = useViewport();
+	const breakpoint = 620;
 
 	const [theme, themeToggler, mountedComponent] = useDarkMode();
 	const themeMode = theme === 'light' ? lightTheme : darkTheme;
@@ -27,14 +30,12 @@ function App() {
 					<BrowserRouter>
 						<Toaster />
 						<Header />
-						{/* <div className='pages'> */}
 						<AnimatedRoutes
 							user={user}
 							themeToggler={themeToggler}
 							theme={theme}
 						/>
-						{/* </div> */}
-						<Footer />
+						{width < breakpoint && <Footer />}
 					</BrowserRouter>
 				</div>
 			</StateContext>
