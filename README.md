@@ -1,4 +1,4 @@
-![Screenshot](./src/assets/screens_whyweight.webp)
+![Screenshot](./src/assets/screen_whyweight.webp)
 
 Project Link: [Why Weight?](https://why-weight.vercel.app)
 
