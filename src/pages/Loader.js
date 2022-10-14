@@ -244,6 +244,7 @@ const StyledLoader = styled(motion.section)`
 		font-size: 2rem;
 		/* color: ${({ theme }) => theme.bgGrey}; */
 		color: ${({ theme }) => theme.syntax};
+		font-family: 'Fuzzy Bubbles', cursive;
 	}
 	.nav-icon {
 		font-size: 10rem;

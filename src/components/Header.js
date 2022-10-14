@@ -115,6 +115,7 @@ const StyledHeader = styled.header`
 		h1 {
 			font-size: 2rem;
 			color: ${({ theme }) => theme.secondaryColor};
+			font-family: 'Fuzzy Bubbles', cursive;
 		}
 		a {
 			display: grid;
