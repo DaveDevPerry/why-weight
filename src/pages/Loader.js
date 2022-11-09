@@ -246,6 +246,7 @@ const StyledLoader = styled(motion.section)`
 		color: ${({ theme }) => theme.syntax};
 		font-family: 'Fuzzy Bubbles', cursive;
 	}
+	/* dfgf */
 	.nav-icon {
 		font-size: 10rem;
 		/* color: ${({ theme }) => theme.bgGrey}; */
