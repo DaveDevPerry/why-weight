@@ -6,7 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
-import Signup from './pages/Signup';
+// import Signup from './pages/Signup';
 import Weights from './pages/Weights';
 import Settings from './pages/Settings';
 import Loader from './pages/Loader';
@@ -43,10 +43,10 @@ const AnimatedRoutes = ({ user, themeToggler, theme }) => {
 					path='/login'
 					element={!user ? <Login theme={theme} /> : <Navigate to='/' />}
 				/>
-				<Route
+				{/* <Route
 					path='/signup'
 					element={!user ? <Signup theme={theme} /> : <Navigate to='/' />}
-				/>
+				/> */}
 
 				<Route
 					path='/home'
